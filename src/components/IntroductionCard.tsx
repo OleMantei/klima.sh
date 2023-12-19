@@ -6,8 +6,8 @@ import {
   Divider,
   Image,
   Link,
-} from "@nextui-org/react";
-import Logo from "../assets/Logo_Klima.SH.svg";
+} from '@nextui-org/react';
+import Logo from '../assets/Logo_Klima.SH.svg';
 
 export default function IntroductionCard() {
   return (
@@ -29,7 +29,7 @@ export default function IntroductionCard() {
         <Divider />
         <CardBody>
           <p className="text-rose-600 text-small mb-1">
-            Dies ist ein privates Studierendenprojekt der{" "}
+            Dies ist ein privates Studierendenprojekt der{' '}
             <a href="https://www.uni-luebeck.de" className="underline">
               Universität zu Lübeck
             </a>
