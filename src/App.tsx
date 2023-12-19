@@ -3,25 +3,28 @@ import Home from './pages/Home';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
+import Settings from './pages/Settings';
+import { useRecoilValue } from 'recoil';
+import { userState } from './store';
+import AppContainer from './components/AppContainer';
 
 export default function App() {
   const navigate = useNavigate();
+  const user = useRecoilValue(userState);
 
   return (
     <NextUIProvider navigate={navigate}>
       <NextThemesProvider
         attribute="class"
-        defaultTheme={
-          // TODO: add color scheme toggle to ui
-          window.matchMedia('(prefers-color-scheme: dark)').matches
-            ? 'dark'
-            : 'light'
-        }
+        defaultTheme={user.prefersColorScheme}
       >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Routes>
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </AppContainer>
       </NextThemesProvider>
     </NextUIProvider>
   );
