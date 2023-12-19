@@ -7,7 +7,7 @@ import {
   Image,
   Link,
 } from "@nextui-org/react";
-import Logo from "../../public/Logo_Klima.SH.svg";
+import Logo from "../assets/Logo_Klima.SH.svg";
 
 export default function IntroductionCard() {
   return (
