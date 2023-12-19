@@ -34,7 +34,7 @@ Folgende Einstellungen können in VSCode übernommen werden:
 Jeder Entwickler arbeitet auf einem eigenen Branch (welcher jeweils für eine bestimmte Verbesserung angelegt wird). Es wird nicht auf dem `main`-Branch gearbeitet 😄.
 
 Für jede Verbesserung wird ein Issue geschrieben. Für das Issue wird ein treffender Titel gewählt (Orientierung an Git Commit Messages Best Practices). Ggf. kann bei Erklärungsbedarf eine Beschreibung hinzugefügt werden.
-Für das Issue wird ein zutreffendes Label gewählt: `bug` / `documentation` / `feature`. Der Entwickler (der an der Verbesserung arbeitet) weist sich das Issue selbst zu. In der Issueansicht kann bei GitHub der Branch zu dem Issue erstellt werden.
+Für das Issue wird ein zutreffendes Label gewählt: `bug` / `documentation` / `enhancement`. Der Entwickler (der an der Verbesserung arbeitet) weist sich das Issue selbst zu. In der Issueansicht kann bei GitHub der Branch zu dem Issue erstellt werden.
 
 Zwischenstände werden auf dem Branch committet. Commit-Nachrichten sind aussagekräftig und folgen Best Practices. Es dürfen gerne vorangestellt Gitmojis verwendet werden [https://gitmoji.dev/] - die sind cool!
 
