@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# Klima.SH (CS5180-KP04: Open Data Hackathon)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dieses Projekt verwendet React (Clientseitiges JavaScript-Framework) [https://react.dev] und Vite (Entwicklungsumgebung) [https://vitejs.dev/]. Mithilfe von Vercel (Kontinuierliche Bereitstellung) [https://vercel.com/] kann der aktuelle Entwicklungsstand unter folgender URL aufgerufen werden: [https://www.klimash.de/].
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Projekt aufsetzen
 
-## Expanding the ESLint configuration
+Node.js [https://nodejs.org/] muss auf dem Entwicklungsgerät installiert sein.
+Als Paketmanager wird Yarn [https://yarnpkg.com/] verwendet (_Installation:_ `npm install --global yarn`).
+Es sollten die empfohlenen Erweiterungen in VSCode (empfohlener Editor) hinzugefügt werden (siehe `.vscode/extensions.json`).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+**Befehle** \
+`yarn install` (Paketabhängigkeiten laden) \
+`yarn run dev` (Entwicklungsserver starten)
 
-- Configure the top-level `parserOptions` property like this:
+**Code Analyse und Formatierung** \
+Für die Codeanalyse ist in das Projekt ESLint (Quellcode-Analyse) [https://eslint.org/] und für das Formatieren Prettier (Code-Formatierung) [https://prettier.io/] integriert.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Folgende Einstellungen können in VSCode übernommen werden:
+
+```
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"editor.formatOnSave": true,
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+},
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## 👨‍💻 Vorgehensweise
+
+Jeder Entwickler arbeitet auf einem eigenen Branch (welcher jeweils für eine bestimmte Verbesserung angelegt wird). Es wird nicht auf dem `main`-Branch gearbeitet 😄.
+
+Für jede Verbesserung wird ein Issue geschrieben. Für das Issue wird ein treffender Titel gewählt (Orientierung an Git Commit Messages Best Practices). Ggf. kann bei Erklärungsbedarf eine Beschreibung hinzugefügt werden.
+Für das Issue wird ein zutreffendes Label gewählt: `bug` / `documentation` / `feature`. Der Entwickler (der an der Verbesserung arbeitet) weist sich das Issue selbst zu. In der Issueansicht kann bei GitHub der Branch zu dem Issue erstellt werden.
+
+Zwischenstände werden auf dem Branch committet. Commit-Nachrichten sind aussagekräftig und folgen Best Practices. Es dürfen gerne vorangestellt Gitmojis verwendet werden [https://gitmoji.dev/] - die sind cool!
+
+Sollte der Entwicklungsstand die Verbesserung erfüllen und keine unerwünschten Auswirkungen auf bestehenden Code haben, kann ein Pull Request erstellt werden. Dieser wird von mindestens zwei Personen überprüft und freigegeben. Sind keine Anpassungen mehr nötig, darf der Code in den `main`-Branch gemergt werden.
+
+---
+
+## 💄 Konventionen
+
+- Entwicklung in Englisch
+- Issues in Englisch und klein geschrieben
+- Commit-Nachrichten klein geschrieben
+- camelCase im Code
+- Variablen, Funktionen ... werden aussagekräftig benannt und ausgeschrieben
