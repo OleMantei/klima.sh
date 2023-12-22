@@ -1,6 +1,43 @@
 // Quelle: https://www.schleswig-holstein.de/DE/landesregierung/themen/energie/energiewende/Daten/pdf/monitoringbericht_2023_excel.html?nn=a7a1f501-0dcb-4ec3-b611-62605f645397
 // Gesamte CO2-Emissionen (Quellenbilanz) nach Sektoren 1990 - 2021
 
+interface Data {
+  Jahr: number;
+  insgesamt: number;
+  Verkehr: number;
+  Gebäude: number;
+  'private Haushalte': number;
+  'Gewerbe, Handel, Dienstleistungen': number;
+  Industrie: number;
+  'Energiewirtschaft / Umwandlungsbereich': number;
+  Landwirtschaft: number;
+}
+
+export const getSumInsgesamt = (
+  data: Data[],
+  year_range: [number, number],
+): number => {
+  const [startYear, endYear] = year_range;
+  return data
+    .filter((d) => d.Jahr >= startYear && d.Jahr <= endYear)
+    .reduce((sum, d) => sum + d.insgesamt, 0);
+};
+
+export const getInsgeamtByYear = (
+  data: Data[],
+  yearRange: [number, number],
+): [number[], number[]] => {
+  const insgesamtArray: number[] = [];
+  const yearArray: number[] = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].Jahr >= yearRange[0] && data[i].Jahr <= yearRange[1]) {
+      insgesamtArray.push(data[i].insgesamt);
+      yearArray.push(data[i].Jahr);
+    }
+  }
+  return [insgesamtArray, yearArray];
+};
+
 export const totalEmissionsBySectorData = [
   {
     Jahr: 1990,

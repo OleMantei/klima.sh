@@ -1,19 +1,15 @@
 import { atom } from 'recoil';
 
-export type ColorSchemes = 'dark' | 'light';
-export const colorSchemeDetails: { value: ColorSchemes; label: string }[] = [
-  { value: 'dark', label: 'Dunkel' },
-  { value: 'light', label: 'Hell' },
-];
+export type YearRange = [number, number];
 
 interface userState {
-  prefersColorScheme: ColorSchemes;
+  yearRangeSelection: YearRange;
+  yearRangeData: YearRange;
 }
 
 const defaultUserState = {
-  prefersColorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light',
+  yearRangeSelection: [2023, 2023],
+  yearRangeData: [2000, 2023],
 };
 
 export const userState = atom({
