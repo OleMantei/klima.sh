@@ -13,6 +13,7 @@ export default function BarSample() {
   const [orientation] = useState(false);
   const user = useRecoilValue(userState);
   const { theme } = useTheme();
+  const mode: 'light' | 'dark' = theme === 'dark' ? 'dark' : 'light';
 
   const data = getInsgeamtByYear(
     totalEmissionsBySectorData,
@@ -27,17 +28,12 @@ export default function BarSample() {
   ];
   const options = {
     chart: {
-      id: 'simple-bar',
-      animations: {
-        speed: 1800,
-        enabled: false,
-      },
       toolbar: {
         show: false,
       },
     },
     theme: {
-      mode: theme,
+      mode: mode,
     },
     plotOptions: {
       bar: {
