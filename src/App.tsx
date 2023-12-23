@@ -8,7 +8,7 @@ import { TotalEmissionsBySector } from './pages/DetailPages/TotalEmissionsBySect
 
 export default function App() {
   const navigate = useNavigate();
-  const isPWA = window.matchMedia('(display-mode: standalone)').matches;
+  const isPWA = window.matchMedia('(display-mode: fullscreen)').matches;
 
   return (
     <NextUIProvider navigate={navigate}>
