@@ -4,7 +4,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import { NextUIProvider } from '@nextui-org/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { ColorSchemeProvider } from './components/App/ColorSchemeProvider';
-import { TotalEmissionsBySector } from './pages/DetailPages/TotalEmissionsBySector/TotalEmissionsBySector';
+import { TotalEmissionsBySector } from './pages/DetailPages/TotalEmissionsBySector';
 
 export default function App() {
   const navigate = useNavigate();

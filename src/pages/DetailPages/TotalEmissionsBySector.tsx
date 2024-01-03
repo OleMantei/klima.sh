@@ -1,6 +1,6 @@
-import { DesktopAppContainer } from '../../../components/DesktopAppContainer';
-import { YearRangeSelector } from '../../../components/YearRangeSelector';
-import ChartXY from './CartXY';
+import { DesktopAppContainer } from '../../components/DesktopAppContainer';
+import { YearRangeSelector } from '../../components/YearRangeSelector';
+import ChartXY from '../../components/DetailPages/CartXY';
 
 export const TotalEmissionsBySector = () => {
   return (

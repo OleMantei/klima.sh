@@ -2,8 +2,8 @@ import { Card, CardBody } from '@nextui-org/card';
 import {
   getSumInsgesamt,
   totalEmissionsBySectorData,
-} from '../../../data/totalEmissionsBySector';
-import { userState } from '../../../store';
+} from '../../data/totalEmissionsBySector';
+import { userState } from '../../store';
 import { useRecoilValue } from 'recoil';
 
 // on of many widgets to be implemented

@@ -4,9 +4,9 @@ import Chart from 'react-apexcharts';
 import {
   getInsgeamtByYear,
   totalEmissionsBySectorData,
-} from '../../../data/totalEmissionsBySector';
+} from '../../data/totalEmissionsBySector';
 import { useRecoilValue } from 'recoil';
-import { userState } from '../../../store';
+import { userState } from '../../store';
 import { useTheme } from 'next-themes';
 
 export default function BarSample() {

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { WidgetTotalEmissionsBySector } from '../components/Dashboard/Widgets/WidgetTotalEmissionsBySector';
+import { WidgetTotalEmissionsBySector } from '../components/Dashboard/WidgetTotalEmissionsBySector';
 import { DesktopAppContainer } from '../components/DesktopAppContainer';
 
 import { YearRangeSelector } from '../components/YearRangeSelector';
