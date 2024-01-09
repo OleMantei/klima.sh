@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useAddToHomescreenPrompt } from '../scripts/useAddToHomescreenPrompt';
 
-export default function Home() {
+export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [supportsInstallPrompt, setSupportsInstallPrompt] = useState(false);
   const [prompt, promptToInstall] = useAddToHomescreenPrompt();
@@ -65,4 +65,4 @@ export default function Home() {
       </div>
     </>
   );
-}
+};
