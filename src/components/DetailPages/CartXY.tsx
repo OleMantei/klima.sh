@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil';
 import { userState } from '../../store';
 import { useTheme } from 'next-themes';
 
-export default function BarSample() {
+export const BarSample = () => {
   const [orientation] = useState(false);
   const user = useRecoilValue(userState);
   const { theme } = useTheme();
@@ -46,4 +46,4 @@ export default function BarSample() {
   };
 
   return <Chart options={options} type="bar" series={series} />;
-}
+};

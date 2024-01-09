@@ -1,11 +1,15 @@
 import { isMobile } from 'react-device-detect';
+import { useLocation } from 'react-router-dom';
 
 type Props = {
   children: JSX.Element[] | JSX.Element;
 };
 
 export const DesktopAppContainer = ({ children }: Props) => {
-  if (isMobile) {
+  const location = useLocation();
+  const { pathname } = location;
+
+  if (isMobile || pathname === '/') {
     return <>{children}</>;
   }
 

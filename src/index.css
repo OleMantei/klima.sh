@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rws-container {
+  background-color: white !important;
+  color: black !important;
+}
