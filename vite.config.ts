@@ -11,7 +11,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     scope: '/',
     start_url: '/',
     name: 'Klima.SH',
-    short_name: 'K.SH',
+    short_name: 'Klima.SH',
     description:
       'Visualisierung von Haushaltsdaten und Kernindikatoren zum Klimawandel in Schleswig-Holstein',
     icons: [
