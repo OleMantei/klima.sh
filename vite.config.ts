@@ -6,12 +6,12 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
     theme_color: '#007AFF',
-    background_color: '#000000',
+    background_color: '#000001',
     display: 'fullscreen',
     scope: '/',
     start_url: '/',
     name: 'Klima.SH',
-    short_name: 'K.SH',
+    short_name: 'Klima.SH',
     description:
       'Visualisierung von Haushaltsdaten und Kernindikatoren zum Klimawandel in Schleswig-Holstein',
     icons: [

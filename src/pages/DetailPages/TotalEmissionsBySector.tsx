@@ -1,5 +1,5 @@
 import { YearRangeSelector } from '../../components/YearRangeSelector';
-import { BarSample } from '../../components/DetailPages/CartXY';
+import { BarSample } from '../../components/DetailPages/BarSample';
 import { NavBar } from '../../components/NavBar';
 
 export const TotalEmissionsBySector = () => {
