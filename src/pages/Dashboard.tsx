@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from 'react-router';
-// import { WidgetTotalEmissionsBySector } from '../components/Dashboard/WidgetTotalEmissionsBySector';
 import {
   Bs1CircleFill,
   Bs2CircleFill,
@@ -11,6 +10,7 @@ import { YearRangeSelector } from '../components/YearRangeSelector';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
+import { TextComponent } from '../components/TextComponent';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -40,7 +40,9 @@ export const Dashboard = () => {
             <BsQuestionLg />
           </Button>
         </div>
-        <p className="text-center my-10">Dashboard coming soon</p>
+        <TextComponent style="text-center my-10">
+          Dashboard coming soon
+        </TextComponent>
         <div className="flex flex-col gap-2">
           <div className="flex flex-row gap-2 ">
             <SecondaryDashboardWidget
@@ -50,7 +52,7 @@ export const Dashboard = () => {
               unitOfMainValue={'€'}
               mainValueDelta={-1.4}
             >
-              <p>Place detail content here</p>
+              <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Widget 2"
@@ -59,7 +61,7 @@ export const Dashboard = () => {
               unitOfMainValue={'TWh'}
               mainValueDelta={-1.4}
             >
-              <p>Place detail content here</p>
+              <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
@@ -70,7 +72,7 @@ export const Dashboard = () => {
               unitOfMainValue={'TWh'}
               mainValueDelta={-1.4}
             >
-              <p>Place detail content here</p>
+              <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Widget 4"
@@ -79,25 +81,10 @@ export const Dashboard = () => {
               unitOfMainValue={'%'}
               mainValueDelta={-1.4}
             >
-              <p>Place detail content here</p>
+              <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
         </div>
-
-        {/* <div className="flex flex-row gap-2">
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          >
-            <WidgetTotalEmissionsBySector />
-          </div>
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          >
-            <WidgetTotalEmissionsBySector />
-          </div>
-        </div> */}
       </div>
       <YearRangeSelector />
     </>
