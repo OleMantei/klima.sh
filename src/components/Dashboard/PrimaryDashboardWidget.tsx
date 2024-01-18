@@ -28,18 +28,19 @@ export const PrimaryDashboardWidget = ({
   return (
     <Card
       style={{ borderRadius: 10 }}
-      className="bg-gradient-to-tr from-primary-300 to-purple-200 "
+      className="bg-gradient-to-tr from-primary-300 to-purple-200 dark:bg-gradient-to-tr dark:from-primary-400 dark:to-purple-600"
     >
       <CardBody>
         <div className="flex items-center gap-2 pb-2">
           <Icon size={20} className="fill-default-500" />
-          <TextComponent style="font-semibold text-default-600">
+          <TextComponent style="font-semibold text-default-600 dark:text-default-500">
             {title}
           </TextComponent>
         </div>
         <TextComponent
-          style="text-center text-default-800"
+          style="text-center text-default-800 dark:text-default-600"
           fSize="text-3xl"
+          fFamily="font-secondary"
           fWeight="font-bold"
         >
           {mainValue} {unitOfMainValue}

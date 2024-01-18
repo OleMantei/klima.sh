@@ -58,7 +58,7 @@ export const Dashboard = () => {
       <div className="p-4">
         <div className="text-right">
           <Button
-            color="primary"
+            color="default"
             size="sm"
             radius="md"
             variant="flat"
@@ -102,7 +102,7 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
-              Icon={AiOutlineCloud}
+              Icon={AiOutlineFire}
               mainValue={heating}
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
@@ -122,7 +122,7 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Treibhausgase"
-              Icon={AiOutlineFire}
+              Icon={AiOutlineCloud}
               mainValue={greenHouseGas}
               unitOfMainValue={' Gt'}
               mainValueDelta={greenHouseGasDelta}
