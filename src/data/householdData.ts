@@ -86,23 +86,6 @@ export const householdDataTotal: HouseholdDataTotalType = {
 
 export const householdData: HouseholdDataType = [
   {
-    identifier: '0',
-    purpose: 'total',
-    planning: false,
-    entirePeriod: true,
-    data: {
-      '2014': 14996.6,
-      '2015': 21723.8,
-      '2016': 18021,
-      '2017': 20435.6,
-      '2018': 342.1,
-      '2019': 620.3,
-      '2020': 215.4,
-      '2021': 255.5,
-    },
-    mgtg: '',
-  },
-  {
     identifier: '11101',
     purpose: 'Gebühren und tarifliche Entgelte',
     planning: false,
