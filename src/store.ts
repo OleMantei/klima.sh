@@ -8,8 +8,8 @@ interface userState {
 }
 
 const defaultUserState = {
-  yearRangeSelection: [2023, 2023],
-  yearRangeData: [2000, 2023],
+  yearRangeSelection: [2021, 2021],
+  yearRangeData: [2015, 2021],
 };
 
 export const userState = atom({
