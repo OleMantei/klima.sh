@@ -1,3 +1,4 @@
+import { colorSwitcherHeader } from '../../design/designHelperFunctions';
 import { TextComponent } from '../TextComponent';
 
 type HeaderDashboardType = {
@@ -24,13 +25,13 @@ export const HeaderDashboard = ({
             fWeight="font-bold"
             fSize="text-base"
             fFamily="font-secondary"
-            style={`text-${delta <= 0 ? 'danger' : 'success'}-600 -mb-1`}
+            style={`text-${colorSwitcherHeader(delta)} -mb-1`}
           >
-            {delta}%
+            {delta <= 0 ? delta : `+${delta}`}%
           </TextComponent>
           <TextComponent
             fWeight="font-medium"
-            style={`text-${delta <= 0 ? 'danger' : 'success'}-600 `}
+            style={`text-${delta <= 0 ? 'danger' : 'success'}`}
           >
             {subTextDelta}
           </TextComponent>

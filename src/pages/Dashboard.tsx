@@ -92,9 +92,9 @@ export const Dashboard = () => {
           </PrimaryDashboardWidget>
           <div className="flex gap-2">
             <SecondaryDashboardWidget
-              title="Primärenergieverbrauch"
+              title="Primärenergie"
               mainValue={primaryEnergy}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               Icon={AiOutlineThunderbolt}
               mainValueDelta={primaryEnergyDelta}
             >
@@ -104,7 +104,7 @@ export const Dashboard = () => {
               title="Wärmeversorgung"
               Icon={AiOutlineCloud}
               mainValue={heating}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
@@ -112,19 +112,19 @@ export const Dashboard = () => {
           </div>
           <div className="flex flex-row  gap-2">
             <SecondaryDashboardWidget
-              title="Bruttoenergieverbrauch"
+              title="Energieverbrauch"
               mainValue={grossEnergy}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               mainValueDelta={grossEnergyDelta}
               Icon={AiOutlineCluster}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
-              title="Treibhausgasemissionen"
+              title="Treibhausgase"
               Icon={AiOutlineFire}
               mainValue={greenHouseGas}
-              unitOfMainValue={' Tonnen'}
+              unitOfMainValue={' Gt'}
               mainValueDelta={greenHouseGasDelta}
             >
               <TextComponent>Place detail content here</TextComponent>

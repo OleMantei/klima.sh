@@ -2,6 +2,7 @@ import { Card, CardBody } from '@nextui-org/card';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 import { TextComponent } from '../TextComponent';
+import { colorSwitcherSecondary } from '../../design/designHelperFunctions';
 
 type StaticData = {
   Icon: IconType;
@@ -21,7 +22,10 @@ export const SecondaryDashboardWidget = ({
   mainValueDelta,
 }: StaticData) => {
   return (
-    <Card className="bg-primary-50" style={{ flex: 1, borderRadius: 10 }}>
+    <Card
+      className="bg-primary-50 shadow-none border-1 border-default-300"
+      style={{ flex: 1, borderRadius: 10 }}
+    >
       <CardBody>
         <div className="flex items-center gap-2 pb-2">
           <Icon size={18} className="fill-default-500" />
@@ -39,9 +43,11 @@ export const SecondaryDashboardWidget = ({
         {children}
         <TextComponent
           fWeight="font-bold"
-          style={`text-${mainValueDelta <= 0 ? 'danger' : 'success'}-600`}
+          style={`text-${colorSwitcherSecondary(mainValueDelta)}`}
         >
-          {mainValueDelta}%
+          {mainValueDelta < 0
+            ? `${mainValueDelta * -1}% gesunken`
+            : `${mainValueDelta}% gestiegen`}
         </TextComponent>
       </CardBody>
     </Card>
