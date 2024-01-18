@@ -5,9 +5,9 @@ import { VitePWA, VitePWAOptions } from 'vite-plugin-pwa';
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
-    theme_color: '#007AFF',
-    background_color: '#000001',
-    display: 'fullscreen',
+    theme_color: '#f0fffd',
+    background_color: '#000000',
+    display: 'standalone',
     scope: '/',
     start_url: '/',
     name: 'Klima.SH',

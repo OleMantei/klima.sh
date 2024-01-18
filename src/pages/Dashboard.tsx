@@ -1,12 +1,13 @@
 import { useNavigate, useLocation } from 'react-router';
+import { BsQuestionLg } from 'react-icons/bs';
+
 import {
-  Bs1CircleFill,
-  Bs2CircleFill,
-  Bs3CircleFill,
-  Bs4CircleFill,
-  BsCheckCircleFill,
-  BsQuestionLg,
-} from 'react-icons/bs';
+  AiOutlineEuroCircle,
+  AiOutlineThunderbolt,
+  AiOutlineCloud,
+  AiOutlineCluster,
+  AiOutlineFire,
+} from 'react-icons/ai';
 import { YearRangeSelector } from '../components/YearRangeSelector';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
@@ -37,6 +38,12 @@ import {
   getHeatingPercentage,
   heatingByEnergySourceData,
 } from '../data/heatingByEnergySource';
+import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
+import {
+  co2Emissions,
+  getDeltaAsPercentage,
+  getLatestYearDelta,
+} from '../data/co2Emissions';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -96,9 +103,10 @@ export const Dashboard = () => {
       <div className="p-4">
         <div className="text-right">
           <Button
+            color="primary"
             size="sm"
-            radius="full"
-            variant="faded"
+            radius="md"
+            variant="flat"
             isIconOnly
             aria-label="Hilfe"
             className="ml-auto"
@@ -107,34 +115,39 @@ export const Dashboard = () => {
             <BsQuestionLg />
           </Button>
         </div>
-        <TextComponent style="text-center my-10">
-          Dashboard coming soon
-        </TextComponent>
+        <HeaderDashboard
+          delta={getDeltaAsPercentage(co2Emissions, user.yearRangeSelection)}
+          total={getLatestYearDelta(co2Emissions, user.yearRangeSelection)}
+          subTextDelta={
+            user.yearRangeSelection[0] != user.yearRangeSelection[1]
+              ? 'Unterschied zu ' + user.yearRangeSelection[0].toString()
+              : 'Unterschied zu ' + (user.yearRangeSelection[0] - 1).toString()
+          }
+          subTextTotal={'Stand ' + user.yearRangeSelection[1].toString()}
+        />
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row gap-2 ">
-            <PrimaryDashboardWidget
-              title="Main Widgets "
-              Icon={BsCheckCircleFill}
-              mainValue={0}
-              unitOfMainValue={'€'}
-              mainValueDelta={-1.4}
-            >
-              <TextComponent>Place detail content here</TextComponent>
-            </PrimaryDashboardWidget>
-          </div>
-          <div className="flex flex-row gap-2 ">
+          <PrimaryDashboardWidget
+            title="Main Widgets "
+            Icon={AiOutlineEuroCircle}
+            mainValue={0}
+            unitOfMainValue={'€'}
+            mainValueDelta={1.4}
+          >
+            <TextComponent>Place detail content here</TextComponent>
+          </PrimaryDashboardWidget>
+          <div className="flex gap-2">
             <SecondaryDashboardWidget
               title="Primärenergieverbrauch"
-              Icon={Bs1CircleFill}
               mainValue={primaryEnergy}
               unitOfMainValue={' GWh'}
+              Icon={AiOutlineThunderbolt}
               mainValueDelta={primaryEnergyDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
-              Icon={Bs2CircleFill}
+              Icon={AiOutlineCloud}
               mainValue={heating}
               unitOfMainValue={' GWh'}
               mainValueDelta={heatingDelta}
@@ -145,16 +158,16 @@ export const Dashboard = () => {
           <div className="flex flex-row  gap-2">
             <SecondaryDashboardWidget
               title="Bruttoenergieverbrauch"
-              Icon={Bs3CircleFill}
               mainValue={grossEnergy}
               unitOfMainValue={' GWh'}
               mainValueDelta={grossEnergyDelta}
+              Icon={AiOutlineCluster}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Treibhausgasemissionen"
-              Icon={Bs4CircleFill}
+              Icon={AiOutlineFire}
               mainValue={greenHouseGas}
               unitOfMainValue={' Tonnen'}
               mainValueDelta={greenHouseGasDelta}
@@ -162,12 +175,6 @@ export const Dashboard = () => {
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
-        </div>
-        <div className="flex flex-row gap-2">
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          ></div>
         </div>
       </div>
       <YearRangeSelector />
