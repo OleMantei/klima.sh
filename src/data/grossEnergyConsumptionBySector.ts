@@ -27,7 +27,7 @@ export const getSum = (
       sum += dataObj.sumValue;
     }
   }
-  return sum;
+  return parseFloat((sum / 1000).toFixed(1));
 };
 
 export const getPercentage = (
