@@ -15,6 +15,7 @@ import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashb
 import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
+
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
@@ -33,6 +34,8 @@ export const Dashboard = () => {
   const user = useRecoilValue(userState);
 
   const {
+    household,
+    householdDelta,
     grossEnergy,
     grossEnergyDelta,
     primaryEnergy,
@@ -81,9 +84,9 @@ export const Dashboard = () => {
           <PrimaryDashboardWidget
             title="Main Widgets "
             Icon={AiOutlineEuroCircle}
-            mainValue={0}
-            unitOfMainValue={'€'}
-            mainValueDelta={1.4}
+            mainValue={household}
+            unitOfMainValue={'Mio. €'}
+            mainValueDelta={householdDelta}
           >
             <TextComponent>Place detail content here</TextComponent>
           </PrimaryDashboardWidget>
