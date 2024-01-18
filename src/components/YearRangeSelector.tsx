@@ -33,6 +33,7 @@ export const YearRangeSelector = () => {
           isPressable
           onPress={() => setOpen(true)}
           style={{ left: '50%', transform: 'translate(-50%)' }}
+          className=" drop-shadow-lg shadow-sm border-0 bg-gradient-to-r from-primary-100 to-success-50"
         >
           <CardBody>
             <div className="text-center">
@@ -44,6 +45,9 @@ export const YearRangeSelector = () => {
             </div>
             {open && (
               <Slider
+                classNames={{
+                  filler: 'bg-gradient-to-r from-primary-300 to-success-500',
+                }}
                 step={1}
                 minValue={yearRangeData[0]}
                 maxValue={yearRangeData[1]}
@@ -51,6 +55,14 @@ export const YearRangeSelector = () => {
                 hideValue={true}
                 value={yearRangeSelection}
                 onChange={handleChange}
+                renderThumb={(props) => (
+                  <div
+                    {...props}
+                    className="group p-1 top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
+                  >
+                    <span className="transition-transform bg-gradient-to-br shadow-small from-primary-300 to-primary-700 rounded-full w-3 h-3 block group-data-[dragging=true]:scale-80" />
+                  </div>
+                )}
               />
             )}
           </CardBody>
