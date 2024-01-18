@@ -29,7 +29,7 @@ export const getGreenHouseGasSum = (
     }
   }
   //* 1000 because greenHouseGases are given in 1000 Tons CO2 equivalent
-  return sum * 1000;
+  return parseFloat((sum / 1000).toFixed(1));
 };
 
 export const getGreenHouseGasPercentage = (
