@@ -7,6 +7,7 @@ import { ColorSchemeProvider } from './components/App/ColorSchemeProvider';
 import { TotalEmissionsBySector } from './pages/DetailPages/TotalEmissionsBySector';
 import { Help } from './pages/Help';
 import { DesktopAppContainer } from './components/DesktopAppContainer';
+import { Household } from './pages/DetailPages/Household';
 
 export default function App() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function App() {
                 path="/dashboard/totalEmissionsBySector"
                 element={<TotalEmissionsBySector />}
               />
+              <Route path="/dashboard/household" element={<Household />} />
               <Route path="/help" element={<Help />} />
             </Routes>
           </DesktopAppContainer>
