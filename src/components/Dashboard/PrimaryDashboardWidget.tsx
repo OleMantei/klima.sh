@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
 import { TextComponent } from '../TextComponent';
 import { Divider } from '@nextui-org/react';
-
+import { colorSwitcherPrimary } from '../../design/designHelperFunctions';
 // import { userState } from '../../store';
 // import { useRecoilValue } from 'recoil';
 
@@ -49,9 +49,11 @@ export const PrimaryDashboardWidget = ({
           {children}
           <TextComponent
             title
-            style={`text-${mainValueDelta <= 0 ? 'danger' : 'success'}-600`}
+            style={`text-${colorSwitcherPrimary(mainValueDelta)}`}
           >
-            {mainValueDelta}%
+            {mainValueDelta < 0
+              ? `${mainValueDelta * -1}% gesunken`
+              : `${mainValueDelta}% gestiegen`}
           </TextComponent>
         </div>
       </CardBody>
