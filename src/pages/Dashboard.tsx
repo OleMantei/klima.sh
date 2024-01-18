@@ -15,11 +15,6 @@ import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashb
 import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
-import {
-  getSum as getSumHouseholdData,
-  getPercentage as getPercentageHousehold,
-  householdDataTotal,
-} from '../data/householdData';
 
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 
@@ -37,16 +32,10 @@ export const Dashboard = () => {
   const { pathname } = location;
 
   const user = useRecoilValue(userState);
-  const housholdTotal = getSumHouseholdData(
-    householdDataTotal,
-    user.yearRangeSelection,
-  );
-  const housholdPercentage = getPercentageHousehold(
-    householdDataTotal,
-    user.yearRangeSelection,
-  );
 
   const {
+    household,
+    householdDelta,
     grossEnergy,
     grossEnergyDelta,
     primaryEnergy,
@@ -95,9 +84,9 @@ export const Dashboard = () => {
           <PrimaryDashboardWidget
             title="Main Widgets "
             Icon={AiOutlineEuroCircle}
-            mainValue={housholdTotal}
+            mainValue={household}
             unitOfMainValue={'Mio. €'}
-            mainValueDelta={housholdPercentage}
+            mainValueDelta={householdDelta}
           >
             <TextComponent>Place detail content here</TextComponent>
           </PrimaryDashboardWidget>

@@ -15,7 +15,7 @@ type HouseholdDataTotalType = {
 
 type YearRange = [number, number];
 
-export const getSum = (
+export const getHouseholdSum = (
   data: HouseholdDataTotalType,
   range: YearRange,
 ): number => {
@@ -29,22 +29,22 @@ export const getSum = (
   return Math.round(sum / 1000);
 };
 
-export const getPercentage = (
+export const getHouseholdPercentage = (
   data: HouseholdDataTotalType,
   range: YearRange,
-): string => {
+): number => {
   const [startYear, endYear] = range;
   const startValue = data[startYear.toString()] || 0;
   const endValue = data[endYear.toString()] || 0;
 
   if (startValue === 0 && endValue === 0) {
-    return '0'; // If both values are 0, the percentage change is 0
+    return 0; // If both values are 0, the percentage change is 0
   } else if (startValue === 0) {
-    return '100'; // If only the start value is 0, the percentage change is 100%
+    return 100; // If only the start value is 0, the percentage change is 100%
   } else {
     const returnvalue: number = Math.round((endValue / startValue) * 100 - 100);
-    if (returnvalue >= 0) return '+' + returnvalue;
-    else return '' + returnvalue;
+    if (returnvalue >= 0) return returnvalue;
+    else return returnvalue;
   }
 };
 
