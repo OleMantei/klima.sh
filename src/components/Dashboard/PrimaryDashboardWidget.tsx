@@ -28,7 +28,7 @@ export const PrimaryDashboardWidget = ({
   return (
     <Card
       style={{ borderRadius: 10 }}
-      className=" bg-gradient-to-br from-primary-100 to-success-50"
+      className="bg-gradient-to-tr from-primary-300 to-purple-200 "
     >
       <CardBody>
         <div className="flex items-center gap-2 pb-2">

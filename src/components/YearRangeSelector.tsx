@@ -58,9 +58,9 @@ export const YearRangeSelector = () => {
                 renderThumb={(props) => (
                   <div
                     {...props}
-                    className="group p-1 top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
+                    className="group top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
                   >
-                    <span className="transition-transform bg-gradient-to-br shadow-small from-primary-300 to-primary-700 rounded-full w-3 h-3 block group-data-[dragging=true]:scale-80" />
+                    <span className="transition-transform shadow-small bg-primary-700 bg-opacity-50 rounded-full w-4 h-4 block group-data-[dragging=true]:scale-80" />
                   </div>
                 )}
               />
