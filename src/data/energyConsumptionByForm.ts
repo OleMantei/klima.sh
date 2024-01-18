@@ -13,6 +13,34 @@ type energyConsumptionByFormType = {
   };
 }[];
 
+export const getSum = (
+  data: energyConsumptionByFormType,
+  yearRange: [number, number],
+) => {
+  let sum = 0;
+  for (const item of data) {
+    if (item.year >= yearRange[0] && item.year <= yearRange[1]) {
+      const dataObj = item.data;
+      sum += dataObj.grossUsage;
+    }
+  }
+  return sum;
+};
+export const getPercentage = (
+  data: energyConsumptionByFormType,
+  yearRange: [number, number],
+) => {
+  const value0: number | undefined = data.find(
+    (element) => element.year == yearRange[0],
+  )?.data.grossUsage;
+  const value1: number | undefined = data.find(
+    (element) => element.year == yearRange[1],
+  )?.data.grossUsage;
+  if (value0 && value1) {
+    return (value1 / value0) * 100 - 100;
+  }
+  return 0;
+};
 export const greenHouseGasBySector: energyConsumptionByFormType = [
   {
     year: 2015,

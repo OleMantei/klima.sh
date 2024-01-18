@@ -26,7 +26,38 @@ type primaryEnergyByEnergySourceType = {
     districtHeatingExchangeBalance: number;
   };
 }[];
+export const getPrimaryEnergySum = (
+  data: primaryEnergyByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  let sum = 0;
+  for (const item of data) {
+    if (item.year >= yearRange[0] && item.year <= yearRange[1]) {
+      const dataObj = item.data;
+      sum += dataObj.sumValue;
+    }
+  }
+  return sum;
+};
 
+export const getPrimaryEnergyPercentage = (
+  data: primaryEnergyByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const value0: number | undefined = data.find(
+    (element) => element.year == yearRange[0],
+  )?.data.sumValue;
+  const value1: number | undefined = data.find(
+    (element) => element.year == yearRange[1],
+  )?.data.sumValue;
+  if (value0 && value1) {
+    const percentage = (value1 / value0) * 100 - 100;
+    const fixedPercentage = percentage.toFixed(1);
+    const percentageRounded = parseFloat(fixedPercentage);
+    return percentageRounded;
+  }
+  return 0;
+};
 export const primaryEnergyData: primaryEnergyByEnergySourceType = [
   {
     year: 2015,
