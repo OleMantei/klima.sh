@@ -1,5 +1,6 @@
 import { isMobile } from 'react-device-detect';
 import { useLocation } from 'react-router-dom';
+import { TextComponent } from './TextComponent';
 
 type Props = {
   children: JSX.Element[] | JSX.Element;
@@ -21,7 +22,9 @@ export const DesktopAppContainer = ({ children }: Props) => {
       >
         {children}
       </div>
-      <p className="pt-1">Nicht für Desktopgeräte optimiert.</p>
+      <TextComponent style="pt-1">
+        Nicht für Desktopgeräte optimiert.
+      </TextComponent>
     </div>
   );
 };

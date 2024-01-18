@@ -1,14 +1,42 @@
 import { useNavigate, useLocation } from 'react-router';
-import { WidgetTotalEmissionsBySector } from '../components/Dashboard/WidgetTotalEmissionsBySector';
 import { BsQuestionLg } from 'react-icons/bs';
+
+import {
+  AiOutlineEuroCircle,
+  AiOutlineThunderbolt,
+  AiOutlineCloud,
+  AiOutlineCluster,
+  AiOutlineFire,
+} from 'react-icons/ai';
 import { YearRangeSelector } from '../components/YearRangeSelector';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
+import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
+import { TextComponent } from '../components/TextComponent';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../store';
+import {
+  getSum,
+  grossEnergyConsumptionData,
+} from '../data/grossEnergyConsumptionBySector';
+import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
+import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
+import {
+  co2Emissions,
+  getDeltaAsPercentage,
+  getLatestYearDelta,
+} from '../data/co2Emissions';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+
+  const user = useRecoilValue(userState);
+  const grossEnergy = getSum(
+    grossEnergyConsumptionData,
+    user.yearRangeSelection,
+  );
 
   useEffect(() => {
     if (pathname === '/') {
@@ -22,9 +50,10 @@ export const Dashboard = () => {
       <div className="p-4">
         <div className="text-right">
           <Button
+            color="primary"
             size="sm"
-            radius="full"
-            variant="faded"
+            radius="md"
+            variant="flat"
             isIconOnly
             aria-label="Hilfe"
             className="ml-auto"
@@ -33,19 +62,65 @@ export const Dashboard = () => {
             <BsQuestionLg />
           </Button>
         </div>
-        <p className="text-center my-10">Dashboard coming soon</p>
-        <div className="flex flex-row gap-2">
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
+        <HeaderDashboard
+          delta={getDeltaAsPercentage(co2Emissions, user.yearRangeSelection)}
+          total={getLatestYearDelta(co2Emissions, user.yearRangeSelection)}
+          subTextDelta={
+            user.yearRangeSelection[0] != user.yearRangeSelection[1]
+              ? 'Unterschied zu ' + user.yearRangeSelection[0].toString()
+              : 'Unterschied zu ' + (user.yearRangeSelection[0] - 1).toString()
+          }
+          subTextTotal={'Stand ' + user.yearRangeSelection[1].toString()}
+        />
+        <div className="flex flex-col gap-2">
+          <PrimaryDashboardWidget
+            title="Main Widgets "
+            Icon={AiOutlineEuroCircle}
+            mainValue={0}
+            unitOfMainValue={'€'}
+            mainValueDelta={1.4}
           >
-            <WidgetTotalEmissionsBySector />
+            <TextComponent>Place detail content here</TextComponent>
+          </PrimaryDashboardWidget>
+          <div className="flex gap-2">
+            <SecondaryDashboardWidget
+              title="Widget 1"
+              mainValue={grossEnergy}
+              unitOfMainValue={' GWh'}
+              Icon={AiOutlineThunderbolt}
+              mainValueDelta={-1.4}
+            >
+              <TextComponent>Place detail content here</TextComponent>
+            </SecondaryDashboardWidget>
+            <SecondaryDashboardWidget
+              title="Widget 2"
+              Icon={AiOutlineCloud}
+              mainValue={0}
+              unitOfMainValue={'TWh'}
+              mainValueDelta={1.4}
+            >
+              <TextComponent>Place detail content here</TextComponent>
+            </SecondaryDashboardWidget>
           </div>
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          >
-            <WidgetTotalEmissionsBySector />
+          <div className="flex flex-row  gap-2">
+            <SecondaryDashboardWidget
+              title="Widget 3"
+              Icon={AiOutlineCluster}
+              mainValue={0}
+              unitOfMainValue={'TWh'}
+              mainValueDelta={-1.4}
+            >
+              <TextComponent>Place detail content here</TextComponent>
+            </SecondaryDashboardWidget>
+            <SecondaryDashboardWidget
+              title="Widget 4"
+              Icon={AiOutlineFire}
+              mainValue={0}
+              unitOfMainValue={'%'}
+              mainValueDelta={-1.4}
+            >
+              <TextComponent>Place detail content here</TextComponent>
+            </SecondaryDashboardWidget>
           </div>
         </div>
       </div>
