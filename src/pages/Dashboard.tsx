@@ -4,6 +4,7 @@ import {
   Bs2CircleFill,
   Bs3CircleFill,
   Bs4CircleFill,
+  BsCheckCircleFill,
   BsQuestionLg,
 } from 'react-icons/bs';
 import { YearRangeSelector } from '../components/YearRangeSelector';
@@ -11,6 +12,7 @@ import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
+import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -44,6 +46,17 @@ export const Dashboard = () => {
           Dashboard coming soon
         </TextComponent>
         <div className="flex flex-col gap-2">
+          <div className="flex flex-row gap-2 ">
+            <PrimaryDashboardWidget
+              title="Main Widgets "
+              Icon={BsCheckCircleFill}
+              mainValue={0}
+              unitOfMainValue={'€'}
+              mainValueDelta={-1.4}
+            >
+              <TextComponent>Place detail content here</TextComponent>
+            </PrimaryDashboardWidget>
+          </div>
           <div className="flex flex-row gap-2 ">
             <SecondaryDashboardWidget
               title="Widget 1"
