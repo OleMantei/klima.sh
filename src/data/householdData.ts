@@ -34,7 +34,10 @@ export const getHouseholdPercentage = (
   range: YearRange,
 ): number => {
   const [startYear, endYear] = range;
-  const startValue = data[startYear.toString()] || 0;
+  let startValue: number;
+  if (startYear != endYear) startValue = data[startYear.toString()] || 0;
+  else startValue = data[(startYear - 1).toString()] || 0;
+
   const endValue = data[endYear.toString()] || 0;
 
   if (startValue === 0 && endValue === 0) {

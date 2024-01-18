@@ -82,7 +82,7 @@ export const Dashboard = () => {
         />
         <div className="flex flex-col gap-2">
           <PrimaryDashboardWidget
-            title="Main Widgets "
+            title="Öffentliche Mittel Klimaschutz"
             Icon={AiOutlineEuroCircle}
             mainValue={household}
             unitOfMainValue={'Mio. €'}
