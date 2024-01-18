@@ -1,12 +1,13 @@
 import { useNavigate, useLocation } from 'react-router';
+import { BsQuestionLg } from 'react-icons/bs';
+
 import {
-  Bs1CircleFill,
-  Bs2CircleFill,
-  Bs3CircleFill,
-  Bs4CircleFill,
-  BsCheckCircleFill,
-  BsQuestionLg,
-} from 'react-icons/bs';
+  AiOutlineEuroCircle,
+  AiOutlineThunderbolt,
+  AiOutlineCloud,
+  AiOutlineCluster,
+  AiOutlineFire,
+} from 'react-icons/ai';
 import { YearRangeSelector } from '../components/YearRangeSelector';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
@@ -19,6 +20,7 @@ import {
   grossEnergyConsumptionData,
 } from '../data/grossEnergyConsumptionBySector';
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
+import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -43,9 +45,10 @@ export const Dashboard = () => {
       <div className="p-4">
         <div className="text-right">
           <Button
+            color="primary"
             size="sm"
-            radius="full"
-            variant="faded"
+            radius="md"
+            variant="flat"
             isIconOnly
             aria-label="Hilfe"
             className="ml-auto"
@@ -54,37 +57,38 @@ export const Dashboard = () => {
             <BsQuestionLg />
           </Button>
         </div>
-        <TextComponent style="text-center my-10">
-          Dashboard coming soon
-        </TextComponent>
+        <HeaderDashboard
+          delta={3}
+          total={33}
+          subTextDelta="Verbesserung"
+          subTextTotal="Stand"
+        />
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row gap-2 ">
-            <PrimaryDashboardWidget
-              title="Main Widgets "
-              Icon={BsCheckCircleFill}
-              mainValue={0}
-              unitOfMainValue={'€'}
-              mainValueDelta={-1.4}
-            >
-              <TextComponent>Place detail content here</TextComponent>
-            </PrimaryDashboardWidget>
-          </div>
-          <div className="flex flex-row gap-2 ">
+          <PrimaryDashboardWidget
+            title="Main Widgets "
+            Icon={AiOutlineEuroCircle}
+            mainValue={0}
+            unitOfMainValue={'€'}
+            mainValueDelta={1.4}
+          >
+            <TextComponent>Place detail content here</TextComponent>
+          </PrimaryDashboardWidget>
+          <div className="flex gap-2">
             <SecondaryDashboardWidget
               title="Widget 1"
-              Icon={Bs1CircleFill}
               mainValue={grossEnergy}
               unitOfMainValue={' GWh'}
+              Icon={AiOutlineThunderbolt}
               mainValueDelta={-1.4}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Widget 2"
-              Icon={Bs2CircleFill}
+              Icon={AiOutlineCloud}
               mainValue={0}
               unitOfMainValue={'TWh'}
-              mainValueDelta={-1.4}
+              mainValueDelta={1.4}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
@@ -92,7 +96,7 @@ export const Dashboard = () => {
           <div className="flex flex-row  gap-2">
             <SecondaryDashboardWidget
               title="Widget 3"
-              Icon={Bs3CircleFill}
+              Icon={AiOutlineCluster}
               mainValue={0}
               unitOfMainValue={'TWh'}
               mainValueDelta={-1.4}
@@ -101,7 +105,7 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Widget 4"
-              Icon={Bs4CircleFill}
+              Icon={AiOutlineFire}
               mainValue={0}
               unitOfMainValue={'%'}
               mainValueDelta={-1.4}

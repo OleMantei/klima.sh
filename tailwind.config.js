@@ -19,12 +19,33 @@ export default {
       themes: {
         light: {
           colors: {
-            background: '#FFFFFF', // or DEFAULT
+            background: '#f0fffd', // or DEFAULT
             foreground: '#11181C', // or 50 to 900 DEFAULT
             primary: {
-              //... 50 to 900
+              50: '#f0fffd',
+              100: '#D6FBFF',
+              200: '#ADF2FF',
+              300: '#84E4FF',
+              400: '#66D4FF',
+              500: '#33B9FF',
+              600: '#2591DB',
+              700: '#196DB7',
+              800: '#104D93',
+              900: '#09377A',
               foreground: '#FFFFFF',
-              DEFAULT: '#006FEE',
+              DEFAULT: '#2591DB',
+            },
+            success: {
+              100: '#CAFDCF',
+              200: '#97FBAA',
+              300: '#62F58C',
+              400: '#3AEB7F',
+              500: '#00df6d',
+              600: '#00BF70',
+              700: '#00A06E',
+              800: '#008166',
+              900: '#006B5F',
+              DEFAULT: '#00BF70',
             },
             secondary: {
               DEFAULT: '#FFFFFF',
@@ -36,7 +57,7 @@ export default {
         },
         dark: {
           colors: {
-            background: '#111111', // or DEFAULT
+            background: '#222222', // or DEFAULT
             foreground: '#f2fff5', // or 50 to 900 DEFAULT
             primary: {
               //... 50 to 900
