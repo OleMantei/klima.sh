@@ -84,7 +84,7 @@ export default {
               DEFAULT: '#27A4D4',
             },
             content1: {
-              DEFAULT: '#ffffff',
+              DEFAULT: '#c7e9f6',
             },
           },
         },

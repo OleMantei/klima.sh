@@ -22,7 +22,7 @@ export const YearRangeSelector = () => {
   };
 
   return (
-    <div className={`absolute bottom-0 mb-4 px-4 w-full`}>
+    <div className={`absolute bottom-0 mb-8 px-4 w-full`}>
       <OutsideClickHandler
         onOutsideClick={() => {
           setOpen(false);
@@ -31,9 +31,13 @@ export const YearRangeSelector = () => {
         <Card
           fullWidth={open}
           isPressable
-          onPress={() => setOpen(true)}
-          style={{ left: '50%', transform: 'translate(-50%)' }}
-          className=" drop-shadow-lg shadow-sm border-0 bg-gradient-to-r from-primary-100 to-success-50"
+          onPress={() => setOpen(!open)}
+          style={{
+            left: '50%',
+            transform: 'translate(-50%)',
+            borderRadius: 10,
+          }}
+          className=" drop-shadow-lg shadow-sm border-0 bg-content1 text-primary-800"
         >
           <CardBody>
             <div className="text-center">

@@ -114,12 +114,6 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
           </div>
         </div>
-        <div className="flex flex-row gap-2">
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          ></div>
-        </div>
       </div>
       <YearRangeSelector />
     </>
