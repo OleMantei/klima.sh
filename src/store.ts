@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export type YearRange = [number, number];
 
-interface userState {
+export interface userState {
   yearRangeSelection: YearRange;
   yearRangeData: YearRange;
 }
