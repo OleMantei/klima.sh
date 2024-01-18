@@ -5,6 +5,7 @@ import {
 } from '../../data/totalEmissionsBySector';
 import { userState } from '../../store';
 import { useRecoilValue } from 'recoil';
+import { TextComponent } from '../TextComponent';
 
 // on of many widgets to be implemented
 export const WidgetTotalEmissionsBySector = () => {
@@ -13,11 +14,11 @@ export const WidgetTotalEmissionsBySector = () => {
   return (
     <Card>
       <CardBody>
-        <p>Sample Widget</p>
-        <p>Total Emissions:</p>
-        <p>
+        <TextComponent title>Sample Widget</TextComponent>
+        <TextComponent>Total Emissions:</TextComponent>
+        <TextComponent>
           {getSumInsgesamt(totalEmissionsBySectorData, user.yearRangeSelection)}
-        </p>
+        </TextComponent>
       </CardBody>
     </Card>
   );

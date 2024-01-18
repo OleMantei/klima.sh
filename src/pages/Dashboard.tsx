@@ -4,6 +4,7 @@ import { BsQuestionLg } from 'react-icons/bs';
 import { YearRangeSelector } from '../components/YearRangeSelector';
 import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
+import { TextComponent } from '../components/TextComponent';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +34,9 @@ export const Dashboard = () => {
             <BsQuestionLg />
           </Button>
         </div>
-        <p className="text-center my-10">Dashboard coming soon</p>
+        <TextComponent style="text-center my-10">
+          Dashboard coming soon
+        </TextComponent>
         <div className="flex flex-row gap-2">
           <div
             className="w-1/2"

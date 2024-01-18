@@ -5,6 +5,7 @@ import DownloadModal from '../components/Home/DownloadModal';
 import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
 import { useAddToHomescreenPrompt } from '../scripts/useAddToHomescreenPrompt';
+import { TextComponent } from '../components/TextComponent';
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -55,13 +56,13 @@ export const Home = () => {
             </Button>
           </div>
         </div>
-        <p className="text-small text-rose-600">
+        <TextComponent style="text-center text-rose-600">
           Dies ist ein privates Studierendenprojekt der{' '}
           <a href="https://www.uni-luebeck.de" className="underline">
             Universität zu Lübeck
           </a>
           . Es ist zum jetzigen Zeitpunkt nicht für die Öffentlichkeit bestimmt.
-        </p>
+        </TextComponent>
       </div>
     </>
   );
