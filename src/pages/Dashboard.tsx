@@ -16,9 +16,15 @@ import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
 import {
-  getSum,
+  getSum as getSumEnergyConsumptionBySector,
   grossEnergyConsumptionData,
 } from '../data/grossEnergyConsumptionBySector';
+import {
+  getSum as getSumHouseholdData,
+  getPercentage as getPercentageHousehold,
+  householdDataTotal,
+} from '../data/householdData';
+
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
 
@@ -28,8 +34,16 @@ export const Dashboard = () => {
   const { pathname } = location;
 
   const user = useRecoilValue(userState);
-  const grossEnergy = getSum(
+  const grossEnergy = getSumEnergyConsumptionBySector(
     grossEnergyConsumptionData,
+    user.yearRangeSelection,
+  );
+  const housholdTotal = getSumHouseholdData(
+    householdDataTotal,
+    user.yearRangeSelection,
+  );
+  const housholdPercentage = getPercentageHousehold(
+    householdDataTotal,
     user.yearRangeSelection,
   );
 
@@ -67,9 +81,9 @@ export const Dashboard = () => {
           <PrimaryDashboardWidget
             title="Main Widgets "
             Icon={AiOutlineEuroCircle}
-            mainValue={0}
-            unitOfMainValue={'€'}
-            mainValueDelta={1.4}
+            mainValue={housholdTotal}
+            unitOfMainValue={'Mio. €'}
+            mainValueDelta={housholdPercentage}
           >
             <TextComponent>Place detail content here</TextComponent>
           </PrimaryDashboardWidget>
