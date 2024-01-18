@@ -6,3 +6,13 @@
   background-color: white !important;
   color: black !important;
 }
+
+/* Custom class to hide horizontal scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Webkit browsers */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
+}

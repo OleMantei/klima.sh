@@ -16,17 +16,20 @@ import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
 import {
-  getSum as getSumEnergyConsumptionBySector,
-  grossEnergyConsumptionData,
-} from '../data/grossEnergyConsumptionBySector';
-import {
   getSum as getSumHouseholdData,
   getPercentage as getPercentageHousehold,
   householdDataTotal,
 } from '../data/householdData';
 
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
+
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
+import {
+  co2Emissions,
+  getDeltaAsPercentage,
+  getLatestYearDelta,
+} from '../data/co2Emissions';
+import { getGlobalSumValues } from '../data/mathDataHelper';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -34,10 +37,6 @@ export const Dashboard = () => {
   const { pathname } = location;
 
   const user = useRecoilValue(userState);
-  const grossEnergy = getSumEnergyConsumptionBySector(
-    grossEnergyConsumptionData,
-    user.yearRangeSelection,
-  );
   const housholdTotal = getSumHouseholdData(
     householdDataTotal,
     user.yearRangeSelection,
@@ -46,6 +45,17 @@ export const Dashboard = () => {
     householdDataTotal,
     user.yearRangeSelection,
   );
+
+  const {
+    grossEnergy,
+    grossEnergyDelta,
+    primaryEnergy,
+    primaryEnergyDelta,
+    greenHouseGas,
+    greenHouseGasDelta,
+    heating,
+    heatingDelta,
+  } = getGlobalSumValues(user);
 
   useEffect(() => {
     if (pathname === '/') {
@@ -72,10 +82,14 @@ export const Dashboard = () => {
           </Button>
         </div>
         <HeaderDashboard
-          delta={3}
-          total={33}
-          subTextDelta="Verbesserung"
-          subTextTotal="Stand"
+          delta={getDeltaAsPercentage(co2Emissions, user.yearRangeSelection)}
+          total={getLatestYearDelta(co2Emissions, user.yearRangeSelection)}
+          subTextDelta={
+            user.yearRangeSelection[0] != user.yearRangeSelection[1]
+              ? 'Unterschied zu ' + user.yearRangeSelection[0].toString()
+              : 'Unterschied zu ' + (user.yearRangeSelection[0] - 1).toString()
+          }
+          subTextTotal={'Stand ' + user.yearRangeSelection[1].toString()}
         />
         <div className="flex flex-col gap-2">
           <PrimaryDashboardWidget
@@ -89,50 +103,44 @@ export const Dashboard = () => {
           </PrimaryDashboardWidget>
           <div className="flex gap-2">
             <SecondaryDashboardWidget
-              title="Widget 1"
-              mainValue={grossEnergy}
+              title="Primärenergieverbrauch"
+              mainValue={primaryEnergy}
               unitOfMainValue={' GWh'}
               Icon={AiOutlineThunderbolt}
-              mainValueDelta={-1.4}
+              mainValueDelta={primaryEnergyDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
-              title="Widget 2"
+              title="Wärmeversorgung"
               Icon={AiOutlineCloud}
-              mainValue={0}
-              unitOfMainValue={'TWh'}
-              mainValueDelta={1.4}
+              mainValue={heating}
+              unitOfMainValue={' GWh'}
+              mainValueDelta={heatingDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
             <SecondaryDashboardWidget
-              title="Widget 3"
+              title="Bruttoenergieverbrauch"
+              mainValue={grossEnergy}
+              unitOfMainValue={' GWh'}
+              mainValueDelta={grossEnergyDelta}
               Icon={AiOutlineCluster}
-              mainValue={0}
-              unitOfMainValue={'TWh'}
-              mainValueDelta={-1.4}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
-              title="Widget 4"
+              title="Treibhausgasemissionen"
               Icon={AiOutlineFire}
-              mainValue={0}
-              unitOfMainValue={'%'}
-              mainValueDelta={-1.4}
+              mainValue={greenHouseGas}
+              unitOfMainValue={' Tonnen'}
+              mainValueDelta={greenHouseGasDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
-        </div>
-        <div className="flex flex-row gap-2">
-          <div
-            className="w-1/2"
-            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
-          ></div>
         </div>
       </div>
       <YearRangeSelector />

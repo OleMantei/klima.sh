@@ -22,7 +22,7 @@ export const YearRangeSelector = () => {
   };
 
   return (
-    <div className={`absolute bottom-0 mb-4 px-4 w-full`}>
+    <div className={`absolute bottom-0 mb-8 px-4 w-full`}>
       <OutsideClickHandler
         onOutsideClick={() => {
           setOpen(false);
@@ -31,36 +31,80 @@ export const YearRangeSelector = () => {
         <Card
           fullWidth={open}
           isPressable
-          onPress={() => setOpen(true)}
-          style={{ left: '50%', transform: 'translate(-50%)' }}
-          className=" drop-shadow-lg shadow-sm border-0 bg-gradient-to-r from-primary-100 to-success-50"
+          onPress={() => setOpen(!open)}
+          style={{
+            left: '50%',
+            transform: 'translate(-50%)',
+            borderRadius: 10,
+            paddingLeft:
+              yearRangeSelection[0] === yearRangeSelection[1] && open === false
+                ? 20
+                : 0,
+            paddingRight:
+              yearRangeSelection[0] === yearRangeSelection[1] && open === false
+                ? 20
+                : 0,
+          }}
+          className=" drop-shadow-lg shadow-sm border-0 bg-content1 text-primary-800"
         >
           <CardBody>
             <div className="text-center">
               <BsCalendar3 className="inline mr-2 mb-1" />
-              <TextComponent
-                title
-                style="text-center inline"
-              >{`${yearRangeSelection[0]} - ${yearRangeSelection[1]}`}</TextComponent>
+              <TextComponent title style="text-center inline">
+                {yearRangeSelection[0] === yearRangeSelection[1]
+                  ? yearRangeSelection[0]
+                  : `${yearRangeSelection[0]} - ${yearRangeSelection[1]}`}
+              </TextComponent>
             </div>
             {open && (
               <Slider
                 classNames={{
-                  filler: 'bg-gradient-to-r from-primary-300 to-success-500',
+                  filler: 'bg-gradient-to-r from-primary-500 to-success-600',
                 }}
+                color="primary"
+                marks={[
+                  {
+                    value: 2015,
+                    label: '2015',
+                  },
+
+                  {
+                    value: 2016,
+                    label: '2016',
+                  },
+                  {
+                    value: 2017,
+                    label: '2017',
+                  },
+                  {
+                    value: 2018,
+                    label: '2018',
+                  },
+                  {
+                    value: 2019,
+                    label: '2019',
+                  },
+                  {
+                    value: 2020,
+                    label: '2020',
+                  },
+                  {
+                    value: 2021,
+                    label: '2021',
+                  },
+                ]}
                 step={1}
                 minValue={yearRangeData[0]}
                 maxValue={yearRangeData[1]}
                 defaultValue={yearRangeSelection}
-                hideValue={true}
                 value={yearRangeSelection}
                 onChange={handleChange}
                 renderThumb={(props) => (
                   <div
                     {...props}
-                    className="group p-1 top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
+                    className="group top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
                   >
-                    <span className="transition-transform bg-gradient-to-br shadow-small from-primary-300 to-primary-700 rounded-full w-3 h-3 block group-data-[dragging=true]:scale-80" />
+                    <span className="transition-transform shadow-small bg-primary-700 bg-opacity-50 rounded-full w-4 h-4 block group-data-[dragging=true]:scale-80" />
                   </div>
                 )}
               />

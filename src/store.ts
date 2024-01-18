@@ -2,14 +2,14 @@ import { atom } from 'recoil';
 
 export type YearRange = [number, number];
 
-interface userState {
+export interface userState {
   yearRangeSelection: YearRange;
   yearRangeData: YearRange;
 }
 
 const defaultUserState = {
-  yearRangeSelection: [2023, 2023],
-  yearRangeData: [2000, 2023],
+  yearRangeSelection: [2021, 2021],
+  yearRangeData: [2015, 2021],
 };
 
 export const userState = atom({
