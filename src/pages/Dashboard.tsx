@@ -21,6 +21,11 @@ import {
 } from '../data/grossEnergyConsumptionBySector';
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
+import {
+  co2Emissions,
+  getDeltaAsPercentage,
+  getLatestYearDelta,
+} from '../data/co2Emissions';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -58,10 +63,14 @@ export const Dashboard = () => {
           </Button>
         </div>
         <HeaderDashboard
-          delta={3}
-          total={33}
-          subTextDelta="Verbesserung"
-          subTextTotal="Stand"
+          delta={getDeltaAsPercentage(co2Emissions, user.yearRangeSelection)}
+          total={getLatestYearDelta(co2Emissions, user.yearRangeSelection)}
+          subTextDelta={
+            user.yearRangeSelection[0] != user.yearRangeSelection[1]
+              ? 'Unterschied zu ' + user.yearRangeSelection[0].toString()
+              : 'Unterschied zu ' + (user.yearRangeSelection[0] - 1).toString()
+          }
+          subTextTotal={'Stand ' + user.yearRangeSelection[1].toString()}
         />
         <div className="flex flex-col gap-2">
           <PrimaryDashboardWidget
