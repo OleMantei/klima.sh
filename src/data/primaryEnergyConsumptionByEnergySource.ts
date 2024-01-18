@@ -44,8 +44,15 @@ export const getPrimaryEnergyPercentage = (
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],
 ) => {
+  let from: number;
+  if (yearRange[0] == yearRange[1]) {
+    from = yearRange[0] - 1;
+  } else {
+    from = yearRange[0];
+  }
+
   const value0: number | undefined = data.find(
-    (element) => element.year == yearRange[0],
+    (element) => element.year == from,
   )?.data.sumValue;
   const value1: number | undefined = data.find(
     (element) => element.year == yearRange[1],
