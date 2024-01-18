@@ -16,6 +16,20 @@ type energyConsumptionBySectorType = {
   };
 }[];
 
+export const getSum = (
+  data: energyConsumptionBySectorType,
+  yearRange: [number, number],
+) => {
+  let sum = 0;
+  for (const item of data) {
+    if (item.year >= yearRange[0] && item.year <= yearRange[1]) {
+      const dataObj = item.data;
+      sum += dataObj.sumValue;
+    }
+  }
+  return sum;
+};
+
 export const grossEnergyConsumptionData: energyConsumptionBySectorType = [
   {
     year: 2015,
