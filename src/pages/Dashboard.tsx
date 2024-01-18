@@ -11,9 +11,6 @@ import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
-
-// FOR TESTING IF DATA IS CORRECT
-
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
 import {
@@ -64,7 +61,7 @@ export const Dashboard = () => {
               title="Widget 1"
               Icon={Bs1CircleFill}
               mainValue={grossEnergy}
-              unitOfMainValue={'€'}
+              unitOfMainValue={' GWh'}
               mainValueDelta={-1.4}
             >
               <TextComponent>Place detail content here</TextComponent>
