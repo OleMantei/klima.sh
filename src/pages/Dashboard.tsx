@@ -13,6 +13,12 @@ import { Button } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../store';
+import {
+  getSum,
+  grossEnergyConsumptionData,
+} from '../data/grossEnergyConsumptionBySector';
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
 
@@ -20,6 +26,12 @@ export const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+
+  const user = useRecoilValue(userState);
+  const grossEnergy = getSum(
+    grossEnergyConsumptionData,
+    user.yearRangeSelection,
+  );
 
   useEffect(() => {
     if (pathname === '/') {
@@ -64,9 +76,9 @@ export const Dashboard = () => {
           <div className="flex gap-2">
             <SecondaryDashboardWidget
               title="Widget 1"
+              mainValue={grossEnergy}
+              unitOfMainValue={' GWh'}
               Icon={AiOutlineThunderbolt}
-              mainValue={0}
-              unitOfMainValue={'€'}
               mainValueDelta={-1.4}
             >
               <TextComponent>Place detail content here</TextComponent>
@@ -101,6 +113,12 @@ export const Dashboard = () => {
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
+        </div>
+        <div className="flex flex-row gap-2">
+          <div
+            className="w-1/2"
+            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
+          ></div>
         </div>
       </div>
       <YearRangeSelector />
