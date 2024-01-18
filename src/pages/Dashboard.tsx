@@ -16,34 +16,14 @@ import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
-import {
-  getSum,
-  getPercentage,
-  grossEnergyConsumptionData,
-} from '../data/grossEnergyConsumptionBySector';
-import {
-  getPrimaryEnergySum,
-  getPrimaryEnergyPercentage,
-  primaryEnergyData,
-} from '../data/primaryEnergyConsumptionByEnergySource';
 
-import {
-  getGreenHouseGasSum,
-  getGreenHouseGasPercentage,
-  greenHouseGasBySectorData,
-} from '../data/greenHouseGasBySector';
-
-import {
-  getHeatingSum,
-  getHeatingPercentage,
-  heatingByEnergySourceData,
-} from '../data/heatingByEnergySource';
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
 import {
   co2Emissions,
   getDeltaAsPercentage,
   getLatestYearDelta,
 } from '../data/co2Emissions';
+import { getGlobalSumValues } from '../data/mathDataHelper';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -51,45 +31,17 @@ export const Dashboard = () => {
   const { pathname } = location;
 
   const user = useRecoilValue(userState);
-  const grossEnergy = getSum(
-    grossEnergyConsumptionData,
-    user.yearRangeSelection,
-  );
 
-  const grossEnergyDelta = getPercentage(
-    grossEnergyConsumptionData,
-    user.yearRangeSelection,
-  );
-
-  const primaryEnergy = getPrimaryEnergySum(
-    primaryEnergyData,
-    user.yearRangeSelection,
-  );
-
-  const primaryEnergyDelta = getPrimaryEnergyPercentage(
-    primaryEnergyData,
-    user.yearRangeSelection,
-  );
-
-  const greenHouseGas = getGreenHouseGasSum(
-    greenHouseGasBySectorData,
-    user.yearRangeSelection,
-  );
-
-  const greenHouseGasDelta = getGreenHouseGasPercentage(
-    greenHouseGasBySectorData,
-    user.yearRangeSelection,
-  );
-
-  const heating = getHeatingSum(
-    heatingByEnergySourceData,
-    user.yearRangeSelection,
-  );
-
-  const heatingDelta = getHeatingPercentage(
-    heatingByEnergySourceData,
-    user.yearRangeSelection,
-  );
+  const {
+    grossEnergy,
+    grossEnergyDelta,
+    primaryEnergy,
+    primaryEnergyDelta,
+    greenHouseGas,
+    greenHouseGasDelta,
+    heating,
+    heatingDelta,
+  } = getGlobalSumValues(user);
 
   useEffect(() => {
     if (pathname === '/') {
