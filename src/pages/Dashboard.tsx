@@ -12,10 +12,25 @@ import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
 
+// FOR TESTING IF DATA IS CORRECT
+
+import { useRecoilValue } from 'recoil';
+import { userState } from '../store';
+import {
+  getSum,
+  grossEnergyConsumptionData,
+} from '../data/grossEnergyConsumptionBySector';
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { pathname } = location;
+
+  const user = useRecoilValue(userState);
+  const grossEnergy = getSum(
+    grossEnergyConsumptionData,
+    user.yearRangeSelection,
+  );
 
   useEffect(() => {
     if (pathname === '/') {
@@ -48,7 +63,7 @@ export const Dashboard = () => {
             <SecondaryDashboardWidget
               title="Widget 1"
               Icon={Bs1CircleFill}
-              mainValue={0}
+              mainValue={grossEnergy}
               unitOfMainValue={'€'}
               mainValueDelta={-1.4}
             >
@@ -84,6 +99,12 @@ export const Dashboard = () => {
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
           </div>
+        </div>
+        <div className="flex flex-row gap-2">
+          <div
+            className="w-1/2"
+            onClick={() => navigate('/dashboard/totalEmissionsBySector')}
+          ></div>
         </div>
       </div>
       <YearRangeSelector />

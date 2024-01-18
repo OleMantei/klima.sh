@@ -5,7 +5,7 @@
 type greenHouseGasBySectorType = {
   year: number;
   data: {
-    combined: number;
+    sumValue: number;
     energyEconomy: number;
     industry: number;
     tradeAndServices: number;
@@ -21,7 +21,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2015,
     data: {
-      combined: 26161,
+      sumValue: 26161,
       energyEconomy: 6065,
       industry: 3602,
       tradeAndServices: 1964,
@@ -35,7 +35,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2016,
     data: {
-      combined: 26066,
+      sumValue: 26066,
       energyEconomy: 5758,
       industry: 3689,
       tradeAndServices: 1876,
@@ -49,7 +49,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2017,
     data: {
-      combined: 26120,
+      sumValue: 26120,
       energyEconomy: 5535,
       industry: 3812,
       tradeAndServices: 2062,
@@ -63,7 +63,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2018,
     data: {
-      combined: 25688,
+      sumValue: 25688,
       energyEconomy: 5754,
       industry: 3812,
       tradeAndServices: 1780,
@@ -77,7 +77,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2019,
     data: {
-      combined: 24302,
+      sumValue: 24302,
       energyEconomy: 4914,
       industry: 3858,
       tradeAndServices: 1273,
@@ -91,7 +91,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2020,
     data: {
-      combined: 23886,
+      sumValue: 23886,
       energyEconomy: 4631,
       industry: 3806,
       tradeAndServices: 1353,
@@ -105,7 +105,7 @@ export const greenHouseGasBySector: greenHouseGasBySectorType = [
   {
     year: 2021,
     data: {
-      combined: 23916,
+      sumValue: 23916,
       energyEconomy: 4712,
       industry: 3634,
       tradeAndServices: 1766,
