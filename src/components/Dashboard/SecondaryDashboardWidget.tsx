@@ -1,9 +1,7 @@
 import { Card, CardBody } from '@nextui-org/card';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
-
-// import { userState } from '../../store';
-// import { useRecoilValue } from 'recoil';
+import { TextComponent } from '../TextComponent';
 
 type StaticData = {
   Icon: IconType;
@@ -22,18 +20,17 @@ export const SecondaryDashboardWidget = ({
   children,
   mainValueDelta,
 }: StaticData) => {
-  // const user = useRecoilValue(userState);
   return (
     <Card>
       <CardBody>
         <Icon />
-        <p>{title}</p>
-        <p>
+        <TextComponent title>{title}</TextComponent>
+        <TextComponent>
           {mainValue}
           {unitOfMainValue}
-        </p>
+        </TextComponent>
         {children}
-        <p>{mainValueDelta}%</p>
+        <TextComponent>{mainValueDelta}%</TextComponent>
       </CardBody>
     </Card>
   );

@@ -12,6 +12,7 @@ import { GoShare } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { QRCodeSVG } from 'qrcode.react';
 import { useNavigate } from 'react-router';
+import { TextComponent } from '../TextComponent';
 
 interface Props {
   isOpen: boolean;
@@ -69,14 +70,12 @@ export default function DownloadModal({
                 <>
                   {supportsInstallPrompt && (
                     <>
-                      <p className="mb-5">
+                      <TextComponent style="mb-5">
                         {`Du wirst gleich aufgefordert, die App zu installieren.
                     Bestätige die Anfrage und öffne die App auf deinem
                     ${isIOS ? 'Home-Bildschirm' : 'Startbildschirm'}.`}
-                      </p>
-                      <p className="text-small text-default-500">
-                        Nicht geklappt?
-                      </p>
+                      </TextComponent>
+                      <TextComponent>Nicht geklappt?</TextComponent>
                     </>
                   )}
                   <Avatar
@@ -98,18 +97,18 @@ export default function DownloadModal({
                     }
                   />
                   {getPWAInstructionsMobile().map((paragraph, index) => (
-                    <p key={index}>
+                    <TextComponent key={index}>
                       <span className="font-bold">{index + 1}.</span>{' '}
                       {paragraph}
-                    </p>
+                    </TextComponent>
                   ))}
                 </>
               ) : (
                 <div>
-                  <p className="mb-5">
+                  <TextComponent style="mb-5">
                     Die Anwendung ist für das Smartphone entwickelt. Öffne diese
                     dort für die beste Nutzungserfahrung.
-                  </p>
+                  </TextComponent>
                   <div className="flex flex-col">
                     <QRCodeSVG
                       className="self-center mb-1 p-2 bg-white"

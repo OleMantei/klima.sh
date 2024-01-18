@@ -5,6 +5,7 @@ import { userState } from '../store';
 import { BsCalendar3 } from 'react-icons/bs';
 import { useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
+import { TextComponent } from './TextComponent';
 
 export const YearRangeSelector = () => {
   const [open, setOpen] = useState(false);
@@ -36,7 +37,10 @@ export const YearRangeSelector = () => {
           <CardBody>
             <div className="text-center">
               <BsCalendar3 className="inline mr-2 mb-1" />
-              <div className="text-center text-lg inline">{`${yearRangeSelection[0]} - ${yearRangeSelection[1]}`}</div>
+              <TextComponent
+                title
+                style="text-center inline"
+              >{`${yearRangeSelection[0]} - ${yearRangeSelection[1]}`}</TextComponent>
             </div>
             {open && (
               <Slider
