@@ -6,7 +6,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: 'autoUpdate',
   manifest: {
     theme_color: '#007AFF',
-    background_color: '#000001',
+    background_color: '#000000',
     display: 'fullscreen',
     scope: '/',
     start_url: '/',
