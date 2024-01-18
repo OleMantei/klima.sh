@@ -24,7 +24,7 @@ export const ColorSchemeProvider = ({ children }: Props) => {
     theme === 'light'
       ? document
           ?.querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', '#222222')
+          ?.setAttribute('content', '#131826')
       : document
           ?.querySelector('meta[name="theme-color"]')
           ?.setAttribute('content', 'black-translucent');
