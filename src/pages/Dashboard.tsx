@@ -32,6 +32,12 @@ import {
   greenHouseGasBySectorData,
 } from '../data/greenHouseGasBySector';
 
+import {
+  getHeatingSum,
+  getHeatingPercentage,
+  heatingByEnergySourceData,
+} from '../data/heatingByEnergySource';
+
 export const Dashboard = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,6 +71,16 @@ export const Dashboard = () => {
 
   const greenHouseGasDelta = getGreenHouseGasPercentage(
     greenHouseGasBySectorData,
+    user.yearRangeSelection,
+  );
+
+  const heating = getHeatingSum(
+    heatingByEnergySourceData,
+    user.yearRangeSelection,
+  );
+
+  const heatingDelta = getHeatingPercentage(
+    heatingByEnergySourceData,
     user.yearRangeSelection,
   );
 
@@ -117,11 +133,11 @@ export const Dashboard = () => {
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
-              title="Widget 2"
+              title="Wärmeversorgung"
               Icon={Bs2CircleFill}
-              mainValue={0}
-              unitOfMainValue={'TWh'}
-              mainValueDelta={-1.4}
+              mainValue={heating}
+              unitOfMainValue={' GWh'}
+              mainValueDelta={heatingDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
