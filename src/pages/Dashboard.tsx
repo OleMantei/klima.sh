@@ -25,6 +25,7 @@ import {
   getLatestYearDelta,
 } from '../data/co2Emissions';
 import { getGlobalSumValues } from '../data/mathDataHelper';
+import { useTheme } from 'next-themes';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -53,12 +54,14 @@ export const Dashboard = () => {
     }
   }, [navigate, pathname]);
 
+  const { theme } = useTheme();
+
   return (
     <>
       <div className="p-4">
         <div className="text-right">
           <Button
-            color="default"
+            color={theme === 'dark' ? 'default' : 'primary'}
             size="sm"
             radius="md"
             variant="flat"
