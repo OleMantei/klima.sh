@@ -32,8 +32,6 @@ export const SecondaryDashboardWidget = ({
 
   const [isHeight, setHeight] = useState(150);
 
-  console.log(isHeight);
-
   return (
     <Card
       className="bg-primary-50 shadow-none border-1 border-default-300 dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200"
