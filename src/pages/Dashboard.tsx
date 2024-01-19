@@ -168,7 +168,6 @@ export const Dashboard = () => {
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
-
               <div className="flex flex-row items-end">
                 <div className="relative">
                   <CircularProgress
@@ -236,6 +235,8 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
           </div>
         </div>
+
+        <div className="flex flex-row gap-2  h-32"></div>
       </div>
       <YearRangeSelector />
     </>
