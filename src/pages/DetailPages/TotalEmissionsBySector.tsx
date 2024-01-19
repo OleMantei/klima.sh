@@ -1,5 +1,5 @@
 import { YearRangeSelector } from '../../components/YearRangeSelector';
-import { BarChart } from '../../components/DetailPages/BarChart';
+// import { BarChart } from '../../components/DetailPages/BarChart';
 import { NavBar } from '../../components/NavBar';
 
 export const TotalEmissionsBySector = () => {
@@ -12,7 +12,7 @@ export const TotalEmissionsBySector = () => {
       />
       <div className="p-4">
         <p className="text-center my-10">Coming soon</p>
-        <BarChart />
+        {/* <BarChart /> */}
       </div>
       <YearRangeSelector />
     </>
