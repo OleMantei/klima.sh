@@ -24,6 +24,8 @@ import {
   getHeatingSum,
   getHeatingPercentage,
   heatingByEnergySourceData,
+  getHeatingRenewables,
+  heatingByEnergySourceType,
 } from '../data/heatingByEnergySource';
 import {
   getPercentage,
@@ -33,10 +35,7 @@ import {
 import { userState } from '../store';
 
 export const getGlobalSumValues = (user: userState) => {
-  const household = getHouseholdSum(
-    householdDataTotal,
-    user.yearRangeSelection,
-  );
+  const household = getHouseholdSum(householdData, user.yearRangeSelection);
   const householdDelta = getHouseholdPercentage(
     householdDataTotal,
     user.yearRangeSelection,
@@ -85,6 +84,11 @@ export const getGlobalSumValues = (user: userState) => {
     user.yearRangeSelection,
   );
 
+  const heatingRenewables = getHeatingRenewables(
+    heatingByEnergySourceData,
+    user.yearRangeSelection,
+  );
+
   const primaryEnergyRenewables = getPrimaryEnergyRenewables(
     primaryEnergyData,
     user.yearRangeSelection,
@@ -103,16 +107,36 @@ export const getGlobalSumValues = (user: userState) => {
     greenHouseGasDelta,
     heating,
     heatingDelta,
+    heatingRenewables,
   };
 };
 
-export const createDeltaArray = (
+export const createDeltaArrayPrimaryEnergy = (
   counter: number,
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],
 ) => {
   const counterArray: number[] = [];
   const deltaArray: primaryEnergyByEnergySourceType = [];
+  for (let i = 0; i <= counter; i++) {
+    counterArray.push(yearRange[0] + i);
+  }
+
+  for (let i = 0; i <= counterArray.length - 1; i++) {
+    const value = data.find((e) => e.year == counterArray[i]);
+    deltaArray.push(value!);
+  }
+
+  return deltaArray;
+};
+
+export const createDeltaArrayHeating = (
+  counter: number,
+  data: heatingByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const counterArray: number[] = [];
+  const deltaArray: heatingByEnergySourceType = [];
   for (let i = 0; i <= counter; i++) {
     counterArray.push(yearRange[0] + i);
   }
