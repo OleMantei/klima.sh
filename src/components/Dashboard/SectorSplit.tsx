@@ -8,12 +8,11 @@ type SectorSplitType = {
 
 export const SectorSplit = ({ sectors, total }: SectorSplitType) => {
   return (
-    <div>
-      <div className="flex-row">
-        <TextComponent style="">
-          {((sectors[0][1] / total) * 100).toFixed(2)}%
+    <div className="flex flex-col justify-between pr-4 h-full">
+      <div className="pb-1 ">
+        <TextComponent fWeight="font-medium" style="">
+          {sectors[0][0]}
         </TextComponent>
-        <TextComponent style="">{sectors[0][0]}</TextComponent>
         <Progress
           classNames={{
             base: 'w-5/6',
@@ -24,13 +23,15 @@ export const SectorSplit = ({ sectors, total }: SectorSplitType) => {
           aria-label=""
           value={(sectors[0][1] / total) * 100}
           className="fill-black"
-        />
-      </div>
-      <div className="flex-row">
+        />{' '}
         <TextComponent style="">
-          {((sectors[1][1] / total) * 100).toFixed(2)}%
+          {((sectors[0][1] / total) * 100).toFixed(2)}%
         </TextComponent>
-        <TextComponent style="">{sectors[1][0]}</TextComponent>
+      </div>
+      <div className="pb-1">
+        <TextComponent fWeight="font-medium" style="leading-3 pb-0.5">
+          {sectors[1][0]}
+        </TextComponent>
         <Progress
           classNames={{
             base: 'w-5/6',
@@ -42,12 +43,14 @@ export const SectorSplit = ({ sectors, total }: SectorSplitType) => {
           value={(sectors[1][1] / total) * 100}
           className="fill-black"
         />
-      </div>
-      <div className="flex-row">
         <TextComponent style="">
-          {((sectors[2][1] / total) * 100).toFixed(2)}%
+          {((sectors[1][1] / total) * 100).toFixed(2)}%
         </TextComponent>
-        <TextComponent style="">{sectors[2][0]}</TextComponent>
+      </div>
+      <div className="pb-1">
+        <TextComponent fWeight="font-medium" style="">
+          {sectors[2][0]}
+        </TextComponent>
         <Progress
           classNames={{
             base: 'w-5/6',
@@ -59,6 +62,9 @@ export const SectorSplit = ({ sectors, total }: SectorSplitType) => {
           value={(sectors[2][1] / total) * 100}
           className="fill-black"
         />
+        <TextComponent style="">
+          {((sectors[2][1] / total) * 100).toFixed(2)}%
+        </TextComponent>
       </div>
     </div>
   );

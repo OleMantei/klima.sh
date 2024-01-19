@@ -1,6 +1,11 @@
 import { Card, CardBody } from '@nextui-org/card';
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons';
+import {
+  ImArrowUpRight2,
+  ImArrowDownRight2,
+  ImArrowRight2,
+} from 'react-icons/im';
 import { TextComponent } from '../TextComponent';
 import { Divider } from '@nextui-org/react';
 import { colorSwitcherPrimary } from '../../design/designHelperFunctions';
@@ -37,27 +42,43 @@ export const PrimaryDashboardWidget = ({
             {title}
           </TextComponent>
         </div>
-        <TextComponent
-          style="text-center my-1 text-default-800 dark:text-default-600"
-          fSize="text-3xl"
-          fFamily="font-secondary"
-          fWeight="font-bold"
-        >
-          {mainValue} {unitOfMainValue}
-        </TextComponent>
-        <Divider className="my-3 w-9/12 self-center bg-default-400 dark:bg-default-500"></Divider>
-        <div className="text-center">
-          {children}
+        <div className="flex items-center justify-center pb-2">
+          <TextComponent
+            style="text-center my-1 text-default-800 dark:text-default-600 pr-3"
+            fSize="text-3xl"
+            fFamily="font-secondary"
+            fWeight="font-bold"
+          >
+            {mainValue} {unitOfMainValue}
+          </TextComponent>
+          <div>
+            {mainValueDelta > 0 && (
+              <ImArrowUpRight2
+                className="fill-success"
+                size={12}
+              ></ImArrowUpRight2>
+            )}
+            {mainValueDelta == 0 && (
+              <ImArrowRight2 className="fill-default" size={12}></ImArrowRight2>
+            )}
+
+            {mainValueDelta < 0 && (
+              <ImArrowDownRight2
+                className="fill-danger"
+                size={12}
+              ></ImArrowDownRight2>
+            )}
+          </div>
           <TextComponent
             fFamily="font-secondary"
             fWeight="font-medium"
-            style={`text-${colorSwitcherPrimary(mainValueDelta)}`}
+            style={`text-${colorSwitcherPrimary(mainValueDelta)} pl-1`}
           >
-            {mainValueDelta < 0
-              ? `${mainValueDelta * -1}% gesunken`
-              : `${mainValueDelta}% gestiegen`}
+            {Math.abs(mainValueDelta)}%
           </TextComponent>
         </div>
+        <Divider className="my-3 w-9/12 self-center bg-default-400 dark:bg-default-500"></Divider>
+        <div className="text-center">{children}</div>
       </CardBody>
     </Card>
   );
