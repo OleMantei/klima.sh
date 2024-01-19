@@ -8,6 +8,7 @@ import {
   getPrimaryEnergySum,
   getPrimaryEnergyPercentage,
   primaryEnergyData,
+  getPrimaryEnergyRenewables,
 } from '../data/primaryEnergyConsumptionByEnergySource';
 
 import {
@@ -76,7 +77,13 @@ export const getGlobalSumValues = (user: userState) => {
     user.yearRangeSelection,
   );
 
+  const primaryEnergyRenewables = getPrimaryEnergyRenewables(
+    primaryEnergyData,
+    user.yearRangeSelection,
+  );
+
   return {
+    primaryEnergyRenewables,
     household,
     householdDelta,
     grossEnergy,

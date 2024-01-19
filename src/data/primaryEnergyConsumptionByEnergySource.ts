@@ -4,12 +4,12 @@ type primaryEnergyByEnergySourceType = {
   year: number;
   data: {
     sumValue: number;
-    fossilFuels: number;
+    fossilFuels: number; // coal, mineralOil, naturalGas combined
     coal: number;
     mineralOils: number;
     naturalGas: number;
     nuclearEnergy: number;
-    renewableEnergies: number;
+    renewableEnergies: number; // combined renewables
     windOnshore: number;
     windOffshore: number;
     hydropower: number;
@@ -65,6 +65,37 @@ export const getPrimaryEnergyPercentage = (
   }
   return 0;
 };
+
+export const getPrimaryEnergyRenewables = (
+  data: primaryEnergyByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const dataArray: primaryEnergyByEnergySourceType = [];
+  const counter = yearRange[1] - yearRange[0];
+  const counterArray: number[] = [];
+
+  for (let i = 0; i <= counter; i++) {
+    counterArray.push(yearRange[0] + i);
+  }
+
+  for (let i = 0; i <= counterArray.length - 1; i++) {
+    const value = data.find((e) => e.year == counterArray[i]);
+    dataArray.push(value!);
+  }
+
+  let renewableSum = 0;
+  let totalSum = 0;
+  for (let i = 0; i <= counterArray.length - 1; i++) {
+    renewableSum += dataArray[i].data.renewableEnergies;
+    totalSum += dataArray[i].data.sumValue;
+  }
+  console.log(totalSum);
+  const retVal: number = parseFloat(
+    ((renewableSum / totalSum) * 100).toFixed(1),
+  );
+  return retVal;
+};
+
 export const primaryEnergyData: primaryEnergyByEnergySourceType = [
   {
     year: 2015,
