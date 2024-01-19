@@ -1,14 +1,41 @@
-type HouseholdDataType = {
+const relevantMgtg = ['01', '03', '04'];
+
+export type HouseholdDataType = {
   identifier: string;
   purpose: string;
   planning: boolean;
   entirePeriod: boolean;
-  data: {
-    [key: string]: number | undefined;
-  };
+  data: { [key: string]: number };
   mgtg: string;
 }[];
 
+export const filterDataByYearAndMgtg = (
+  data: HouseholdDataType,
+  yearRange: [number, number],
+  planning: boolean,
+): HouseholdDataType => {
+  const [startYear, endYear] = yearRange;
+
+  return data
+    .filter(
+      (item) => relevantMgtg.includes(item.mgtg) && item.planning === planning,
+    )
+    .map((item) => {
+      const filteredData = Object.fromEntries(
+        Object.entries(item.data).filter(([year, value]) => {
+          const yearInt = parseInt(year);
+          return yearInt >= startYear && yearInt <= endYear && value > 0;
+        }),
+      );
+
+      return {
+        ...item,
+        data: filteredData,
+      };
+    })
+    .filter((item) => Object.keys(item.data).length > 0);
+};
+  
 type HouseholdDataTotalType = {
   [key: string]: number | undefined;
 };
@@ -51,31 +78,34 @@ export const getHouseholdPercentage = (
   }
 };
 
-// const calculateSumByGroup = (
-//   data: HouseholdDataType,
-//   yearRange: [number, number],
-// ): [number, number, number] => {
-//   let sum01 = 0,
-//     sum03 = 0,
-//     sum04 = 0;
+export const getHouseholdGroups = (
+  data: HouseholdDataType,
+  yearRange: [number, number],
+): [number, number, number] => {
+  let sum01 = 0,
+    sum03 = 0,
+    sum04 = 0;
+  data.forEach((item) => {
+    if (['01', '03', '04'].includes(item.mgtg)) {
+      Object.entries(item.data).forEach(([year, value]) => {
+        const yearNumber = Number(year);
+        if (yearNumber >= yearRange[0] && yearNumber <= yearRange[1]) {
+          if (value !== undefined) {
+            if (item.mgtg === '01') sum01 += value;
+            else if (item.mgtg === '03') sum03 += value;
+            else if (item.mgtg === '04') sum04 += value;
+          }
+        }
+      });
+    }
+  });
 
-//   data.forEach((item) => {
-//     if (['01', '03', '04'].includes(item.mgtg)) {
-//       Object.entries(item.data).forEach(([year, value]) => {
-//         const yearNumber = Number(year);
-//         if (yearNumber >= yearRange[0] && yearNumber <= yearRange[1]) {
-//           if (value !== undefined) {
-//             if (item.mgtg === '01') sum01 += value;
-//             else if (item.mgtg === '03') sum03 += value;
-//             else if (item.mgtg === '04') sum04 += value;
-//           }
-//         }
-//       });
-//     }
-//   });
-
-//   return [sum01, sum03, sum04];
-// };
+  return [
+    Math.round(sum01 / 1000),
+    Math.round(sum03 / 1000),
+    Math.round(sum04 / 1000),
+  ];
+};
 export const householdDataTotal: HouseholdDataTotalType = {
   '2014': 14996.6,
   '2015': 21723.8,
