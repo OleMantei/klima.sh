@@ -27,6 +27,17 @@ import {
 import { getGlobalSumValues } from '../data/mathDataHelper';
 import { useTheme } from 'next-themes';
 import { DetailsElementHouseholdGroup } from '../components/Dashboard/DetailsElementHouseholdGroup';
+import { SectorSplit } from '../components/Dashboard/SectorSplit';
+import {
+  getGreenHouseGasSum,
+  getHighestTHGSectors,
+  greenHouseGasBySectorData,
+} from '../data/greenHouseGasBySector';
+import {
+  getHighestEnergySectors,
+  getSum,
+  grossEnergyConsumptionData,
+} from '../data/grossEnergyConsumptionBySector';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -146,7 +157,16 @@ export const Dashboard = () => {
               mainValueDelta={grossEnergyDelta}
               Icon={AiOutlineCluster}
             >
-              <TextComponent>Place detail content here</TextComponent>
+              <SectorSplit
+                sectors={getHighestEnergySectors(
+                  grossEnergyConsumptionData,
+                  user.yearRangeSelection,
+                )}
+                total={
+                  getSum(grossEnergyConsumptionData, user.yearRangeSelection) *
+                  1000
+                }
+              />
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Treibhausgase"
@@ -155,7 +175,18 @@ export const Dashboard = () => {
               unitOfMainValue={' Gt'}
               mainValueDelta={greenHouseGasDelta}
             >
-              <TextComponent>Place detail content here</TextComponent>
+              <SectorSplit
+                sectors={getHighestTHGSectors(
+                  greenHouseGasBySectorData,
+                  user.yearRangeSelection,
+                )}
+                total={
+                  getGreenHouseGasSum(
+                    greenHouseGasBySectorData,
+                    user.yearRangeSelection,
+                  ) * 1000
+                }
+              />
             </SecondaryDashboardWidget>
           </div>
         </div>
