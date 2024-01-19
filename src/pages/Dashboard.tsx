@@ -47,6 +47,7 @@ export const Dashboard = () => {
     greenHouseGasDelta,
     heating,
     heatingDelta,
+    primaryEnergyRenewables,
   } = getGlobalSumValues(user);
 
   useEffect(() => {
@@ -122,7 +123,9 @@ export const Dashboard = () => {
               Icon={AiOutlineThunderbolt}
               mainValueDelta={primaryEnergyDelta}
             >
-              <TextComponent>Place detail content here</TextComponent>
+              <TextComponent>
+                {primaryEnergyRenewables}% erneuerbar
+              </TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
