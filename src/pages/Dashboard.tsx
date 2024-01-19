@@ -94,7 +94,7 @@ export const Dashboard = () => {
             unitOfMainValue={'Mio. €'}
             mainValueDelta={householdDelta}
           >
-            <div className="flex m-2 justify-stretch gap-2 ">
+            <div className="flex my-1 gap-2 justify-evenly ml-2">
               <DetailsElementHouseholdGroup
                 title="Bildung"
                 mainValue={householdGroups[0]}
