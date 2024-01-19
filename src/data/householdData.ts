@@ -35,7 +35,7 @@ export const filterDataByYearAndMgtg = (
     })
     .filter((item) => Object.keys(item.data).length > 0);
 };
-  
+
 type HouseholdDataTotalType = {
   [key: string]: number | undefined;
 };
@@ -64,7 +64,6 @@ export const getHouseholdPercentage = (
   let startValue: number;
   if (startYear != endYear) startValue = data[startYear.toString()] || 0;
   else startValue = data[(startYear - 1).toString()] || 0;
-
   const endValue = data[endYear.toString()] || 0;
 
   if (startValue === 0 && endValue === 0) {
@@ -72,9 +71,8 @@ export const getHouseholdPercentage = (
   } else if (startValue === 0) {
     return 100; // If only the start value is 0, the percentage change is 100%
   } else {
-    const returnvalue: number = Math.round((endValue / startValue) * 100 - 100);
-    if (returnvalue >= 0) return returnvalue;
-    else return returnvalue;
+    const returnValue: number = Math.round((endValue / startValue) * 100 - 100);
+    return returnValue;
   }
 };
 
