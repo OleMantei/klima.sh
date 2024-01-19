@@ -15,6 +15,7 @@ import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashb
 import { TextComponent } from '../components/TextComponent';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store';
+
 import { PrimaryDashboardWidget } from '../components/Dashboard/PrimaryDashboardWidget';
 
 import { HeaderDashboard } from '../components/Dashboard/HeaderDashboard';
@@ -24,6 +25,7 @@ import {
   getLatestYearDelta,
 } from '../data/co2Emissions';
 import { getGlobalSumValues } from '../data/mathDataHelper';
+import { useTheme } from 'next-themes';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,6 +35,8 @@ export const Dashboard = () => {
   const user = useRecoilValue(userState);
 
   const {
+    household,
+    householdDelta,
     grossEnergy,
     grossEnergyDelta,
     primaryEnergy,
@@ -50,12 +54,14 @@ export const Dashboard = () => {
     }
   }, [navigate, pathname]);
 
+  const { theme } = useTheme();
+
   return (
     <>
       <div className="p-4">
         <div className="text-right">
           <Button
-            color="primary"
+            color={theme === 'dark' ? 'default' : 'primary'}
             size="sm"
             radius="md"
             variant="flat"
@@ -79,19 +85,19 @@ export const Dashboard = () => {
         />
         <div className="flex flex-col gap-2">
           <PrimaryDashboardWidget
-            title="Main Widgets "
+            title="Öffentliche Mittel Klimaschutz"
             Icon={AiOutlineEuroCircle}
-            mainValue={0}
-            unitOfMainValue={'€'}
-            mainValueDelta={1.4}
+            mainValue={household}
+            unitOfMainValue={'Mio. €'}
+            mainValueDelta={householdDelta}
           >
             <TextComponent>Place detail content here</TextComponent>
           </PrimaryDashboardWidget>
           <div className="flex gap-2">
             <SecondaryDashboardWidget
-              title="Primärenergieverbrauch"
+              title="Primärenergie"
               mainValue={primaryEnergy}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               Icon={AiOutlineThunderbolt}
               mainValueDelta={primaryEnergyDelta}
             >
@@ -99,9 +105,9 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
-              Icon={AiOutlineCloud}
+              Icon={AiOutlineFire}
               mainValue={heating}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
               <TextComponent>Place detail content here</TextComponent>
@@ -109,19 +115,19 @@ export const Dashboard = () => {
           </div>
           <div className="flex flex-row  gap-2">
             <SecondaryDashboardWidget
-              title="Bruttoenergieverbrauch"
+              title="Energieverbrauch"
               mainValue={grossEnergy}
-              unitOfMainValue={' GWh'}
+              unitOfMainValue={' TWh'}
               mainValueDelta={grossEnergyDelta}
               Icon={AiOutlineCluster}
             >
               <TextComponent>Place detail content here</TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
-              title="Treibhausgasemissionen"
-              Icon={AiOutlineFire}
+              title="Treibhausgase"
+              Icon={AiOutlineCloud}
               mainValue={greenHouseGas}
-              unitOfMainValue={' Tonnen'}
+              unitOfMainValue={' Gt'}
               mainValueDelta={greenHouseGasDelta}
             >
               <TextComponent>Place detail content here</TextComponent>

@@ -35,6 +35,84 @@ export const filterDataByYearAndMgtg = (
     })
     .filter((item) => Object.keys(item.data).length > 0);
 };
+  
+type HouseholdDataTotalType = {
+  [key: string]: number | undefined;
+};
+
+type YearRange = [number, number];
+
+export const getHouseholdSum = (
+  data: HouseholdDataTotalType,
+  range: YearRange,
+): number => {
+  const [startYear, endYear] = range;
+  let sum = 0;
+
+  for (let year = startYear; year <= endYear; year++) {
+    sum += data[year.toString()] || 0;
+  }
+
+  return Math.round(sum / 1000);
+};
+
+export const getHouseholdPercentage = (
+  data: HouseholdDataTotalType,
+  range: YearRange,
+): number => {
+  const [startYear, endYear] = range;
+  let startValue: number;
+  if (startYear != endYear) startValue = data[startYear.toString()] || 0;
+  else startValue = data[(startYear - 1).toString()] || 0;
+
+  const endValue = data[endYear.toString()] || 0;
+
+  if (startValue === 0 && endValue === 0) {
+    return 0; // If both values are 0, the percentage change is 0
+  } else if (startValue === 0) {
+    return 100; // If only the start value is 0, the percentage change is 100%
+  } else {
+    const returnvalue: number = Math.round((endValue / startValue) * 100 - 100);
+    if (returnvalue >= 0) return returnvalue;
+    else return returnvalue;
+  }
+};
+
+// const calculateSumByGroup = (
+//   data: HouseholdDataType,
+//   yearRange: [number, number],
+// ): [number, number, number] => {
+//   let sum01 = 0,
+//     sum03 = 0,
+//     sum04 = 0;
+
+//   data.forEach((item) => {
+//     if (['01', '03', '04'].includes(item.mgtg)) {
+//       Object.entries(item.data).forEach(([year, value]) => {
+//         const yearNumber = Number(year);
+//         if (yearNumber >= yearRange[0] && yearNumber <= yearRange[1]) {
+//           if (value !== undefined) {
+//             if (item.mgtg === '01') sum01 += value;
+//             else if (item.mgtg === '03') sum03 += value;
+//             else if (item.mgtg === '04') sum04 += value;
+//           }
+//         }
+//       });
+//     }
+//   });
+
+//   return [sum01, sum03, sum04];
+// };
+export const householdDataTotal: HouseholdDataTotalType = {
+  '2014': 14996.6,
+  '2015': 21723.8,
+  '2016': 18021,
+  '2017': 20435.6,
+  '2018': 22710.1,
+  '2019': 20611.2,
+  '2020': 111500.8,
+  '2021': 195906.4,
+};
 
 export const householdData: HouseholdDataType = [
   {
