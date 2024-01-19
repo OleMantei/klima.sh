@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router';
 import { BsQuestionLg } from 'react-icons/bs';
-
+import { BiLeaf } from 'react-icons/bi';
 import {
   AiOutlineEuroCircle,
   AiOutlineThunderbolt,
@@ -9,7 +9,7 @@ import {
   AiOutlineFire,
 } from 'react-icons/ai';
 import { YearRangeSelector } from '../components/YearRangeSelector';
-import { Button } from '@nextui-org/react';
+import { Button, CircularProgress } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
@@ -70,7 +70,6 @@ export const Dashboard = () => {
   }, [navigate, pathname]);
 
   const { theme } = useTheme();
-
   return (
     <>
       <div className="p-4">
@@ -135,9 +134,30 @@ export const Dashboard = () => {
               Icon={AiOutlineThunderbolt}
               mainValueDelta={primaryEnergyDelta}
             >
-              <TextComponent>
-                {primaryEnergyRenewables}% davon erneuerbar
-              </TextComponent>
+              <div className="flex flex-row items-end">
+                <div className="relative">
+                  <CircularProgress
+                    classNames={{
+                      svg: 'w-16 h-16 drop-shadow-md',
+                      indicator:
+                        'bg-gradient-to-r from-primary-500 to-success-600',
+                      track: 'bg-slate-400 bg-opacity-40',
+                      value: 'text-md font-semibold text-white',
+                    }}
+                    strokeWidth={2}
+                    size="md"
+                    value={primaryEnergyRenewables}
+                    showValueLabel={false}
+                  ></CircularProgress>
+                  <BiLeaf
+                    size={24}
+                    className="fill-default-500 absolute top-0 left-0 right-0 bottom-0 m-auto"
+                  />
+                </div>
+                <TextComponent fWeight="font-light" style="pl-2">
+                  {primaryEnergyRenewables}% erneuerbar
+                </TextComponent>
+              </div>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
@@ -146,9 +166,31 @@ export const Dashboard = () => {
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
-              <TextComponent>
-                {heatingRenewables}% davon erneuerbar
-              </TextComponent>
+
+              <div className="flex flex-row items-end">
+                <div className="relative">
+                  <CircularProgress
+                    classNames={{
+                      svg: 'w-16 h-16 drop-shadow-md',
+                      indicator:
+                        'bg-gradient-to-r from-primary-500 to-success-600',
+                      track: 'bg-slate-400 bg-opacity-40',
+                      value: 'text-md font-semibold text-white',
+                    }}
+                    strokeWidth={2}
+                    size="md"
+                    value={heatingRenewables}
+                    showValueLabel={false}
+                  ></CircularProgress>
+                  <BiLeaf
+                    size={24}
+                    className="fill-default-500 absolute top-0 left-0 right-0 bottom-0 m-auto"
+                  />
+                </div>
+                <TextComponent fWeight="font-light" style="pl-2">
+                  {heatingRenewables}% erneuerbar
+                </TextComponent>
+              </div>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
