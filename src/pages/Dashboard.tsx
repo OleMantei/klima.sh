@@ -166,6 +166,7 @@ export const Dashboard = () => {
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
+
               <div className="flex flex-row items-end">
                 <div className="relative">
                   <CircularProgress

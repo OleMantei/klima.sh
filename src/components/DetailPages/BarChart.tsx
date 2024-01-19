@@ -8,6 +8,7 @@ type Props = {
   unit: string;
   usage: string;
   title: string;
+  maxScale: number;
 };
 
 export const BarChart = ({
@@ -17,6 +18,7 @@ export const BarChart = ({
   scale,
   unit,
   usage,
+  maxScale,
 }: Props) => {
   const { theme } = useTheme();
   const mode: 'light' | 'dark' = theme === 'dark' ? 'dark' : 'light';
@@ -102,6 +104,8 @@ export const BarChart = ({
       },
     },
     yaxis: {
+      min: 0,
+      max: maxScale,
       axisBorder: {
         show: false,
       },

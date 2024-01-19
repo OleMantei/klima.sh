@@ -1,8 +1,12 @@
 import { Card, CardBody } from '@nextui-org/card';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { IconType } from 'react-icons';
-import { ImArrowUpRight2, ImArrowDownRight2 } from 'react-icons/im';
+import {
+  ImArrowUpRight2,
+  ImArrowDownRight2,
+  ImArrowRight2,
+} from 'react-icons/im';
 import { TextComponent } from '../TextComponent';
 import { colorSwitcherSecondary } from '../../design/designHelperFunctions';
 import { useTheme } from 'next-themes';
@@ -24,12 +28,23 @@ export const SecondaryDashboardWidget = ({
   children,
   mainValueDelta,
 }: StaticData) => {
-  const up: boolean = mainValueDelta >= 0;
   const { theme } = useTheme();
+
+  const [isHeight, setHeight] = useState(150);
+
   return (
     <Card
       className="bg-primary-50 shadow-none border-1 border-default-300 dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200"
-      style={{ flex: 1, borderRadius: 10 }}
+      style={{
+        flex: 1,
+        borderRadius: 10,
+        height: isHeight,
+        overflow: 'hidden',
+      }}
+      onClick={() => (isHeight === 150 ? setHeight(250) : setHeight(150))}
+      isPressable={
+        title === 'Energieverbrauch' || title === 'Treibhausgase' ? true : false
+      }
     >
       <CardBody>
         <div className="flex items-center gap-2 pb-2">
@@ -48,13 +63,17 @@ export const SecondaryDashboardWidget = ({
             {mainValue} {unitOfMainValue}
           </TextComponent>
           <div>
-            {up && (
+            {mainValueDelta > 0 && (
               <ImArrowUpRight2
                 className="fill-danger"
                 size={10}
               ></ImArrowUpRight2>
             )}
-            {!up && (
+            {mainValueDelta == 0 && (
+              <ImArrowRight2 className="fill-default" size={12}></ImArrowRight2>
+            )}
+
+            {mainValueDelta < 0 && (
               <ImArrowDownRight2
                 className="fill-success"
                 size={10}
