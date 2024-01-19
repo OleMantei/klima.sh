@@ -150,7 +150,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata()}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -161,7 +161,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('01')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -172,7 +172,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('03')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -183,7 +183,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('04')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -193,14 +193,18 @@ export const Household = () => {
         {/* <div className="text-center pb-8">
           <ButtonGroup size="sm">
             <Button
+              variant="ghost"
               color={isDataTotal ? 'primary' : 'default'}
               onPress={() => setIsDataTotal(true)}
+              className="border-0 shadow-none bg-primary-100 "
             >
               Gesamt
             </Button>
             <Button
+              variant="ghost"
               color={!isDataTotal ? 'primary' : 'default'}
               onPress={() => setIsDataTotal(false)}
+              className="border-0 shadow-none bg-primary-100 "
             >
               Verlauf
             </Button>
@@ -218,6 +222,7 @@ export const Household = () => {
           />
         </div>
       </div>
+      <div className="flex flex-row gap-2  h-32"></div>
       <YearRangeSelector />
     </>
   );
