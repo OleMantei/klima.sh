@@ -1,11 +1,12 @@
 import {
-  //   Button,
+  Button,
+  ButtonGroup,
   Card,
   Listbox,
   ListboxItem,
-  //   Popover,
-  //   PopoverContent,
-  //   PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@nextui-org/react';
 import { TextComponent } from '../TextComponent';
 import { BsEye, BsChevronRight, BsEyeSlash } from 'react-icons/bs';
@@ -18,6 +19,8 @@ type Props = {
   setHiddenItemsUuids: React.Dispatch<React.SetStateAction<string[]>>;
   data: HouseholdDataType;
   dataPlanning: HouseholdDataType;
+  sorting: string;
+  setSorting: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const DataList = ({
@@ -26,6 +29,8 @@ export const DataList = ({
   setHiddenItemsUuids,
   data,
   dataPlanning,
+  sorting,
+  setSorting,
 }: Props) => {
   const [isDetailsOpenItemKeys, setIsDetailsOpenItemKeys] = useState<string[]>(
     [],
@@ -48,17 +53,6 @@ export const DataList = ({
       setIsDetailsOpenItemKeys([...isDetailsOpenItemKeys, itemKey]);
     }
   };
-
-  //   const content = (
-  //     <PopoverContent className="w-[240px]">
-  //       <div className="px-1 py-2 w-full">
-  //         <p className="text-small font-bold text-foreground">Dimensions</p>
-  //         <div className="mt-2 flex flex-col gap-2 w-full">Moin</div>
-  //       </div>
-  //     </PopoverContent>
-  //   );
-
-  //   console.log(data);
 
   const yearSum = (data: { [key: string]: number }) => {
     return Math.floor(
@@ -177,8 +171,8 @@ export const DataList = ({
   return (
     <div>
       <div className="flex justify-between mb-2">
-        <TextComponent style="uppercase">{title}</TextComponent>
-        {/* <Popover key="popover" offset={10} placement="bottom" backdrop="blur">
+        <TextComponent style="uppercase self-end">{title}</TextComponent>
+        <Popover key="popover" offset={10} placement="bottom" backdrop="blur">
           <PopoverTrigger>
             <Button
               size="sm"
@@ -189,8 +183,28 @@ export const DataList = ({
               Sortierung
             </Button>
           </PopoverTrigger>
-          {content}
-        </Popover> */}
+          <PopoverContent className="w-[240px]">
+            <div className="px-1 py-2 w-full">
+              <p className="text-small font-bold text-foreground mb-1">
+                Sortierung
+              </p>
+              <ButtonGroup fullWidth>
+                <Button
+                  color={`${sorting === 'descending' ? 'primary' : 'default'}`}
+                  onPress={() => setSorting('descending')}
+                >
+                  Absteigend
+                </Button>
+                <Button
+                  color={`${sorting === 'ascending' ? 'primary' : 'default'}`}
+                  onPress={() => setSorting('ascending')}
+                >
+                  Aufsteigend
+                </Button>
+              </ButtonGroup>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
       <Card shadow="none">
         <Listbox>{getListBoxItem()}</Listbox>

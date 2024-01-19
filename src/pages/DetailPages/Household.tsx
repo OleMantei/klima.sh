@@ -1,4 +1,3 @@
-import { Button, ButtonGroup } from '@nextui-org/react';
 import { ChartCard } from '../../components/DetailPages/ChartCard';
 import { ChartSlider } from '../../components/DetailPages/ChartSlider';
 import { NavBar } from '../../components/NavBar';
@@ -18,17 +17,19 @@ import { ImArrowDownRight2, ImArrowUpRight2 } from 'react-icons/im';
 
 export const Household = () => {
   const user = useRecoilValue(userState);
-  const [isDataTotal, setIsDataTotal] = useState(true);
+  const [sorting, setSorting] = useState('descending');
   const data = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     false,
+    sorting,
   );
   const [hiddenItemsUuids, setHiddenItemsUuids] = useState<string[]>([]);
   const dataPlanning = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     true,
+    sorting,
   );
 
   const filteredHiddenItems = (
@@ -187,7 +188,7 @@ export const Household = () => {
         </ChartCard>
       </ChartSlider>
       <div className="p-4">
-        <div className="text-center pb-8">
+        {/* <div className="text-center pb-8">
           <ButtonGroup size="sm">
             <Button
               color={isDataTotal ? 'primary' : 'default'}
@@ -202,14 +203,18 @@ export const Household = () => {
               Verlauf
             </Button>
           </ButtonGroup>
+        </div> */}
+        <div className="mt-5">
+          <DataList
+            title="Haushaltsposten"
+            hiddenItemsUuids={hiddenItemsUuids}
+            setHiddenItemsUuids={setHiddenItemsUuids}
+            data={data}
+            dataPlanning={dataPlanning}
+            sorting={sorting}
+            setSorting={setSorting}
+          />
         </div>
-        <DataList
-          title="Haushaltsposten"
-          hiddenItemsUuids={hiddenItemsUuids}
-          setHiddenItemsUuids={setHiddenItemsUuids}
-          data={data}
-          dataPlanning={dataPlanning}
-        />
       </div>
       <YearRangeSelector />
     </>
