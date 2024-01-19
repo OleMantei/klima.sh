@@ -1,14 +1,41 @@
-type HouseholdDataType = {
+const relevantMgtg = ['01', '03', '04'];
+
+export type HouseholdDataType = {
   identifier: string;
   purpose: string;
   planning: boolean;
   entirePeriod: boolean;
-  data: {
-    [key: string]: number | undefined;
-  };
+  data: { [key: string]: number };
   mgtg: string;
 }[];
 
+export const filterDataByYearAndMgtg = (
+  data: HouseholdDataType,
+  yearRange: [number, number],
+  planning: boolean,
+): HouseholdDataType => {
+  const [startYear, endYear] = yearRange;
+
+  return data
+    .filter(
+      (item) => relevantMgtg.includes(item.mgtg) && item.planning === planning,
+    )
+    .map((item) => {
+      const filteredData = Object.fromEntries(
+        Object.entries(item.data).filter(([year, value]) => {
+          const yearInt = parseInt(year);
+          return yearInt >= startYear && yearInt <= endYear && value > 0;
+        }),
+      );
+
+      return {
+        ...item,
+        data: filteredData,
+      };
+    })
+    .filter((item) => Object.keys(item.data).length > 0);
+};
+  
 type HouseholdDataTotalType = {
   [key: string]: number | undefined;
 };
