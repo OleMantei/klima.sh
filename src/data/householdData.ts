@@ -42,7 +42,7 @@ type HouseholdDataTotalType = {
 
 type YearRange = [number, number];
 
-export const getHouseholdSum = (
+export const getHouseholdSumFast = (
   data: HouseholdDataTotalType,
   range: YearRange,
 ): number => {
@@ -76,6 +76,24 @@ export const getHouseholdPercentage = (
   }
 };
 
+export const getHouseholdSum = (
+  householdData: HouseholdDataType,
+  yearRange: [number, number],
+): number => {
+  let sum = 0;
+  const [startYear, endYear] = yearRange;
+
+  householdData.forEach((item) => {
+    for (let year = startYear; year <= endYear; year++) {
+      const yearData = item.data[year.toString()];
+      if (yearData !== undefined) {
+        sum += yearData;
+      }
+    }
+  });
+
+  return Math.round(sum / 1000);
+};
 export const getHouseholdGroups = (
   data: HouseholdDataType,
   yearRange: [number, number],

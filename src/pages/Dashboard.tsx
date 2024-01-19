@@ -47,6 +47,7 @@ export const Dashboard = () => {
     greenHouseGasDelta,
     heating,
     heatingDelta,
+    heatingRenewables,
     primaryEnergyRenewables,
   } = getGlobalSumValues(user);
 
@@ -134,7 +135,7 @@ export const Dashboard = () => {
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
-              <TextComponent>Place detail content here</TextComponent>
+              <TextComponent>{heatingRenewables}% erneuerbar</TextComponent>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
