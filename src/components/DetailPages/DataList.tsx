@@ -232,7 +232,7 @@ export const DataList = ({
         <Listbox
           variant="light"
           hideEmptyContent
-          className="bg-gradient-to-tl from-primary-100 to-purple-100 shadow-none dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200 "
+          className="bg-gradient-to-tr from-primary-100 to-purple-50 shadow-none dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200 "
         >
           {getListBoxItem()}
         </Listbox>
