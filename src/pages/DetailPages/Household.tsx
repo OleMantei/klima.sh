@@ -14,12 +14,7 @@ import {
 } from '../../data/householdData';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../store';
-import {
-  ImArrowDownRight2,
-  ImArrowRight,
-  ImArrowRight2,
-  ImArrowUpRight2,
-} from 'react-icons/im';
+import { ImArrowDownRight2, ImArrowUpRight2 } from 'react-icons/im';
 
 export const Household = () => {
   const user = useRecoilValue(userState);
