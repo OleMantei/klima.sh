@@ -99,34 +99,36 @@ export const Dashboard = () => {
           subTextTotal={'Stand ' + user.yearRangeSelection[1].toString()}
         />
         <div className="flex flex-col gap-2">
-          <PrimaryDashboardWidget
-            title="Öffentliche Mittel Klimaschutz"
-            Icon={AiOutlineEuroCircle}
-            mainValue={household}
-            unitOfMainValue={'Mio. €'}
-            mainValueDelta={householdDelta}
-          >
-            <div className="flex my-1 gap-2 justify-evenly ml-2">
-              <DetailsElementHouseholdGroup
-                title="Bildung"
-                mainValue={householdGroups[0]}
-                unitOfMainValue="Mio. €"
-                progress={(householdGroups[0] / household) * 100}
-              ></DetailsElementHouseholdGroup>
-              <DetailsElementHouseholdGroup
-                title="Maßnahmen"
-                mainValue={householdGroups[1]}
-                unitOfMainValue="Mio. €"
-                progress={(householdGroups[1] / household) * 100}
-              ></DetailsElementHouseholdGroup>
-              <DetailsElementHouseholdGroup
-                title="Entwicklungen"
-                mainValue={householdGroups[2]}
-                unitOfMainValue="Mio. €"
-                progress={(householdGroups[2] / household) * 100}
-              ></DetailsElementHouseholdGroup>
-            </div>
-          </PrimaryDashboardWidget>
+          <div onClick={() => navigate('/dashboard/household')}>
+            <PrimaryDashboardWidget
+              title="Öffentliche Mittel Klimaschutz"
+              Icon={AiOutlineEuroCircle}
+              mainValue={household}
+              unitOfMainValue={'Mio. €'}
+              mainValueDelta={householdDelta}
+            >
+              <div className="flex my-1 gap-2 justify-evenly ml-2">
+                <DetailsElementHouseholdGroup
+                  title="Bildung"
+                  mainValue={householdGroups[0]}
+                  unitOfMainValue="Mio. €"
+                  progress={(householdGroups[0] / household) * 100}
+                ></DetailsElementHouseholdGroup>
+                <DetailsElementHouseholdGroup
+                  title="Maßnahmen"
+                  mainValue={householdGroups[1]}
+                  unitOfMainValue="Mio. €"
+                  progress={(householdGroups[1] / household) * 100}
+                ></DetailsElementHouseholdGroup>
+                <DetailsElementHouseholdGroup
+                  title="Entwicklungen"
+                  mainValue={householdGroups[2]}
+                  unitOfMainValue="Mio. €"
+                  progress={(householdGroups[2] / household) * 100}
+                ></DetailsElementHouseholdGroup>
+              </div>
+            </PrimaryDashboardWidget>
+          </div>
           <div className="flex gap-2">
             <SecondaryDashboardWidget
               title="Primärenergie"
