@@ -215,6 +215,7 @@ export const Household = () => {
           dataPlanning={dataPlanning}
         />
       </div>
+      <div className="flex flex-row gap-2  h-32"></div>
       <YearRangeSelector />
     </>
   );
