@@ -22,7 +22,7 @@ export const YearRangeSelector = () => {
   };
 
   return (
-    <div className={`absolute bottom-0 mb-8 px-4 w-full`}>
+    <div className={`fixed bottom-0 mb-8 px-4 w-full`}>
       <OutsideClickHandler
         onOutsideClick={() => {
           setOpen(false);
