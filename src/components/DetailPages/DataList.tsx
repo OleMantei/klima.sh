@@ -20,7 +20,7 @@ type Props = {
   data: HouseholdDataType;
   dataPlanning: HouseholdDataType;
   sorting: string;
-  setSorting: React.Dispatch<React.SetStateAction<string>>;
+  setSorting: React.Dispatch<React.SetStateAction<'ascending' | 'descending'>>;
 };
 
 export const DataList = ({

@@ -26,7 +26,7 @@ export const filterDataByYearAndMgtg = (
   data: HouseholdDataType,
   yearRange: [number, number],
   planning: boolean,
-  sort?: string,
+  sort?: 'ascending' | 'descending',
 ): HouseholdDataType => {
   const [startYear, endYear] = yearRange;
 
@@ -53,21 +53,24 @@ export const filterDataByYearAndMgtg = (
     return Object.values(obj).reduce((a, c) => Number(a) + Number(c), 0);
   };
 
-  const sortHouseholdData = (data: HouseholdDataType) => {
-    return data.sort((a, b) => {
+  const sortHouseholdData = (
+    d: HouseholdDataType,
+    sortOrder: 'ascending' | 'descending',
+  ) => {
+    return d.sort((a, b) => {
       const sumA = sumObjectValues(a.data);
       const sumB = sumObjectValues(b.data);
-      if (sort === 'ascending') {
+      if (sortOrder === 'ascending') {
         return sumA - sumB;
-      }
-      if (sort === 'descending') {
+      } else {
+        // This handles both descending and any other case
         return sumB - sumA;
       }
     });
   };
 
   if (sort) {
-    sortHouseholdData(baseData);
+    sortHouseholdData(baseData, sort);
   }
 
   return baseData;

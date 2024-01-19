@@ -17,7 +17,9 @@ import { ImArrowDownRight2, ImArrowUpRight2 } from 'react-icons/im';
 
 export const Household = () => {
   const user = useRecoilValue(userState);
-  const [sorting, setSorting] = useState('descending');
+  const [sorting, setSorting] = useState<'ascending' | 'descending'>(
+    'descending',
+  );
   const data = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
