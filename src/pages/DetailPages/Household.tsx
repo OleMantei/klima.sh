@@ -8,6 +8,7 @@ import { BarChart } from '../../components/DetailPages/BarChart';
 import { useState } from 'react';
 import { DataList } from '../../components/DetailPages/DataList';
 import {
+  HouseholdDataType,
   filterDataByYearAndMgtg,
   householdData,
   householdDataTotal,
@@ -30,14 +31,12 @@ export const Household = () => {
     true,
   );
 
-  // Use this for all data except hidden
-  // const filteredHiddenItems = (
-  //   data: HouseholdDataType,
-  //   hiddenItemsUuids: string[],
-  // ) => {
-  //   return data.filter((item) => !hiddenItemsUuids.includes(item.uuid));
-  // };
-  // console.log(filteredHiddenItems(data, hiddenItemsUuids));
+  const filteredHiddenItems = (
+    data: HouseholdDataType,
+    hiddenItemsUuids: string[],
+  ) => {
+    return data.filter((item) => !hiddenItemsUuids.includes(item.uuid));
+  };
 
   const getXdata = () => {
     const res: number[] = [];
@@ -50,19 +49,36 @@ export const Household = () => {
     }
     return res;
   };
-  const getYdata = (): number[] => {
-    const res: number[] = [];
-    for (
-      let year = user.yearRangeSelection[0];
-      year <= user.yearRangeSelection[1];
-      year++
-    ) {
-      if (householdDataTotal[year]) {
-        res.push((householdDataTotal[year] as number) * 1000);
-      }
+  const getYdata = (group?: string): number[] => {
+    const dataFiltered = filteredHiddenItems(data, hiddenItemsUuids);
+    let dataFilteredGroup;
+    if (group) {
+      dataFilteredGroup = dataFiltered.filter((item) => item.mgtg === group);
+    } else {
+      dataFilteredGroup = dataFiltered;
     }
-    return res;
+
+    const res: { [key: string]: number } = {};
+
+    dataFilteredGroup.forEach((item) => {
+      Object.keys(item.data).forEach((key) => {
+        if (res[key]) {
+          res[key] += item.data[key];
+        } else {
+          res[key] = item.data[key];
+        }
+      });
+    });
+    return Object.values(res);
   };
+  const getMaxChartScaling = () => {
+    const max = Math.max(...getYdata());
+    if (max <= 1) return 1;
+
+    const power = Math.ceil(Math.log10(max));
+    return Math.pow(10, power);
+  };
+  const maxChartScaling = getMaxChartScaling();
 
   return (
     <>
@@ -83,39 +99,43 @@ export const Household = () => {
             title="Gesamt"
             xData={getXdata()}
             yData={getYdata()}
-            scale={1000000}
+            scale={1000}
             unit="Mio €"
             usage="Ausgaben"
+            maxScale={maxChartScaling}
           />
         </ChartCard>
         <ChartCard>
           <BarChart
             title="Gruppe 01"
             xData={getXdata()}
-            yData={getYdata()}
-            scale={1000000}
+            yData={getYdata('01')}
+            scale={1000}
             unit="Mio €"
             usage="Ausgaben"
+            maxScale={maxChartScaling}
           />
         </ChartCard>
         <ChartCard>
           <BarChart
             title="Gruppe 03"
             xData={getXdata()}
-            yData={getYdata()}
-            scale={1000000}
+            yData={getYdata('03')}
+            scale={1000}
             unit="Mio €"
             usage="Ausgaben"
+            maxScale={maxChartScaling}
           />
         </ChartCard>
         <ChartCard>
           <BarChart
             title="Gruppe 04"
             xData={getXdata()}
-            yData={getYdata()}
-            scale={1000000}
+            yData={getYdata('04')}
+            scale={1000}
             unit="Mio €"
             usage="Ausgaben"
+            maxScale={maxChartScaling}
           />
         </ChartCard>
       </ChartSlider>
