@@ -1,6 +1,8 @@
 import { Card, CardBody } from '@nextui-org/card';
 import { ReactNode } from 'react';
+
 import { IconType } from 'react-icons';
+import { ImArrowUpRight2, ImArrowDownRight2 } from 'react-icons/im';
 import { TextComponent } from '../TextComponent';
 import { colorSwitcherSecondary } from '../../design/designHelperFunctions';
 import { useTheme } from 'next-themes';
@@ -22,6 +24,7 @@ export const SecondaryDashboardWidget = ({
   children,
   mainValueDelta,
 }: StaticData) => {
+  const up: boolean = mainValueDelta >= 0;
   const { theme } = useTheme();
   return (
     <Card
@@ -35,23 +38,38 @@ export const SecondaryDashboardWidget = ({
             {title}
           </TextComponent>
         </div>
-        <TextComponent
-          style="text-default-800 py-1 dark:text-default-600"
-          fSize="text-1xl"
-          fWeight="font-bold"
-          fFamily="font-secondary"
-        >
-          {mainValue} {unitOfMainValue}
-        </TextComponent>
+        <div className="flex items-center pb-2">
+          <TextComponent
+            style="text-default-800 py-1 dark:text-default-600 pr-2"
+            fSize="text-1xl"
+            fWeight="font-bold"
+            fFamily="font-secondary"
+          >
+            {mainValue} {unitOfMainValue}
+          </TextComponent>
+          <div>
+            {up && (
+              <ImArrowUpRight2
+                className="fill-danger"
+                size={10}
+              ></ImArrowUpRight2>
+            )}
+            {!up && (
+              <ImArrowDownRight2
+                className="fill-success"
+                size={10}
+              ></ImArrowDownRight2>
+            )}
+          </div>
+          <TextComponent
+            fWeight="font-bold"
+            fSize="text-xs"
+            style={`text-${colorSwitcherSecondary(mainValueDelta, theme)} pl-1`}
+          >
+            {Math.abs(mainValueDelta)}%
+          </TextComponent>
+        </div>
         {children}
-        <TextComponent
-          fWeight="font-bold"
-          style={`text-${colorSwitcherSecondary(mainValueDelta, theme)}`}
-        >
-          {mainValueDelta < 0
-            ? `${mainValueDelta * -1}% gesunken`
-            : `${mainValueDelta}% gestiegen`}
-        </TextComponent>
       </CardBody>
     </Card>
   );
