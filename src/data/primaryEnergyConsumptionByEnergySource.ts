@@ -1,6 +1,9 @@
 // Quelle: https://www.schleswig-holstein.de/DE/landesregierung/themen/energie/energiewende/Daten/pdf/monitoringbericht_2023_excel.html?nn=a7a1f501-0dcb-4ec3-b611-62605f645397
+
+import { createDeltaArray } from './mathDataHelper';
+
 // angegeben in GWh
-type primaryEnergyByEnergySourceType = {
+export type primaryEnergyByEnergySourceType = {
   year: number;
   data: {
     sumValue: number;
@@ -70,26 +73,19 @@ export const getPrimaryEnergyRenewables = (
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],
 ) => {
-  const dataArray: primaryEnergyByEnergySourceType = [];
   const counter = yearRange[1] - yearRange[0];
-  const counterArray: number[] = [];
-
-  for (let i = 0; i <= counter; i++) {
-    counterArray.push(yearRange[0] + i);
-  }
-
-  for (let i = 0; i <= counterArray.length - 1; i++) {
-    const value = data.find((e) => e.year == counterArray[i]);
-    dataArray.push(value!);
-  }
+  const dataArray: primaryEnergyByEnergySourceType = createDeltaArray(
+    counter,
+    data,
+    yearRange,
+  );
 
   let renewableSum = 0;
   let totalSum = 0;
-  for (let i = 0; i <= counterArray.length - 1; i++) {
+  for (let i = 0; i <= counter; i++) {
     renewableSum += dataArray[i].data.renewableEnergies;
     totalSum += dataArray[i].data.sumValue;
   }
-  console.log(totalSum);
   const retVal: number = parseFloat(
     ((renewableSum / totalSum) * 100).toFixed(1),
   );
