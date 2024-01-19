@@ -55,7 +55,7 @@ type HouseholdDataTotalType = {
 
 type YearRange = [number, number];
 
-export const getHouseholdSum = (
+export const getHouseholdSumFast = (
   data: HouseholdDataTotalType,
   range: YearRange,
 ): number => {
@@ -69,6 +69,22 @@ export const getHouseholdSum = (
   return Math.round(sum / 1000);
 };
 
+// export const getHouseholdSumByYear = (
+//   data: HouseholdDataTotalType,
+//   year: number,
+// ): number => {
+//   let sum = 0;
+
+//   data.forEach((i) => {
+//     sum += i.data[year];
+//   });
+//   for (let year = startYear; year <= endYear; year++) {
+//     sum += data[year.toString()] || 0;
+//   }
+
+//   return Math.round(sum / 1000);
+// };
+
 export const getHouseholdPercentage = (
   data: HouseholdDataTotalType,
   range: YearRange,
@@ -77,7 +93,6 @@ export const getHouseholdPercentage = (
   let startValue: number;
   if (startYear != endYear) startValue = data[startYear.toString()] || 0;
   else startValue = data[(startYear - 1).toString()] || 0;
-
   const endValue = data[endYear.toString()] || 0;
 
   if (startValue === 0 && endValue === 0) {
@@ -85,12 +100,29 @@ export const getHouseholdPercentage = (
   } else if (startValue === 0) {
     return 100; // If only the start value is 0, the percentage change is 100%
   } else {
-    const returnvalue: number = Math.round((endValue / startValue) * 100 - 100);
-    if (returnvalue >= 0) return returnvalue;
-    else return returnvalue;
+    const returnValue: number = Math.round((endValue / startValue) * 100 - 100);
+    return returnValue;
   }
 };
 
+export const getHouseholdSum = (
+  householdData: HouseholdDataType,
+  yearRange: [number, number],
+): number => {
+  let sum = 0;
+  const [startYear, endYear] = yearRange;
+
+  householdData.forEach((item) => {
+    for (let year = startYear; year <= endYear; year++) {
+      const yearData = item.data[year.toString()];
+      if (yearData !== undefined) {
+        sum += yearData;
+      }
+    }
+  });
+
+  return Math.round(sum / 1000);
+};
 export const getHouseholdGroups = (
   data: HouseholdDataType,
   yearRange: [number, number],
