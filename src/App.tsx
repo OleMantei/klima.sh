@@ -11,7 +11,7 @@ import { Household } from './pages/DetailPages/Household';
 
 export default function App() {
   const navigate = useNavigate();
-  const isPWA = window.matchMedia('(display-mode: fullscreen)').matches;
+  const isPWA = window.matchMedia('(display-mode: standalone)').matches;
 
   return (
     <NextUIProvider navigate={navigate}>
