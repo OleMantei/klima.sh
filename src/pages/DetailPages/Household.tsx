@@ -8,6 +8,7 @@ import { BarSample } from '../../components/DetailPages/BarSample';
 import { useState } from 'react';
 import { DataList } from '../../components/DetailPages/DataList';
 import {
+  HouseholdDataType,
   filterDataByYearAndMgtg,
   householdData,
 } from '../../data/householdData';
@@ -17,19 +18,25 @@ import { userState } from '../../store';
 export const Household = () => {
   const user = useRecoilValue(userState);
   const [isDataTotal, setIsDataTotal] = useState(true);
-  const [isDataHiddenItemKeys, setIsDataHiddenItemKeys] = useState<number[]>(
-    [],
-  );
   const data = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     false,
   );
+  const [hiddenItemsUuids, setHiddenItemsUuids] = useState<string[]>([]);
   const dataPlanning = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     true,
   );
+
+  const filteredHiddenItems = (
+    data: HouseholdDataType,
+    hiddenItemsUuids: string[],
+  ) => {
+    return data.filter((item) => !hiddenItemsUuids.includes(item.uuid));
+  };
+  console.log(filteredHiddenItems(data, hiddenItemsUuids));
 
   return (
     <>
@@ -74,8 +81,8 @@ export const Household = () => {
         </div>
         <DataList
           title="Haushaltsposten"
-          isDataHiddenItemKeys={isDataHiddenItemKeys}
-          setIsDataHiddenItemKeys={setIsDataHiddenItemKeys}
+          hiddenItemsUuids={hiddenItemsUuids}
+          setHiddenItemsUuids={setHiddenItemsUuids}
           data={data}
           dataPlanning={dataPlanning}
         />
