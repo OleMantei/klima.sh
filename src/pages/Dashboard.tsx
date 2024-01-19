@@ -136,7 +136,7 @@ export const Dashboard = () => {
               mainValueDelta={primaryEnergyDelta}
             >
               <TextComponent>
-                {primaryEnergyRenewables}% erneuerbar
+                {primaryEnergyRenewables}% davon erneuerbar
               </TextComponent>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
@@ -146,7 +146,9 @@ export const Dashboard = () => {
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
             >
-              <TextComponent>{heatingRenewables}% erneuerbar</TextComponent>
+              <TextComponent>
+                {heatingRenewables}% davon erneuerbar
+              </TextComponent>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
