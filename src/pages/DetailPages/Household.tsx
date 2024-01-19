@@ -11,7 +11,6 @@ import {
   HouseholdDataType,
   filterDataByYearAndMgtg,
   householdData,
-  householdDataTotal,
 } from '../../data/householdData';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../store';
