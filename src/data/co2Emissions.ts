@@ -43,6 +43,10 @@ export const co2Emissions: emission = [
     emissionTotal: 24412,
   },
   {
+    year: 2014,
+    emissionTotal: 18283,
+  },
+  {
     year: 2015,
     emissionTotal: 18322,
   },

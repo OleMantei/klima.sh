@@ -1,8 +1,9 @@
 // Quelle: https://www.schleswig-holstein.de/DE/landesregierung/themen/energie/energiewende/Daten/pdf/monitoringbericht_2023_excel.html?nn=a7a1f501-0dcb-4ec3-b611-62605f645397
 // Wärmeversorgung nach Energieträgern - 2021 nach Sektoren
 //angegeben in GWh
+import { createDeltaArrayHeating } from './mathDataHelper';
 
-type heatingByEnergySourceType = {
+export type heatingByEnergySourceType = {
   year: number;
   data: {
     sumValue: number;
@@ -54,6 +55,47 @@ export const getHeatingPercentage = (
     return percentageRounded;
   }
   return 0;
+};
+
+export const getHeatingRenewablesOld = (
+  data: heatingByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const counter = yearRange[1] - yearRange[0];
+
+  let renewableSum = 0;
+  const totalSum = getHeatingSum(data, yearRange);
+  for (let i = 0; i <= counter; i++) {
+    renewableSum +=
+      data[i].data.renewables + data[i].data.districtHeatingFromRenewables;
+  }
+  const retVal: number =
+    parseFloat((renewableSum / 1000).toFixed(1)) / totalSum;
+  return Math.round(retVal * 1000) / 10;
+};
+
+export const getHeatingRenewables = (
+  data: heatingByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const counter = yearRange[1] - yearRange[0];
+  const dataArray: heatingByEnergySourceType = createDeltaArrayHeating(
+    counter,
+    data,
+    yearRange,
+  );
+
+  let renewableSum = 0;
+  let totalSum = 0;
+  for (let i = 0; i <= counter; i++) {
+    renewableSum += dataArray[i].data.renewables;
+    renewableSum += dataArray[i].data.districtHeatingFossil;
+    totalSum += dataArray[i].data.sumValue;
+  }
+  const retVal: number = parseFloat(
+    ((renewableSum / totalSum) * 100).toFixed(1),
+  );
+  return retVal;
 };
 export const heatingByEnergySourceData: heatingByEnergySourceType = [
   {
