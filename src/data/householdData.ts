@@ -1,5 +1,16 @@
 const relevantMgtg = ['01', '03', '04'];
 
+export type HouseholdDataEntryType = {
+  identifier: string;
+  purpose: string;
+  planning: boolean;
+  entirePeriod: boolean;
+  data: { [key: string]: number };
+  mgtg: string;
+  isHidden?: boolean;
+  uuid: string;
+};
+
 export type HouseholdDataType = {
   identifier: string;
   purpose: string;
@@ -7,6 +18,8 @@ export type HouseholdDataType = {
   entirePeriod: boolean;
   data: { [key: string]: number };
   mgtg: string;
+  isHidden?: boolean;
+  uuid: string;
 }[];
 
 export const filterDataByYearAndMgtg = (
@@ -166,6 +179,7 @@ export const householdData: HouseholdDataType = [
       '2021': 255.5,
     },
     mgtg: '01',
+    uuid: '18666604-ba78-4a67-a406-f3d4faef78e9',
   },
   {
     identifier: '11102',
@@ -184,6 +198,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '5139fd3b-1f1e-462a-937e-75182da929e5',
   },
   {
     identifier: '11103',
@@ -202,6 +217,7 @@ export const householdData: HouseholdDataType = [
       '2021': 8,
     },
     mgtg: '',
+    uuid: 'd58fc161-c467-4fc1-ad75-d31b1b7d8727',
   },
   {
     identifier: '11104',
@@ -220,6 +236,7 @@ export const householdData: HouseholdDataType = [
       '2021': 58.7,
     },
     mgtg: '',
+    uuid: 'd0ce08c5-1373-4855-b81b-24dc42e0100d',
   },
   {
     identifier: '11105',
@@ -238,6 +255,7 @@ export const householdData: HouseholdDataType = [
       '2021': 803.7,
     },
     mgtg: '',
+    uuid: '04f0b3d1-d5f9-4499-9d7f-58c4ae3e2dd1',
   },
   {
     identifier: '11901',
@@ -255,6 +273,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'fbda2e18-6fdc-421c-8ae2-878ac8720829',
   },
   {
     identifier: '11902',
@@ -267,6 +286,7 @@ export const householdData: HouseholdDataType = [
       '2021': 646.2,
     },
     mgtg: '',
+    uuid: '679a03d3-91e4-414d-8ce2-8eac79e91c8a',
   },
   {
     identifier: '11999',
@@ -284,6 +304,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'e6b37e94-b762-42b3-b7cc-68bda95e72fe',
   },
   {
     identifier: '23101',
@@ -301,6 +322,7 @@ export const householdData: HouseholdDataType = [
       '2021': 3.2,
     },
     mgtg: '01',
+    uuid: '73f53559-c3ae-4d56-bcae-118a033607d2',
   },
   {
     identifier: '28101',
@@ -317,6 +339,7 @@ export const householdData: HouseholdDataType = [
       '2021': 8.1,
     },
     mgtg: '01',
+    uuid: '231fc3b4-8291-462e-85dc-0f7ae3a9250f',
   },
   {
     identifier: '28102',
@@ -330,6 +353,7 @@ export const householdData: HouseholdDataType = [
       '2021': 208.6,
     },
     mgtg: '',
+    uuid: '2cd83c29-eeb0-4ddc-a84b-b1efc6cb0103',
   },
   {
     identifier: '28103',
@@ -343,6 +367,7 @@ export const householdData: HouseholdDataType = [
       '2021': 440,
     },
     mgtg: '',
+    uuid: '7e4506b2-c8f0-4897-a42e-7d7e8ac0eaa6',
   },
   {
     identifier: '28202',
@@ -361,6 +386,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '01',
+    uuid: '802f872a-7504-488a-b816-3647cba5f408',
   },
   {
     identifier: '34603',
@@ -378,6 +404,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '040f305a-a9e2-42ac-8671-c595e54c9da7',
   },
   {
     identifier: '35605',
@@ -390,6 +417,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '752c04e9-9823-448b-b990-48aa3ce5b9f3',
   },
   {
     identifier: '35606',
@@ -402,6 +430,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'bc35358e-3721-4555-a5ee-336f90c3e858',
   },
   {
     identifier: '35913',
@@ -415,6 +444,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40743,
     },
     mgtg: '',
+    uuid: '4de94dec-2fd5-444f-87b3-79fbc572ad07',
   },
   {
     identifier: '35923',
@@ -427,6 +457,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '0b7a5e71-0b2f-4733-ae91-ba8be8b08ca0',
   },
   {
     identifier: '42201',
@@ -440,6 +471,7 @@ export const householdData: HouseholdDataType = [
       '2021': 911.1,
     },
     mgtg: '',
+    uuid: 'c9a5d4a4-e56f-417d-8c6e-cfba98954117',
   },
   {
     identifier: '42203',
@@ -457,6 +489,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '2a1914f6-6794-4e18-90ed-7daa1a9bdcb3',
   },
   {
     identifier: '42204',
@@ -475,6 +508,7 @@ export const householdData: HouseholdDataType = [
       '2021': 18.9,
     },
     mgtg: '01',
+    uuid: '4780c7ef-0dea-440e-a183-a9e9399f198c',
   },
   {
     identifier: '42261',
@@ -492,6 +526,7 @@ export const householdData: HouseholdDataType = [
       '2021': 285.4,
     },
     mgtg: '61',
+    uuid: 'ddded515-a605-4df4-a412-b3a1ba00f8bc',
   },
   {
     identifier: '42701',
@@ -509,6 +544,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '4fe44b36-8ea8-4026-b736-725a23c97d48',
   },
   {
     identifier: '42702',
@@ -526,6 +562,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '31684e5f-3822-4025-b044-051c25732365',
   },
   {
     identifier: '42761',
@@ -543,6 +580,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: '6855009b-7e01-4b49-8eff-62706df96f56',
   },
   {
     identifier: '42801',
@@ -560,6 +598,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1476,
     },
     mgtg: '',
+    uuid: 'fbb9fce8-82b5-4746-b703-04ba3123bb93',
   },
   {
     identifier: '42802',
@@ -577,6 +616,7 @@ export const householdData: HouseholdDataType = [
       '2021': 468,
     },
     mgtg: '01',
+    uuid: 'c35d6d43-8c72-493b-9281-c55d7b7d1fd3',
   },
   {
     identifier: '42861',
@@ -594,6 +634,7 @@ export const householdData: HouseholdDataType = [
       '2021': 327.3,
     },
     mgtg: '61',
+    uuid: '404710f9-83e4-40c8-92fd-76bca7aabbdf',
   },
   {
     identifier: '51101',
@@ -612,6 +653,7 @@ export const householdData: HouseholdDataType = [
       '2021': 14.7,
     },
     mgtg: '01',
+    uuid: '22347bd8-9b37-43ce-b4ac-b99022dc871c',
   },
   {
     identifier: '51161',
@@ -630,6 +672,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.2,
     },
     mgtg: '61',
+    uuid: '2e9993b2-094a-4055-9709-81f7297f3a2b',
   },
   {
     identifier: '51401',
@@ -647,6 +690,7 @@ export const householdData: HouseholdDataType = [
       '2021': 2.4,
     },
     mgtg: '01',
+    uuid: 'd93aed3e-988f-4fc9-88d6-dd19ad0dd4c6',
   },
   {
     identifier: '51461',
@@ -664,6 +708,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: '1bd1f126-0c27-4129-a175-6a8d6a65f9ee',
   },
   {
     identifier: '51802',
@@ -681,6 +726,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'c8d8095a-bccb-40d3-958d-aba318ef24a2',
   },
   {
     identifier: '52502',
@@ -699,6 +745,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5.3,
     },
     mgtg: '01',
+    uuid: '9d5763ec-2fab-4ff3-b153-dd520ffb5abd',
   },
   {
     identifier: '52561',
@@ -716,6 +763,7 @@ export const householdData: HouseholdDataType = [
       '2021': 3.6,
     },
     mgtg: '61',
+    uuid: '24fe0ac2-6d9f-45b6-ba3e-98c6d3bdc079',
   },
   {
     identifier: '52603',
@@ -733,6 +781,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'afce0473-e546-42f7-bb66-b840ca19fc8e',
   },
   {
     identifier: '52604',
@@ -750,6 +799,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.2,
     },
     mgtg: '01',
+    uuid: 'af01172b-c231-4782-ab45-7d0aa5c09eb7',
   },
   {
     identifier: '52701',
@@ -767,6 +817,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.3,
     },
     mgtg: '01',
+    uuid: '926619c2-4970-418e-84b9-1addda0a2b86',
   },
   {
     identifier: '52761',
@@ -784,6 +835,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.6,
     },
     mgtg: '61',
+    uuid: 'ba7540a2-ef09-4039-aa4e-41f1649a5734',
   },
   {
     identifier: '53301',
@@ -801,6 +853,7 @@ export const householdData: HouseholdDataType = [
       '2021': 31.8,
     },
     mgtg: '04',
+    uuid: '7f02f73c-5457-4072-898e-03caf9d44b7d',
   },
   {
     identifier: '53302',
@@ -813,6 +866,7 @@ export const householdData: HouseholdDataType = [
       '2021': 60,
     },
     mgtg: '04',
+    uuid: '96a3fb50-130f-4ffa-95a0-3c6cbbdd08b3',
   },
   {
     identifier: '53303',
@@ -831,6 +885,7 @@ export const householdData: HouseholdDataType = [
       '2021': 9.6,
     },
     mgtg: '01',
+    uuid: '66bb5b08-6ff2-4df2-b1e5-d09bf66df1f4',
   },
   {
     identifier: '53304',
@@ -848,6 +903,7 @@ export const householdData: HouseholdDataType = [
       '2021': 315.4,
     },
     mgtg: '',
+    uuid: '85ba3356-fc12-4b38-a389-69b887a96fcd',
   },
   {
     identifier: '53305',
@@ -861,6 +917,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '0bff88f1-6dd4-4883-8a0b-a6ff045abc9f',
   },
   {
     identifier: '53306',
@@ -871,6 +928,7 @@ export const householdData: HouseholdDataType = [
       '2021': 160.4,
     },
     mgtg: '',
+    uuid: '78d052de-beee-4c9f-b9c0-f4c813cd3555',
   },
   {
     identifier: '53307',
@@ -882,6 +940,7 @@ export const householdData: HouseholdDataType = [
       '2021': 421.9,
     },
     mgtg: '05',
+    uuid: '5a6f1bd9-30e7-48d1-aa0e-cfd0e5d11e05',
   },
   {
     identifier: '53308',
@@ -893,6 +952,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'b9887f40-0139-4cbc-aa1c-3f2234dd929e',
   },
   {
     identifier: '53309',
@@ -910,6 +970,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '646fa256-c153-47a7-b32c-78b420d13ffa',
   },
   {
     identifier: '53310',
@@ -923,6 +984,7 @@ export const householdData: HouseholdDataType = [
       '2021': 732,
     },
     mgtg: '03',
+    uuid: '457f60c4-2ae4-4416-ba62-fae4f6165ada',
   },
   {
     identifier: '53311',
@@ -933,6 +995,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'f95af410-1dcc-4f71-87e2-927b054c7c3f',
   },
   {
     identifier: '53312',
@@ -943,6 +1006,7 @@ export const householdData: HouseholdDataType = [
       '2021': 24.3,
     },
     mgtg: '03',
+    uuid: '743f54ab-be11-4459-ab7a-f8dde7dd6cb8',
   },
   {
     identifier: '53313',
@@ -956,6 +1020,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'f67ddf57-3ead-4282-9aff-b1a6ce60edf8',
   },
   {
     identifier: '53315',
@@ -967,6 +1032,7 @@ export const householdData: HouseholdDataType = [
       '2021': 23.5,
     },
     mgtg: '05',
+    uuid: '747ffe5f-1b70-46e1-862b-d4b650b37ccf',
   },
   {
     identifier: '53361',
@@ -985,6 +1051,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: '6cbd1b07-e94e-46f7-93a8-40de752dfdd0',
   },
   {
     identifier: '53401',
@@ -1002,6 +1069,7 @@ export const householdData: HouseholdDataType = [
       '2021': 10.4,
     },
     mgtg: '01',
+    uuid: 'ddd85331-8d07-4d18-b26c-45a6ad5a8595',
   },
   {
     identifier: '53501',
@@ -1015,6 +1083,7 @@ export const householdData: HouseholdDataType = [
       '2021': 465.9,
     },
     mgtg: '01',
+    uuid: '9d71c952-51e4-43f8-868f-0dfa8a32560c',
   },
   {
     identifier: '54699',
@@ -1033,6 +1102,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1.2,
     },
     mgtg: '01',
+    uuid: '5fea5f26-c1fe-47f8-a8bb-76da549b383f',
   },
   {
     identifier: '54761',
@@ -1050,6 +1120,7 @@ export const householdData: HouseholdDataType = [
       '2021': 7,
     },
     mgtg: '61',
+    uuid: '4a391fcd-9c5b-4eb1-b3b9-7e4f5f894a18',
   },
   {
     identifier: '63201',
@@ -1068,6 +1139,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '8f0696cc-5c6e-4de4-b9e6-caf065538630',
   },
   {
     identifier: '63202',
@@ -1085,6 +1157,7 @@ export const householdData: HouseholdDataType = [
       '2021': 181.6,
     },
     mgtg: '',
+    uuid: '19b281ef-0f1c-4671-993d-64315f9d1aae',
   },
   {
     identifier: '63301',
@@ -1098,6 +1171,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'dbca8bd4-ed59-42ca-922d-8daa3c9a94fc',
   },
   {
     identifier: '63302',
@@ -1108,6 +1182,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'fecc7b7e-e4e8-4d82-8704-61522e3ce6f1',
   },
   {
     identifier: '63401',
@@ -1118,6 +1193,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '205e19c9-bdf6-450c-a683-49e82fc9c64d',
   },
   {
     identifier: '67101',
@@ -1132,6 +1208,7 @@ export const householdData: HouseholdDataType = [
       '2021': 440,
     },
     mgtg: '',
+    uuid: '720d27b4-9358-4eef-8bdc-dbb74f9f1f98',
   },
   {
     identifier: '67102',
@@ -1143,6 +1220,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'd9e0200a-620e-494a-b96b-17e56f1837ae',
   },
   {
     identifier: '67103',
@@ -1155,6 +1233,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '3519df8d-2fe5-4479-afbc-d1a6fb466104',
   },
   {
     identifier: '67104',
@@ -1167,6 +1246,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '75ab166d-4a1f-4a39-bd65-003f7e06b7ae',
   },
   {
     identifier: '67106',
@@ -1177,6 +1257,7 @@ export const householdData: HouseholdDataType = [
       '2021': 15.1,
     },
     mgtg: '06',
+    uuid: '9fdf3a66-06a2-457d-aea1-318765522314',
   },
   {
     identifier: '68101',
@@ -1190,6 +1271,7 @@ export const householdData: HouseholdDataType = [
       '2021': 2900,
     },
     mgtg: '03',
+    uuid: '92878fff-69d2-47c0-ae0d-50c5264d47b9',
   },
   {
     identifier: '68215',
@@ -1202,6 +1284,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: 'e9d6ba8d-116f-4593-8071-4b1cbcdc675c',
   },
   {
     identifier: '68301',
@@ -1215,6 +1298,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '03cf2f90-e3f4-455a-b880-68cca455fbb0',
   },
   {
     identifier: '68306',
@@ -1225,6 +1309,7 @@ export const householdData: HouseholdDataType = [
       '2021': 388.8,
     },
     mgtg: '06',
+    uuid: '921d1e58-add4-441e-98f7-b25271dc32c1',
   },
   {
     identifier: '68315',
@@ -1237,6 +1322,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: 'e22b4f82-3b90-4855-8019-f4cd723f2482',
   },
   {
     identifier: '68401',
@@ -1253,6 +1339,7 @@ export const householdData: HouseholdDataType = [
       '2021': 136,
     },
     mgtg: '04',
+    uuid: '7fae622a-e270-440a-84d8-92a077d779d3',
   },
   {
     identifier: '68402',
@@ -1267,6 +1354,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1650.1,
     },
     mgtg: '',
+    uuid: 'df3b6118-66eb-4d76-8071-e4490af5c66a',
   },
   {
     identifier: '68403',
@@ -1279,6 +1367,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '04',
+    uuid: '4107a21b-5b6c-421b-a9e4-cb13848d84e9',
   },
   {
     identifier: '68404',
@@ -1296,6 +1385,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '04',
+    uuid: '6be6ad2b-cee2-413d-837d-101b64f3e7f3',
   },
   {
     identifier: '68405',
@@ -1312,6 +1402,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '04',
+    uuid: 'c7b88b8b-93c6-4a55-9521-204c37cee664',
   },
   {
     identifier: '68501',
@@ -1322,6 +1413,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'fbc68ec2-4647-4093-a263-c7068e90aef4',
   },
   {
     identifier: '68515',
@@ -1334,6 +1426,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: 'e1bfa976-54c9-40df-8fed-79407dadc752',
   },
   {
     identifier: '68601',
@@ -1345,6 +1438,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '11704297-dbf7-4a50-b1d8-3dac72cb18ff',
   },
   {
     identifier: '68605',
@@ -1362,6 +1456,7 @@ export const householdData: HouseholdDataType = [
       '2021': 17.4,
     },
     mgtg: '03',
+    uuid: 'cdc90947-e972-4ef6-85ba-171271807a00',
   },
   {
     identifier: '68607',
@@ -1372,6 +1467,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '2289ed5e-2a63-473a-ae63-2d98d3e207f2',
   },
   {
     identifier: '68608',
@@ -1389,6 +1485,7 @@ export const householdData: HouseholdDataType = [
       '2021': 4176.3,
     },
     mgtg: '03',
+    uuid: 'e8fbb068-6407-46dc-bc60-2c96830e3c48',
   },
   {
     identifier: '68609',
@@ -1401,6 +1498,7 @@ export const householdData: HouseholdDataType = [
       '2021': 6.9,
     },
     mgtg: '03',
+    uuid: '543aa150-d112-4474-994b-dfd6e50df000',
   },
   {
     identifier: '68610',
@@ -1411,6 +1509,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '50210143-6ceb-4d68-a2b2-750334fff640',
   },
   {
     identifier: '68616',
@@ -1423,6 +1522,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: '4adf85a0-bd6a-43b2-89be-a0c14588cd7a',
   },
   {
     identifier: '68617',
@@ -1435,6 +1535,7 @@ export const householdData: HouseholdDataType = [
       '2021': 72.8,
     },
     mgtg: '05',
+    uuid: '00c168ca-cac2-46b0-85e8-7604f1356784',
   },
   {
     identifier: '81201',
@@ -1452,6 +1553,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'd0ca8ff3-3750-485f-8f25-3a6c27701e39',
   },
   {
     identifier: '82106',
@@ -1462,6 +1564,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '06',
+    uuid: '0de516d1-980a-43fb-9c01-8e30c49d1b76',
   },
   {
     identifier: '89201',
@@ -1479,6 +1582,7 @@ export const householdData: HouseholdDataType = [
       '2021': -24.4,
     },
     mgtg: '03',
+    uuid: '28bf0de1-7e81-48b3-8437-888231bfd883',
   },
   {
     identifier: '89202',
@@ -1489,6 +1593,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: '1c396bb7-4442-4f87-ad06-71929278fa04',
   },
   {
     identifier: '89206',
@@ -1499,6 +1604,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '05',
+    uuid: 'a3dd774a-f8f4-45a9-8423-bcaa59774e0b',
   },
   {
     identifier: '91605',
@@ -1511,6 +1617,7 @@ export const householdData: HouseholdDataType = [
       '2021': 27.1,
     },
     mgtg: '',
+    uuid: '3851703b-f547-42b0-a2c7-0c69619e0893',
   },
   {
     identifier: '91606',
@@ -1523,6 +1630,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '9d3f0c10-470b-4ba6-88ec-49553a515bb1',
   },
   {
     identifier: '91905',
@@ -1534,6 +1642,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '8d1b4839-4978-4074-9b31-ddba7be80069',
   },
   {
     identifier: '91913',
@@ -1547,6 +1656,7 @@ export const householdData: HouseholdDataType = [
       '2021': 42781.5,
     },
     mgtg: '',
+    uuid: '498fc327-b31b-4a04-b99a-14ef674fd60e',
   },
   {
     identifier: '91923',
@@ -1559,6 +1669,7 @@ export const householdData: HouseholdDataType = [
       '2021': 89,
     },
     mgtg: '',
+    uuid: 'b3d874de-f04e-4d6d-a5bc-3792a7b039cd',
   },
   {
     identifier: '11101',
@@ -1576,6 +1687,7 @@ export const householdData: HouseholdDataType = [
       '2021': 103,
     },
     mgtg: '01',
+    uuid: '0b6361ce-35f6-45b4-8676-e9391e1af180',
   },
   {
     identifier: '11102',
@@ -1594,6 +1706,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'd322397c-7003-4820-b8f2-bb5a6f47bffb',
   },
   {
     identifier: '11103',
@@ -1612,6 +1725,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'ceece90b-8777-407c-a3d5-a04193049768',
   },
   {
     identifier: '11104',
@@ -1630,6 +1744,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '',
+    uuid: '8e34f466-75bb-4be2-921c-0e96cea87fb0',
   },
   {
     identifier: '11105',
@@ -1648,6 +1763,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1650,
     },
     mgtg: '',
+    uuid: '056a7d8b-11f3-4b39-80f3-d6f2845dec80',
   },
   {
     identifier: '11901',
@@ -1665,6 +1781,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.3,
     },
     mgtg: '01',
+    uuid: 'c975ac70-55fe-41a5-9615-96022eeccbdb',
   },
   {
     identifier: '11902',
@@ -1676,6 +1793,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '47f0cd14-b894-4959-8515-bbdda1b71bef',
   },
   {
     identifier: '11999',
@@ -1693,6 +1811,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.1,
     },
     mgtg: '01',
+    uuid: 'c755e379-cc26-433f-bbc0-330b1a4cfa60',
   },
   {
     identifier: '23101',
@@ -1710,6 +1829,7 @@ export const householdData: HouseholdDataType = [
       '2021': 3,
     },
     mgtg: '01',
+    uuid: '2c727eaf-03aa-4fb0-aff9-f5fbac004101',
   },
   {
     identifier: '27102',
@@ -1728,6 +1848,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '6a65966f-91e0-4f59-a02e-a49393cb223b',
   },
   {
     identifier: '28101',
@@ -1743,6 +1864,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '01',
+    uuid: '26874a19-369c-4ee0-83f9-e6f3420795fb',
   },
   {
     identifier: '28102',
@@ -1755,6 +1877,7 @@ export const householdData: HouseholdDataType = [
       '2021': 214,
     },
     mgtg: '',
+    uuid: '476cccf6-d801-4f87-b7b2-f2df91215af6',
   },
   {
     identifier: '28103',
@@ -1767,6 +1890,7 @@ export const householdData: HouseholdDataType = [
       '2021': 822,
     },
     mgtg: '',
+    uuid: '035d68d9-5959-434f-bbf6-f6bcff349b9e',
   },
   {
     identifier: '28202',
@@ -1785,6 +1909,7 @@ export const householdData: HouseholdDataType = [
       '2021': 37,
     },
     mgtg: '01',
+    uuid: 'e365e230-9e64-4ccb-9559-0cbd41c8a23a',
   },
   {
     identifier: '34603',
@@ -1802,6 +1927,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'f3b62a19-52fb-4ae2-8dcd-30bda8433d65',
   },
   {
     identifier: '35605',
@@ -1813,6 +1939,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'fcf68272-121e-4195-88d5-e8c8116fe347',
   },
   {
     identifier: '35606',
@@ -1824,6 +1951,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '128bf820-de40-43b5-842f-31220a422fe3',
   },
   {
     identifier: '35913',
@@ -1836,6 +1964,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40743.1,
     },
     mgtg: '',
+    uuid: 'abb24dfd-b517-467a-9606-fa9d5837cde8',
   },
   {
     identifier: '35923',
@@ -1847,6 +1976,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '3eeb7fbe-2397-407b-a837-2f3ad3e7f431',
   },
   {
     identifier: '42201',
@@ -1859,6 +1989,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1405.2,
     },
     mgtg: '',
+    uuid: 'd88fed79-e30a-4a7c-a53c-4cdb109e75c5',
   },
   {
     identifier: '42203',
@@ -1876,6 +2007,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '57473053-58f4-4c49-86c1-a6dd0d219ebf',
   },
   {
     identifier: '42204',
@@ -1894,6 +2026,7 @@ export const householdData: HouseholdDataType = [
       '2021': 97.2,
     },
     mgtg: '01',
+    uuid: 'a31fbbc7-ed52-4a46-b2ce-9ecd5b67e474',
   },
   {
     identifier: '42261',
@@ -1911,6 +2044,7 @@ export const householdData: HouseholdDataType = [
       '2021': 367.9,
     },
     mgtg: '61',
+    uuid: '8d0cc677-ffc4-469e-bb22-cc5f21ec50b2',
   },
   {
     identifier: '42701',
@@ -1928,6 +2062,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '41070497-29ba-4353-9410-088a1eb16f44',
   },
   {
     identifier: '42702',
@@ -1945,6 +2080,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: 'ce610cf6-5519-44e5-aca1-77cab193e9bb',
   },
   {
     identifier: '42761',
@@ -1962,6 +2098,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: 'c2ca781b-1bec-4ad1-aae3-a318d15457c2',
   },
   {
     identifier: '42763',
@@ -1973,6 +2110,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '60a1f63d-eb9b-4b6d-85ca-73422119ed73',
   },
   {
     identifier: '42801',
@@ -1990,6 +2128,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1583.5,
     },
     mgtg: '',
+    uuid: '3e35aefe-cd67-4e8e-9cfe-0c80339773d0',
   },
   {
     identifier: '42802',
@@ -2007,6 +2146,7 @@ export const householdData: HouseholdDataType = [
       '2021': 417,
     },
     mgtg: '01',
+    uuid: 'b498c032-3216-4b51-973e-fce965ff1422',
   },
   {
     identifier: '42861',
@@ -2024,6 +2164,7 @@ export const householdData: HouseholdDataType = [
       '2021': 246.1,
     },
     mgtg: '61',
+    uuid: 'b5854261-f3ed-42dd-bfcc-c3d281f5b68f',
   },
   {
     identifier: '42863',
@@ -2041,6 +2182,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '7f83a100-5348-4297-a634-bc114864dda9',
   },
   {
     identifier: '51101',
@@ -2059,6 +2201,7 @@ export const householdData: HouseholdDataType = [
       '2021': 29.8,
     },
     mgtg: '01',
+    uuid: '84e4b813-96e5-41d5-aa45-3969096adde5',
   },
   {
     identifier: '51161',
@@ -2076,6 +2219,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '61',
+    uuid: '4197edef-5d1b-4d12-bb15-517d94702425',
   },
   {
     identifier: '51401',
@@ -2093,6 +2237,7 @@ export const householdData: HouseholdDataType = [
       '2021': 3,
     },
     mgtg: '01',
+    uuid: '4ae2afe0-f77a-4cba-b93d-ba373327a07d',
   },
   {
     identifier: '51461',
@@ -2110,6 +2255,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: 'eb499ef0-f832-4978-97b3-c09b14cf9d2e',
   },
   {
     identifier: '51802',
@@ -2127,6 +2273,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '04e4f225-c7b0-4a36-b513-b84dee44f05b',
   },
   {
     identifier: '52502',
@@ -2145,6 +2292,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5.5,
     },
     mgtg: '01',
+    uuid: '106b9474-034c-4af0-9775-24a0ae4b0cf2',
   },
   {
     identifier: '52561',
@@ -2162,6 +2310,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '61',
+    uuid: '79c5bb59-a81e-4cd6-9299-74bb9fbda91e',
   },
   {
     identifier: '52603',
@@ -2179,6 +2328,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1,
     },
     mgtg: '03',
+    uuid: '1d0f058c-9576-44d3-95dc-0046063443a1',
   },
   {
     identifier: '52604',
@@ -2196,6 +2346,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '01',
+    uuid: 'c84dde81-f236-44cc-a3a7-0dcd3a3f913c',
   },
   {
     identifier: '52701',
@@ -2213,6 +2364,7 @@ export const householdData: HouseholdDataType = [
       '2021': 4,
     },
     mgtg: '01',
+    uuid: '268d94e3-c189-4793-806a-ac54520d868f',
   },
   {
     identifier: '52761',
@@ -2230,6 +2382,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '61',
+    uuid: '57914938-e82b-4812-98ba-8466f84034dd',
   },
   {
     identifier: '52763',
@@ -2247,6 +2400,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'b0a79bc2-2bda-467f-959b-7c47ae01c6f3',
   },
   {
     identifier: '53301',
@@ -2264,6 +2418,7 @@ export const householdData: HouseholdDataType = [
       '2021': 145,
     },
     mgtg: '04',
+    uuid: 'ed09d7f1-2393-42e0-8b6e-7737a42f92cc',
   },
   {
     identifier: '53302',
@@ -2275,6 +2430,7 @@ export const householdData: HouseholdDataType = [
       '2021': 60,
     },
     mgtg: '04',
+    uuid: '22711fe3-5a38-48e9-a64b-f76b59e63413',
   },
   {
     identifier: '53303',
@@ -2292,6 +2448,7 @@ export const householdData: HouseholdDataType = [
       '2021': 9.2,
     },
     mgtg: '01',
+    uuid: '117a557d-8807-4d27-80aa-9341b51000ec',
   },
   {
     identifier: '53304',
@@ -2308,6 +2465,7 @@ export const householdData: HouseholdDataType = [
       '2021': 355,
     },
     mgtg: '',
+    uuid: '9c36b965-b3f1-490f-a62c-c23ca29d2c53',
   },
   {
     identifier: '53305',
@@ -2320,6 +2478,7 @@ export const householdData: HouseholdDataType = [
       '2021': 300,
     },
     mgtg: '03',
+    uuid: '4a5bc87a-fc00-43ad-9ff2-d0d9d5655942',
   },
   {
     identifier: '53306',
@@ -2330,6 +2489,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '1aa8ae5c-e833-412e-bf91-a7741b86c3ca',
   },
   {
     identifier: '53307',
@@ -2341,6 +2501,7 @@ export const householdData: HouseholdDataType = [
       '2021': 8843.2,
     },
     mgtg: '05',
+    uuid: 'fc1a61c8-888d-406e-9021-f33abe6301d6',
   },
   {
     identifier: '53308',
@@ -2351,6 +2512,7 @@ export const householdData: HouseholdDataType = [
       '2021': 200,
     },
     mgtg: '01',
+    uuid: '4ad03b1e-8aff-4b30-b8a7-4a0529d98bc8',
   },
   {
     identifier: '53309',
@@ -2368,6 +2530,7 @@ export const householdData: HouseholdDataType = [
       '2021': 50,
     },
     mgtg: '03',
+    uuid: '504bb38b-de43-4abb-b8ef-85e07baadd8d',
   },
   {
     identifier: '53310',
@@ -2380,6 +2543,7 @@ export const householdData: HouseholdDataType = [
       '2021': 942.3,
     },
     mgtg: '03',
+    uuid: 'a5b1f19b-0f14-491a-96ba-d228ee94ce95',
   },
   {
     identifier: '53311',
@@ -2392,6 +2556,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'e5df6d3c-f354-4178-81d4-bf715b3c60d8',
   },
   {
     identifier: '53312',
@@ -2410,6 +2575,7 @@ export const householdData: HouseholdDataType = [
       '2021': 30,
     },
     mgtg: '03',
+    uuid: '78e05e35-d7ac-4d44-93cb-7a198518fe6d',
   },
   {
     identifier: '53313',
@@ -2422,6 +2588,7 @@ export const householdData: HouseholdDataType = [
       '2021': 25,
     },
     mgtg: '03',
+    uuid: 'e0cfa69e-cc70-47d9-bd70-b413c478af80',
   },
   {
     identifier: '53314',
@@ -2435,6 +2602,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '534949d6-7891-400e-97a3-56608ed10321',
   },
   {
     identifier: '53315',
@@ -2446,6 +2614,7 @@ export const householdData: HouseholdDataType = [
       '2021': 100,
     },
     mgtg: '05',
+    uuid: 'ecdd3676-38cc-4a04-8eb9-fd6297fba3a3',
   },
   {
     identifier: '53361',
@@ -2464,6 +2633,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '61',
+    uuid: 'e2eb490c-4b89-4fbe-89a0-be37e4327bb1',
   },
   {
     identifier: '53401',
@@ -2481,6 +2651,7 @@ export const householdData: HouseholdDataType = [
       '2021': 7.7,
     },
     mgtg: '01',
+    uuid: 'f88f7887-1bf2-457c-ab9f-9d00b76cc45b',
   },
   {
     identifier: '53501',
@@ -2493,6 +2664,7 @@ export const householdData: HouseholdDataType = [
       '2021': 283,
     },
     mgtg: '01',
+    uuid: 'b2dcb4ec-2b6a-4674-9132-5e8fdef5f85b',
   },
   {
     identifier: '54699',
@@ -2511,6 +2683,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0.1,
     },
     mgtg: '01',
+    uuid: 'a5f8d184-b343-49e2-b1f6-d00d824f351a',
   },
   {
     identifier: '54761',
@@ -2528,6 +2701,7 @@ export const householdData: HouseholdDataType = [
       '2021': 5,
     },
     mgtg: '61',
+    uuid: '3a49628a-f770-4bf3-88f3-63ad988b2c36',
   },
   {
     identifier: '54763',
@@ -2545,6 +2719,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '2d427f49-0c12-4a46-826d-03bfdbe40ab9',
   },
   {
     identifier: '63201',
@@ -2563,6 +2738,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '65020d98-4e44-4d7d-a0a5-4cf01f80d501',
   },
   {
     identifier: '63202',
@@ -2580,6 +2756,7 @@ export const householdData: HouseholdDataType = [
       '2021': 216,
     },
     mgtg: '',
+    uuid: 'a5293fda-eb6b-47b4-84fc-4e97d1b5d99f',
   },
   {
     identifier: '63301',
@@ -2592,6 +2769,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1,
     },
     mgtg: '01',
+    uuid: '6b9a9b05-00b8-4461-b344-388bb17c33b9',
   },
   {
     identifier: '67101',
@@ -2605,6 +2783,7 @@ export const householdData: HouseholdDataType = [
       '2021': 822,
     },
     mgtg: '',
+    uuid: '49a19145-1d55-4b50-877e-2cd6f9fd1b3a',
   },
   {
     identifier: '67102',
@@ -2623,6 +2802,7 @@ export const householdData: HouseholdDataType = [
       '2021': 550,
     },
     mgtg: '03',
+    uuid: '2bbb9eb2-14e7-40f2-a3cf-587274bdf2dd',
   },
   {
     identifier: '67103',
@@ -2634,6 +2814,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'd72aee0b-a4dc-40e5-bf72-8666e7623700',
   },
   {
     identifier: '67104',
@@ -2645,6 +2826,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: 'b1a1815f-1f77-4aad-891a-ef400f12ba2d',
   },
   {
     identifier: '68101',
@@ -2657,6 +2839,7 @@ export const householdData: HouseholdDataType = [
       '2021': 2735,
     },
     mgtg: '03',
+    uuid: '0a4a4c24-b9b3-4f64-850b-8a9f711ffe02',
   },
   {
     identifier: '68201',
@@ -2673,6 +2856,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '4f6ae68c-4430-41e8-af4a-03cd4de7f9d7',
   },
   {
     identifier: '68214',
@@ -2685,6 +2869,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'df3a225a-206c-49bb-80be-5f07abdfd49b',
   },
   {
     identifier: '68215',
@@ -2696,6 +2881,7 @@ export const householdData: HouseholdDataType = [
       '2021': 50,
     },
     mgtg: '05',
+    uuid: '6f7a3c29-3ef8-4612-83d4-8adbf4ebee42',
   },
   {
     identifier: '68301',
@@ -2708,6 +2894,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '01',
+    uuid: '28fab15f-c098-4a29-8b98-c4c560ee29e9',
   },
   {
     identifier: '68314',
@@ -2720,6 +2907,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'bd5ad317-c00d-4a56-a46a-8175e6898035',
   },
   {
     identifier: '68315',
@@ -2731,6 +2919,7 @@ export const householdData: HouseholdDataType = [
       '2021': 50,
     },
     mgtg: '05',
+    uuid: '4e7097af-4abf-4a44-8909-afc54818ff51',
   },
   {
     identifier: '68401',
@@ -2746,6 +2935,7 @@ export const householdData: HouseholdDataType = [
       '2021': 136,
     },
     mgtg: '04',
+    uuid: 'd61ccb99-7046-477a-ae76-9279c7992f6c',
   },
   {
     identifier: '68402',
@@ -2759,6 +2949,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1829.3,
     },
     mgtg: '',
+    uuid: 'cbd5972b-2b5f-4ca1-b529-10230b2a9093',
   },
   {
     identifier: '68403',
@@ -2770,6 +2961,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '04',
+    uuid: 'd2d4847e-e575-4774-a8bd-3999ffe0ccd8',
   },
   {
     identifier: '68404',
@@ -2787,6 +2979,7 @@ export const householdData: HouseholdDataType = [
       '2021': 40,
     },
     mgtg: '04',
+    uuid: 'a1c1e652-09fe-4657-96cf-850186013a99',
   },
   {
     identifier: '68405',
@@ -2802,6 +2995,7 @@ export const householdData: HouseholdDataType = [
       '2021': 6.8,
     },
     mgtg: '04',
+    uuid: 'e1c15437-6075-4e2c-b0da-d35456141fc2',
   },
   {
     identifier: '68514',
@@ -2815,6 +3009,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'b1531a6e-b360-4a6d-94a8-e0c6483aae74',
   },
   {
     identifier: '68515',
@@ -2826,6 +3021,7 @@ export const householdData: HouseholdDataType = [
       '2021': 100,
     },
     mgtg: '05',
+    uuid: '732ef785-f496-446e-8550-2daaf2d81780',
   },
   {
     identifier: '68605',
@@ -2843,6 +3039,7 @@ export const householdData: HouseholdDataType = [
       '2021': 20.5,
     },
     mgtg: '03',
+    uuid: 'b23de194-257e-4a79-9414-0a03934b5bcc',
   },
   {
     identifier: '68607',
@@ -2854,6 +3051,7 @@ export const householdData: HouseholdDataType = [
       '2021': 400,
     },
     mgtg: '03',
+    uuid: 'a9ec6370-d29c-4b75-a07e-2b43c742b170',
   },
   {
     identifier: '68608',
@@ -2871,6 +3069,7 @@ export const householdData: HouseholdDataType = [
       '2021': 9625,
     },
     mgtg: '03',
+    uuid: 'ef056365-18ca-4208-966d-d7f4c6d92d5b',
   },
   {
     identifier: '68609',
@@ -2882,6 +3081,7 @@ export const householdData: HouseholdDataType = [
       '2021': 8000,
     },
     mgtg: '03',
+    uuid: '6ebe8b0b-a99b-4964-b996-31c791f85f27',
   },
   {
     identifier: '68614',
@@ -2895,6 +3095,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'aa153165-e6f8-4fe8-a195-cc4a20e1ca7d',
   },
   {
     identifier: '68615',
@@ -2907,6 +3108,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'f04c05a9-9ee2-4e93-8f54-e9f920abdcc5',
   },
   {
     identifier: '68616',
@@ -2918,6 +3120,7 @@ export const householdData: HouseholdDataType = [
       '2021': 200,
     },
     mgtg: '05',
+    uuid: 'c1d4b3f4-3cc4-47cd-8d21-836301cf9787',
   },
   {
     identifier: '68617',
@@ -2929,6 +3132,7 @@ export const householdData: HouseholdDataType = [
       '2021': 10000,
     },
     mgtg: '05',
+    uuid: 'fec6949f-6f21-40b6-89bd-f2549a1189f9',
   },
   {
     identifier: '81201',
@@ -2946,6 +3150,7 @@ export const householdData: HouseholdDataType = [
       '2021': 1,
     },
     mgtg: '01',
+    uuid: '93e18882-8314-4897-83a5-5297e41644da',
   },
   {
     identifier: '89201',
@@ -2963,6 +3168,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '03',
+    uuid: '9c3feba5-d8e4-467d-93e1-419779ea1ba4',
   },
   {
     identifier: '91605',
@@ -2974,6 +3180,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '132a4706-4e1e-40e7-9dc1-bbc1c2057b64',
   },
   {
     identifier: '91606',
@@ -2985,6 +3192,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: '7161c21d-2c19-4238-a75b-17a1c27ddeff',
   },
   {
     identifier: '91913',
@@ -2997,6 +3205,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'b676174b-d042-4e54-b6ac-e1f97f12d426',
   },
   {
     identifier: '91923',
@@ -3008,6 +3217,7 @@ export const householdData: HouseholdDataType = [
       '2021': 0,
     },
     mgtg: '',
+    uuid: 'a21a797b-a313-40ea-aacc-c6e1e53f7060',
   },
   {
     identifier: '27102',
@@ -3025,6 +3235,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '82ea5049-1386-4454-a0fa-3a42bdf59a38',
   },
   {
     identifier: '42763',
@@ -3036,6 +3247,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'a659e468-ff1f-456c-ad3f-6c231cd57655',
   },
   {
     identifier: '42863',
@@ -3052,6 +3264,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '3e363b61-17c7-43ed-a64c-191ae8f56863',
   },
   {
     identifier: '52763',
@@ -3068,6 +3281,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '10507ed7-d091-4569-a886-47413d784505',
   },
   {
     identifier: '53306',
@@ -3078,6 +3292,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '5fefb14d-bcb8-4508-b5c0-c281c7392e33',
   },
   {
     identifier: '53307',
@@ -3089,6 +3304,7 @@ export const householdData: HouseholdDataType = [
       '2020': 60.9,
     },
     mgtg: '05',
+    uuid: 'be5c1830-e5f5-46ee-895f-7a88d3e8e34d',
   },
   {
     identifier: '53311',
@@ -3101,6 +3317,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '03',
+    uuid: 'f33aa296-e49b-468b-970a-ac6c7295dbaa',
   },
   {
     identifier: '53312',
@@ -3118,6 +3335,7 @@ export const householdData: HouseholdDataType = [
       '2020': 22.9,
     },
     mgtg: '03',
+    uuid: 'b50221dd-c0b7-455e-afd9-60bac5d7c34c',
   },
   {
     identifier: '53314',
@@ -3131,6 +3349,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '072d8d32-3613-4732-8493-4565417d906c',
   },
   {
     identifier: '53315',
@@ -3142,6 +3361,7 @@ export const householdData: HouseholdDataType = [
       '2020': 356.6,
     },
     mgtg: '05',
+    uuid: 'a428763b-3191-4b94-b244-d96a961e6378',
   },
   {
     identifier: '54763',
@@ -3158,6 +3378,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'bba3a396-d670-4314-896a-922b590b4a5a',
   },
   {
     identifier: '67102',
@@ -3175,6 +3396,7 @@ export const householdData: HouseholdDataType = [
       '2020': 324.6,
     },
     mgtg: '03',
+    uuid: 'c7d04ca9-095a-429a-91b5-944c22558a1c',
   },
   {
     identifier: '68201',
@@ -3191,6 +3413,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'aa1d4d34-8945-4ad9-a8f8-2fb7551e0883',
   },
   {
     identifier: '68214',
@@ -3203,6 +3426,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '744c7ff6-f645-43c1-8c00-cc8770092cac',
   },
   {
     identifier: '68314',
@@ -3215,6 +3439,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'b0f478d5-c1f8-4775-a106-9afd17b128cf',
   },
   {
     identifier: '68514',
@@ -3228,6 +3453,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '3953faf2-73f4-4e5c-9932-1ada2f359682',
   },
   {
     identifier: '68607',
@@ -3239,6 +3465,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '03',
+    uuid: '19999261-0828-41ad-8c91-b6eaa986d5d0',
   },
   {
     identifier: '68614',
@@ -3252,6 +3479,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '66da415f-e257-4b90-a001-dfd34b130a40',
   },
   {
     identifier: '68615',
@@ -3264,6 +3492,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'd6c109f6-2ea7-4271-8a0a-eb2552c601ca',
   },
   {
     identifier: '23104',
@@ -3281,6 +3510,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'd2415616-840d-4d00-9fc5-b6884daa6b80',
   },
   {
     identifier: '26101',
@@ -3294,6 +3524,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: 'f647272d-a4de-4efe-b37f-181cb211fda0',
   },
   {
     identifier: '53306',
@@ -3304,6 +3535,7 @@ export const householdData: HouseholdDataType = [
       '2020': 0,
     },
     mgtg: '',
+    uuid: '99a664b7-c349-44c0-b9c6-4d8c138b1d86',
   },
   {
     identifier: '23104',
@@ -3320,6 +3552,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: 'cfb84195-0cd2-4c25-b3be-b8d3f2fd4744',
   },
   {
     identifier: '26101',
@@ -3333,6 +3566,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: '6002e62f-2121-4530-af5c-7c19ff008744',
   },
   {
     identifier: '53306',
@@ -3343,6 +3577,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: '2204e277-4199-4df6-b318-3d2fdceca88f',
   },
   {
     identifier: '28103',
@@ -3354,6 +3589,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: 'a379ebff-cf69-4e91-b88f-dee3da6b0ed2',
   },
   {
     identifier: '42201',
@@ -3370,6 +3606,7 @@ export const householdData: HouseholdDataType = [
       '2019': 955.2,
     },
     mgtg: '',
+    uuid: '187bcddc-b9ea-4703-87c0-4439593901a7',
   },
   {
     identifier: '42763',
@@ -3385,6 +3622,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: '84c7ef77-64df-4a2e-94f1-6529c8d9483d',
   },
   {
     identifier: '53302',
@@ -3396,6 +3634,7 @@ export const householdData: HouseholdDataType = [
       '2019': 60,
     },
     mgtg: '04',
+    uuid: '135b95ec-ee51-442f-a996-e6786f9323cb',
   },
   {
     identifier: '53310',
@@ -3412,6 +3651,7 @@ export const householdData: HouseholdDataType = [
       '2019': 942.3,
     },
     mgtg: '03',
+    uuid: 'c904817c-0ed5-4ce0-b21e-c32eb42a189f',
   },
   {
     identifier: '53313',
@@ -3423,6 +3663,7 @@ export const householdData: HouseholdDataType = [
       '2019': 25,
     },
     mgtg: '03',
+    uuid: 'e04d09bf-cde5-4038-917d-08d2397c89c8',
   },
   {
     identifier: '53501',
@@ -3438,6 +3679,7 @@ export const householdData: HouseholdDataType = [
       '2019': 283,
     },
     mgtg: '01',
+    uuid: 'b785eb56-20c4-4c1a-adc6-ed9c4142a90f',
   },
   {
     identifier: '63301',
@@ -3454,6 +3696,7 @@ export const householdData: HouseholdDataType = [
       '2019': 1,
     },
     mgtg: '01',
+    uuid: 'a96dbb15-cc27-43cb-9afc-b9dd93f9a156',
   },
   {
     identifier: '68214',
@@ -3465,6 +3708,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: 'b60eb5f3-eed5-4e8e-aae4-70b9f8f38228',
   },
   {
     identifier: '68301',
@@ -3481,6 +3725,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '01',
+    uuid: '9feac46a-3dae-4cb5-a454-d6d0d0bf7b38',
   },
   {
     identifier: '68314',
@@ -3492,6 +3737,7 @@ export const householdData: HouseholdDataType = [
       '2019': 0,
     },
     mgtg: '',
+    uuid: '9bf5b659-eb25-4e79-bf5c-72f6872472c4',
   },
   {
     identifier: '68403',
@@ -3506,6 +3752,7 @@ export const householdData: HouseholdDataType = [
       '2019': 40,
     },
     mgtg: '04',
+    uuid: '397da121-300b-41f6-b2fc-c95a78798d5d',
   },
   {
     identifier: '28103',
@@ -3517,6 +3764,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '',
+    uuid: '616af671-d5d6-4998-9960-d447eed44842',
   },
   {
     identifier: '42201',
@@ -3532,6 +3780,7 @@ export const householdData: HouseholdDataType = [
       '2018': 824.9,
     },
     mgtg: '',
+    uuid: 'f7b3fffd-53ca-4ec0-939b-803e340db994',
   },
   {
     identifier: '42763',
@@ -3546,6 +3795,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '',
+    uuid: '02a93451-ddc4-4ae0-bfe6-0a20ce821dca',
   },
   {
     identifier: '53302',
@@ -3557,6 +3807,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '04',
+    uuid: 'b62254c3-c429-4efe-83bb-3603cfbb33ba',
   },
   {
     identifier: '53310',
@@ -3572,6 +3823,7 @@ export const householdData: HouseholdDataType = [
       '2018': 391.9,
     },
     mgtg: '03',
+    uuid: '182f44a3-b758-4b99-9ec0-8d5bdee8f852',
   },
   {
     identifier: '53313',
@@ -3583,6 +3835,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '03',
+    uuid: '67b7ad7b-0840-4acd-ae33-9d6ad8cf9b91',
   },
   {
     identifier: '53501',
@@ -3597,6 +3850,7 @@ export const householdData: HouseholdDataType = [
       '2018': 562.6,
     },
     mgtg: '01',
+    uuid: '419f4a59-57ce-40ad-9dd4-9cbe940d269f',
   },
   {
     identifier: '63301',
@@ -3612,6 +3866,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '01',
+    uuid: '3f76ebe2-a3bf-4750-bf38-4c793099f08b',
   },
   {
     identifier: '68214',
@@ -3623,6 +3878,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '',
+    uuid: 'beb952fe-19b8-4ee1-826d-c61b3c1f6d0e',
   },
   {
     identifier: '68301',
@@ -3638,6 +3894,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '01',
+    uuid: 'b99c4a68-cb8c-4da9-9e83-30387976e129',
   },
   {
     identifier: '68314',
@@ -3649,6 +3906,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '',
+    uuid: '541cae8b-ffc2-42e2-9b7f-b1e48a2e14ae',
   },
   {
     identifier: '68403',
@@ -3663,6 +3921,7 @@ export const householdData: HouseholdDataType = [
       '2018': 40,
     },
     mgtg: '04',
+    uuid: 'e44e7e03-6928-4449-bde2-dff25cba6928',
   },
   {
     identifier: '11902',
@@ -3678,6 +3937,7 @@ export const householdData: HouseholdDataType = [
       '2018': 0,
     },
     mgtg: '',
+    uuid: '758b4a07-8218-4b92-8098-5c34842234e5',
   },
   {
     identifier: '53313',
@@ -3689,6 +3949,7 @@ export const householdData: HouseholdDataType = [
       '2018': 25,
     },
     mgtg: '03',
+    uuid: 'c6fe16b5-8f76-4af1-a617-6efee4213494',
   },
   {
     identifier: '11902',
@@ -3703,6 +3964,7 @@ export const householdData: HouseholdDataType = [
       '2017': 0,
     },
     mgtg: '',
+    uuid: 'a16a93f2-b1d2-4973-a861-f96a8ee632f6',
   },
   {
     identifier: '53313',
@@ -3714,6 +3976,7 @@ export const householdData: HouseholdDataType = [
       '2017': 0,
     },
     mgtg: '03',
+    uuid: '777ca490-49b1-4542-bbc5-4ef1ee12fc92',
   },
   {
     identifier: '27101',
@@ -3728,6 +3991,7 @@ export const householdData: HouseholdDataType = [
       '2017': 0,
     },
     mgtg: '',
+    uuid: '82fc90ca-6eb0-49e4-8500-654395fd2124',
   },
   {
     identifier: '53313',
@@ -3739,6 +4003,7 @@ export const householdData: HouseholdDataType = [
       '2017': 0,
     },
     mgtg: '03',
+    uuid: 'bf9caeb2-d495-4ce6-bb39-4a7250cf4628',
   },
   {
     identifier: '68402',
@@ -3752,6 +4017,7 @@ export const householdData: HouseholdDataType = [
       '2017': 1241.6,
     },
     mgtg: '',
+    uuid: '656c38f9-d102-4ccc-8bb7-f7a5a875998e',
   },
   {
     identifier: '27101',
@@ -3765,6 +4031,7 @@ export const householdData: HouseholdDataType = [
       '2016': 0,
     },
     mgtg: '',
+    uuid: '632485bf-6b0b-4dc7-a2fc-ed8583a1773d',
   },
   {
     identifier: '53313',
@@ -3776,6 +4043,7 @@ export const householdData: HouseholdDataType = [
       '2016': 0,
     },
     mgtg: '03',
+    uuid: 'b0be8c5d-33cd-4b7e-9b2e-7926c3e5c010',
   },
   {
     identifier: '68402',
@@ -3788,6 +4056,7 @@ export const householdData: HouseholdDataType = [
       '2016': 1200,
     },
     mgtg: '',
+    uuid: 'd86973fa-cd51-4999-858e-c043ea419198',
   },
   {
     identifier: '12201',
@@ -3800,6 +4069,7 @@ export const householdData: HouseholdDataType = [
       '2016': 0,
     },
     mgtg: '',
+    uuid: 'f2f4d2a0-451f-4d65-9a81-6b752b7e9c35',
   },
   {
     identifier: '53302',
@@ -3812,6 +4082,7 @@ export const householdData: HouseholdDataType = [
       '2016': 0,
     },
     mgtg: '04',
+    uuid: '7beeef1f-1982-44fe-a44d-f027662b9e57',
   },
   {
     identifier: '53307',
@@ -3824,6 +4095,7 @@ export const householdData: HouseholdDataType = [
       '2016': 0,
     },
     mgtg: '05',
+    uuid: '3c897b7d-52d0-4b67-8b57-5413c2b9fc49',
   },
   {
     identifier: '68401',
@@ -3835,6 +4107,7 @@ export const householdData: HouseholdDataType = [
       '2016': 100,
     },
     mgtg: '04',
+    uuid: '7bda2f34-e3c9-4dee-8f01-df7c1f82d8e0',
   },
   {
     identifier: '12201',
@@ -3846,6 +4119,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '',
+    uuid: 'b4033ae1-d4a2-4f8a-81a4-387331880cf6',
   },
   {
     identifier: '53302',
@@ -3857,6 +4131,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '04',
+    uuid: 'c90b8559-2e78-484a-85ee-504b661f4dd4',
   },
   {
     identifier: '53307',
@@ -3868,6 +4143,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '05',
+    uuid: '034dd4eb-86b4-4c06-a512-a7b8742b16af',
   },
   {
     identifier: '68401',
@@ -3879,6 +4155,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '04',
+    uuid: '0e98df2a-845c-415d-990d-4922ca4ade4a',
   },
   {
     identifier: '52762',
@@ -3890,6 +4167,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '',
+    uuid: '1693f528-536f-46d7-887f-d01d820258ca',
   },
   {
     identifier: '53311',
@@ -3901,6 +4179,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '03',
+    uuid: 'aa4b9622-8b96-46c3-9be3-62ef3abaf080',
   },
   {
     identifier: '53362',
@@ -3912,6 +4191,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '',
+    uuid: '1a54c2fc-03aa-435e-93d1-6b6d3f2b087e',
   },
   {
     identifier: '54762',
@@ -3923,6 +4203,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '',
+    uuid: '23dc2c94-5fa9-4651-8742-2bf507c9a380',
   },
   {
     identifier: '68201',
@@ -3934,6 +4215,7 @@ export const householdData: HouseholdDataType = [
       '2015': 25,
     },
     mgtg: '',
+    uuid: 'ac518511-8377-4954-8c59-ade2e8d2071f',
   },
   {
     identifier: '68401',
@@ -3945,6 +4227,7 @@ export const householdData: HouseholdDataType = [
       '2015': 0,
     },
     mgtg: '04',
+    uuid: 'f1b62260-2b23-4b2f-93dd-5cdf0f7062f1',
   },
   {
     identifier: '52762',
@@ -3955,6 +4238,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '9374169a-b63f-46b7-84f0-3095a8d5f41e',
   },
   {
     identifier: '53311',
@@ -3965,6 +4249,7 @@ export const householdData: HouseholdDataType = [
       '2014': 66.3,
     },
     mgtg: '03',
+    uuid: '4440cff2-9116-456a-894f-8820726fe062',
   },
   {
     identifier: '53362',
@@ -3975,6 +4260,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '3ce3638b-12a2-4dd2-8fc5-b83fdf68a116',
   },
   {
     identifier: '54762',
@@ -3985,6 +4271,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0.3,
     },
     mgtg: '',
+    uuid: '4d410abd-cf87-444d-bcbe-3d5237594a24',
   },
   {
     identifier: '68201',
@@ -3995,6 +4282,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '57b71354-778a-4c5f-8f03-67d419649866',
   },
   {
     identifier: '68401',
@@ -4006,6 +4294,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '04',
+    uuid: '19a16fe4-c488-483d-b195-6d536f44d005',
   },
   {
     identifier: '11903',
@@ -4017,6 +4306,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '8658b665-e5aa-49fa-818f-ccf74008b253',
   },
   {
     identifier: '51161',
@@ -4028,6 +4318,7 @@ export const householdData: HouseholdDataType = [
       '2014': 20,
     },
     mgtg: '61',
+    uuid: '9abe1172-fe2b-4d3b-a828-0b97615446cf',
   },
   {
     identifier: '52605',
@@ -4038,6 +4329,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '60d003e7-3d86-4227-a354-55dfe9de8300',
   },
   {
     identifier: '53303',
@@ -4048,6 +4340,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '01',
+    uuid: 'bc000986-1a53-43cb-8139-31c27b241938',
   },
   {
     identifier: '53304',
@@ -4058,6 +4351,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: 'db89630b-a0b3-442a-a971-c81225033f6b',
   },
   {
     identifier: '53305',
@@ -4068,6 +4362,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '03',
+    uuid: '177ff8a2-5102-4cb9-b345-a02432c455ce',
   },
   {
     identifier: '53306',
@@ -4078,6 +4373,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '9f87ca72-7934-482a-8e0c-b63cb0cb187a',
   },
   {
     identifier: '63204',
@@ -4088,6 +4384,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '145af98e-a687-4a61-8830-d2c25bf7c436',
   },
   {
     identifier: '67105',
@@ -4098,6 +4395,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '7337aa4d-c3b1-4598-bf69-97cba5f823fe',
   },
   {
     identifier: '68401',
@@ -4108,6 +4406,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '04',
+    uuid: 'd99bc8c0-f354-4dcc-b073-b62d1da7de4e',
   },
   {
     identifier: '68607',
@@ -4118,6 +4417,7 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '03',
+    uuid: 'b2dfbc5e-1143-4f45-aadc-4690438899de',
   },
   {
     identifier: '89207',
@@ -4128,5 +4428,6 @@ export const householdData: HouseholdDataType = [
       '2014': 0,
     },
     mgtg: '',
+    uuid: '1bf76102-01bf-40ae-8194-e211a98b8055',
   },
 ];
