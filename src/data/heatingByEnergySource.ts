@@ -18,6 +18,7 @@ export type heatingByEnergySourceType = {
   };
 }[];
 
+// sum up total power consumption used for heating in the selected year range
 export const getHeatingSum = (
   data: heatingByEnergySourceType,
   yearRange: [number, number],
@@ -32,6 +33,7 @@ export const getHeatingSum = (
   return parseFloat((sum / 1000).toFixed(1));
 };
 
+//calculate delta of total energy consumption used for heating between the selected years
 export const getHeatingPercentage = (
   data: heatingByEnergySourceType,
   yearRange: [number, number],
