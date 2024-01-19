@@ -14,6 +14,12 @@ import {
 } from '../../data/householdData';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../store';
+import {
+  ImArrowDownRight2,
+  ImArrowRight,
+  ImArrowRight2,
+  ImArrowUpRight2,
+} from 'react-icons/im';
 
 export const Household = () => {
   const user = useRecoilValue(userState);
@@ -79,6 +85,30 @@ export const Household = () => {
   };
   const maxChartScaling = getMaxChartScaling();
 
+  const getTotalSum = () => {
+    const dataSums = getYdata();
+    return (
+      dataSums.reduce((a, c) => {
+        return a + c;
+      }, 0) * 1000
+    ).toLocaleString('de-DE');
+  };
+
+  const getPercentageDifference = () => {
+    const dataArray = getYdata();
+
+    if (dataArray.length < 2) {
+      return 0;
+    }
+
+    const firstValue = dataArray[0];
+    const lastValue = dataArray[dataArray.length - 1];
+    const percentageDifference = ((lastValue - firstValue) / firstValue) * 100;
+
+    return Math.round(percentageDifference);
+  };
+  const percentageDifference = getPercentageDifference();
+
   return (
     <>
       <NavBar
@@ -86,11 +116,34 @@ export const Household = () => {
         navigateBackTitle="Startseite"
         pageTitle="Haushaltsdaten"
       />
-      <div className="p-4">
-        <TextComponent fSize="text-3xl">2€</TextComponent>
-        <TextComponent fSize="text-base" style="text-success-600">
-          Moin
-        </TextComponent>
+      <div className="p-4 flex">
+        <div className="mr-3">
+          <TextComponent fSize="text-3xl">{getTotalSum()} €</TextComponent>
+        </div>
+        <div className="self-end">
+          <TextComponent fSize="text-base" style="text-success-600">
+            {percentageDifference > 0 && (
+              <div className="flex">
+                <ImArrowUpRight2
+                  className="fill-success mr-1 self-center"
+                  size={12}
+                ></ImArrowUpRight2>
+                <p className="text-success">
+                  {Math.abs(percentageDifference)}%
+                </p>
+              </div>
+            )}
+            {percentageDifference < 0 && (
+              <div className="flex">
+                <ImArrowDownRight2
+                  className="fill-danger mr-1 self-center"
+                  size={12}
+                ></ImArrowDownRight2>
+                <p className="text-danger">{Math.abs(percentageDifference)}%</p>
+              </div>
+            )}
+          </TextComponent>
+        </div>
       </div>
       <ChartSlider>
         <ChartCard>
