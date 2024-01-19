@@ -69,7 +69,7 @@ export const DataList = ({
 
   const getListBoxItem = (): ReactElement[] => {
     const items: ReactElement[] = [];
-    data.map((item, index) => {
+    data.map((item) => {
       const planningItem = dataPlanning.filter(
         (entry) =>
           entry.identifier === item.identifier &&

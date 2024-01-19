@@ -8,7 +8,6 @@ import { BarSample } from '../../components/DetailPages/BarSample';
 import { useState } from 'react';
 import { DataList } from '../../components/DetailPages/DataList';
 import {
-  HouseholdDataType,
   filterDataByYearAndMgtg,
   householdData,
 } from '../../data/householdData';
@@ -30,13 +29,14 @@ export const Household = () => {
     true,
   );
 
-  const filteredHiddenItems = (
-    data: HouseholdDataType,
-    hiddenItemsUuids: string[],
-  ) => {
-    return data.filter((item) => !hiddenItemsUuids.includes(item.uuid));
-  };
-  console.log(filteredHiddenItems(data, hiddenItemsUuids));
+  // Use this for all data except hidden
+  // const filteredHiddenItems = (
+  //   data: HouseholdDataType,
+  //   hiddenItemsUuids: string[],
+  // ) => {
+  //   return data.filter((item) => !hiddenItemsUuids.includes(item.uuid));
+  // };
+  // console.log(filteredHiddenItems(data, hiddenItemsUuids));
 
   return (
     <>
