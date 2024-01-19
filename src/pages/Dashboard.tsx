@@ -9,7 +9,7 @@ import {
   AiOutlineFire,
 } from 'react-icons/ai';
 import { YearRangeSelector } from '../components/YearRangeSelector';
-import { Button } from '@nextui-org/react';
+import { Button, CircularProgress } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { SecondaryDashboardWidget } from '../components/Dashboard/SecondaryDashboardWidget';
 import { TextComponent } from '../components/TextComponent';
@@ -70,7 +70,6 @@ export const Dashboard = () => {
   }, [navigate, pathname]);
 
   const { theme } = useTheme();
-
   return (
     <>
       <div className="p-4">
@@ -138,6 +137,11 @@ export const Dashboard = () => {
               <TextComponent>
                 {primaryEnergyRenewables}% erneuerbar
               </TextComponent>
+              <CircularProgress
+                size="lg"
+                value={primaryEnergyRenewables}
+                showValueLabel={true}
+              ></CircularProgress>
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
@@ -147,6 +151,11 @@ export const Dashboard = () => {
               mainValueDelta={heatingDelta}
             >
               <TextComponent>{heatingRenewables}% erneuerbar</TextComponent>
+              <CircularProgress
+                size="lg"
+                value={heatingRenewables}
+                showValueLabel={true}
+              ></CircularProgress>
             </SecondaryDashboardWidget>
           </div>
           <div className="flex flex-row  gap-2">
