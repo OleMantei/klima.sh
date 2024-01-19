@@ -7,9 +7,29 @@ import { YearRangeSelector } from '../../components/YearRangeSelector';
 import { BarSample } from '../../components/DetailPages/BarSample';
 import { useState } from 'react';
 import { DataList } from '../../components/DetailPages/DataList';
+import {
+  filterDataByYearAndMgtg,
+  householdData,
+} from '../../data/householdData';
+import { useRecoilValue } from 'recoil';
+import { userState } from '../../store';
 
 export const Household = () => {
+  const user = useRecoilValue(userState);
   const [isDataTotal, setIsDataTotal] = useState(true);
+  const [isDataHiddenItemKeys, setIsDataHiddenItemKeys] = useState<number[]>(
+    [],
+  );
+  const data = filterDataByYearAndMgtg(
+    householdData,
+    user.yearRangeSelection,
+    false,
+  );
+  const dataPlanning = filterDataByYearAndMgtg(
+    householdData,
+    user.yearRangeSelection,
+    true,
+  );
 
   return (
     <>
@@ -25,6 +45,9 @@ export const Household = () => {
         </TextComponent>
       </div>
       <ChartSlider>
+        <ChartCard>
+          <BarSample />
+        </ChartCard>
         <ChartCard>
           <BarSample />
         </ChartCard>
@@ -49,7 +72,13 @@ export const Household = () => {
             </Button>
           </ButtonGroup>
         </div>
-        <DataList title="Haushaltsposten" />
+        <DataList
+          title="Haushaltsposten"
+          isDataHiddenItemKeys={isDataHiddenItemKeys}
+          setIsDataHiddenItemKeys={setIsDataHiddenItemKeys}
+          data={data}
+          dataPlanning={dataPlanning}
+        />
       </div>
       <YearRangeSelector />
     </>

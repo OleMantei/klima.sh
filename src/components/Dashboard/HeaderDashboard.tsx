@@ -16,7 +16,11 @@ export const HeaderDashboard = ({
 }: HeaderDashboardType) => {
   return (
     <div className="text-center mb-8">
-      <TextComponent fSize="text-3xl" fWeight="font-bold">
+      <TextComponent
+        fSize="text-3xl"
+        fWeight="font-bold"
+        style="dark: text-default-600"
+      >
         SH Klimaziel
       </TextComponent>
       <div className="flex mt-2 justify-center items-center ">
@@ -42,11 +46,13 @@ export const HeaderDashboard = ({
             fWeight="font-bold"
             fSize="text-base"
             fFamily="font-secondary"
-            style="-mb-1"
+            style="-mb-1 dark: text-default-600"
           >
             {total}%
           </TextComponent>
-          <TextComponent fWeight="font-medium">{subTextTotal}</TextComponent>
+          <TextComponent fWeight="font-medium" style="dark: text-default-600">
+            {subTextTotal}
+          </TextComponent>
         </div>
       </div>
     </div>

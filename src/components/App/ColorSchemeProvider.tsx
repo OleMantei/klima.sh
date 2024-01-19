@@ -24,10 +24,10 @@ export const ColorSchemeProvider = ({ children }: Props) => {
     theme === 'light'
       ? document
           ?.querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', '#222222')
+          ?.setAttribute('content', 'black-translucent')
       : document
           ?.querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', 'black-translucent');
+          ?.setAttribute('content', '#131826');
 
     return () => {
       window

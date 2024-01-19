@@ -25,6 +25,8 @@ import {
   getLatestYearDelta,
 } from '../data/co2Emissions';
 import { getGlobalSumValues } from '../data/mathDataHelper';
+import { useTheme } from 'next-themes';
+import { DetailsElementHouseholdGroup } from '../components/Dashboard/DetailsElementHouseholdGroup';
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ export const Dashboard = () => {
   const {
     household,
     householdDelta,
+    householdGroups,
     grossEnergy,
     grossEnergyDelta,
     primaryEnergy,
@@ -54,12 +57,14 @@ export const Dashboard = () => {
     }
   }, [navigate, pathname]);
 
+  const { theme } = useTheme();
+
   return (
     <>
       <div className="p-4">
         <div className="text-right">
           <Button
-            color="primary"
+            color={theme === 'dark' ? 'default' : 'primary'}
             size="sm"
             radius="md"
             variant="flat"
@@ -83,13 +88,32 @@ export const Dashboard = () => {
         />
         <div className="flex flex-col gap-2">
           <PrimaryDashboardWidget
-            title="Main Widgets "
+            title="Öffentliche Mittel Klimaschutz"
             Icon={AiOutlineEuroCircle}
             mainValue={household}
             unitOfMainValue={'Mio. €'}
             mainValueDelta={householdDelta}
           >
-            <TextComponent>Place detail content here</TextComponent>
+            <div className="flex m-2 justify-stretch gap-2 ">
+              <DetailsElementHouseholdGroup
+                title="Bildung"
+                mainValue={householdGroups[0]}
+                unitOfMainValue="Mio. €"
+                progress={(householdGroups[0] / household) * 100}
+              ></DetailsElementHouseholdGroup>
+              <DetailsElementHouseholdGroup
+                title="Maßnahmen"
+                mainValue={householdGroups[1]}
+                unitOfMainValue="Mio. €"
+                progress={(householdGroups[1] / household) * 100}
+              ></DetailsElementHouseholdGroup>
+              <DetailsElementHouseholdGroup
+                title="Entwicklungen"
+                mainValue={householdGroups[2]}
+                unitOfMainValue="Mio. €"
+                progress={(householdGroups[2] / household) * 100}
+              ></DetailsElementHouseholdGroup>
+            </div>
           </PrimaryDashboardWidget>
           <div className="flex gap-2">
             <SecondaryDashboardWidget
@@ -105,7 +129,7 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Wärmeversorgung"
-              Icon={AiOutlineCloud}
+              Icon={AiOutlineFire}
               mainValue={heating}
               unitOfMainValue={' TWh'}
               mainValueDelta={heatingDelta}
@@ -125,7 +149,7 @@ export const Dashboard = () => {
             </SecondaryDashboardWidget>
             <SecondaryDashboardWidget
               title="Treibhausgase"
-              Icon={AiOutlineFire}
+              Icon={AiOutlineCloud}
               mainValue={greenHouseGas}
               unitOfMainValue={' Gt'}
               mainValueDelta={greenHouseGasDelta}

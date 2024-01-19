@@ -45,12 +45,15 @@ export const YearRangeSelector = () => {
                 ? 20
                 : 0,
           }}
-          className=" drop-shadow-lg shadow-sm border-0 bg-content1 text-primary-800"
+          className=" drop-shadow-lg shadow-sm border-0 bg-content1 text-primary-800 dark:text-primary-600 dark:bg-primary-100 dark:bg-opacity-80"
         >
           <CardBody>
             <div className="text-center">
-              <BsCalendar3 className="inline mr-2 mb-1" />
-              <TextComponent title style="text-center inline">
+              <BsCalendar3 className="inline mr-2 mb-1 dark:text-default-600" />
+              <TextComponent
+                title
+                style="text-center inline dark:text-default-600"
+              >
                 {yearRangeSelection[0] === yearRangeSelection[1]
                   ? yearRangeSelection[0]
                   : `${yearRangeSelection[0]} - ${yearRangeSelection[1]}`}
@@ -58,10 +61,12 @@ export const YearRangeSelector = () => {
             </div>
             {open && (
               <Slider
+                className="dark:text-default-600"
                 classNames={{
-                  filler: 'bg-gradient-to-r from-primary-500 to-success-600',
+                  filler:
+                    'bg-gradient-to-r from-primary-500 to-success-600 dark:bg-gradient-to-r dark:from-primary-300 dark:to-success-400',
                 }}
-                color="primary"
+                color="success"
                 marks={[
                   {
                     value: 2015,
@@ -97,6 +102,7 @@ export const YearRangeSelector = () => {
                 minValue={yearRangeData[0]}
                 maxValue={yearRangeData[1]}
                 defaultValue={yearRangeSelection}
+                aria-label="Jahr"
                 value={yearRangeSelection}
                 onChange={handleChange}
                 renderThumb={(props) => (
@@ -104,7 +110,7 @@ export const YearRangeSelector = () => {
                     {...props}
                     className="group top-1/2 bg-background border-small border-default-200 dark:border-default-400/50 shadow-medium rounded-full cursor-grab data-[dragging=true]:cursor-grabbing"
                   >
-                    <span className="transition-transform shadow-small bg-primary-700 bg-opacity-50 rounded-full w-4 h-4 block group-data-[dragging=true]:scale-80" />
+                    <span className="transition-transform shadow-small bg-primary-700 dark:bg-primary-800  rounded-full w-4 h-4 block group-data-[dragging=true]:scale-80" />
                   </div>
                 )}
               />
