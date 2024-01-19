@@ -1,7 +1,13 @@
 import { ReactNode } from 'react';
 
 type TextComponentType = {
-  fSize?: 'text-sm' | 'text-base' | 'text-1xl' | 'text-2xl' | 'text-3xl';
+  fSize?:
+    | 'text-xs'
+    | 'text-sm'
+    | 'text-base'
+    | 'text-1xl'
+    | 'text-2xl'
+    | 'text-3xl';
   fFamily?: 'font-sans' | 'font-secondary';
   fWeight?:
     | 'font-light'

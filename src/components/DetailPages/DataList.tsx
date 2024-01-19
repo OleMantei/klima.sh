@@ -14,34 +14,32 @@ import { HouseholdDataType } from '../../data/householdData';
 
 type Props = {
   title: string;
-  isDataHiddenItemKeys: number[];
-  setIsDataHiddenItemKeys: React.Dispatch<React.SetStateAction<number[]>>;
+  hiddenItemsUuids: string[];
+  setHiddenItemsUuids: React.Dispatch<React.SetStateAction<string[]>>;
   data: HouseholdDataType;
   dataPlanning: HouseholdDataType;
 };
 
 export const DataList = ({
   title,
-  isDataHiddenItemKeys,
-  setIsDataHiddenItemKeys,
+  hiddenItemsUuids,
+  setHiddenItemsUuids,
   data,
   dataPlanning,
 }: Props) => {
-  const [isDetailsOpenItemKeys, setIsDetailsOpenItemKeys] = useState<number[]>(
+  const [isDetailsOpenItemKeys, setIsDetailsOpenItemKeys] = useState<string[]>(
     [],
   );
 
-  const handleToggleDataHiddenState = (itemKey: number) => {
-    if (isDataHiddenItemKeys.includes(itemKey)) {
-      setIsDataHiddenItemKeys(
-        isDataHiddenItemKeys.filter((i) => i !== itemKey),
-      );
+  const handleToggleDataHiddenState = (itemKey: string) => {
+    if (hiddenItemsUuids.includes(itemKey)) {
+      setHiddenItemsUuids(hiddenItemsUuids.filter((i) => i !== itemKey));
     } else {
-      setIsDataHiddenItemKeys([...isDataHiddenItemKeys, itemKey]);
+      setHiddenItemsUuids([...hiddenItemsUuids, itemKey]);
     }
   };
 
-  const handleToggleDetailsOpenState = (itemKey: number) => {
+  const handleToggleDetailsOpenState = (itemKey: string) => {
     if (isDetailsOpenItemKeys.includes(itemKey)) {
       setIsDetailsOpenItemKeys(
         isDetailsOpenItemKeys.filter((i) => i !== itemKey),
@@ -80,31 +78,53 @@ export const DataList = ({
       );
       items.push(
         <ListboxItem
+          showDivider={
+            !isDetailsOpenItemKeys.includes(
+              `${item.identifier}-${item.purpose}-${
+                item.planning ? 'planning' : 'notPlanning'
+              }`,
+            )
+          }
           isReadOnly
           key={`${item.identifier}-${item.purpose}-${
             item.planning ? 'planning' : 'notPlanning'
           }`}
           startContent={
-            <div
-              className="bg-primary/10 flex items-center rounded-small justify-center w-7 h-7"
-              onClick={() => handleToggleDataHiddenState(1)}
-            >
-              {isDataHiddenItemKeys.includes(1) ? (
-                <BsEyeSlash className="text-lg text-default" />
+            <div className="bg-primary/10 flex items-center rounded-small justify-center w-7 h-7">
+              {hiddenItemsUuids.includes(item.uuid) ? (
+                <BsEyeSlash
+                  className="text-lg text-default"
+                  onClick={() => handleToggleDataHiddenState(item.uuid)}
+                />
               ) : (
-                <BsEye className="text-lg text-primary" />
+                <BsEye
+                  className="text-lg text-primary"
+                  onClick={() => handleToggleDataHiddenState(item.uuid)}
+                />
               )}
             </div>
           }
           endContent={
             <div
               className="flex items-center gap-1 text-default-400"
-              onClick={() => handleToggleDetailsOpenState(1)}
+              onClick={() =>
+                handleToggleDetailsOpenState(
+                  `${item.identifier}-${item.purpose}-${
+                    item.planning ? 'planning' : 'notPlanning'
+                  }`,
+                )
+              }
             >
-              <span className="text-small">{yearSum(item.data)} €</span>
+              <span className="text-small">
+                {yearSum(item.data).toLocaleString('de-DE')} €
+              </span>
               <BsChevronRight
                 className={`"text-xl ${
-                  isDetailsOpenItemKeys.includes(1) && 'rotate-90'
+                  isDetailsOpenItemKeys.includes(
+                    `${item.identifier}-${item.purpose}-${
+                      item.planning ? 'planning' : 'notPlanning'
+                    }`,
+                  ) && 'rotate-90'
                 }`}
               />
             </div>
@@ -114,7 +134,13 @@ export const DataList = ({
         </ListboxItem>,
         <ListboxItem
           style={{
-            display: isDetailsOpenItemKeys.includes(1) ? '' : 'none',
+            display: isDetailsOpenItemKeys.includes(
+              `${item.identifier}-${item.purpose}-${
+                item.planning ? 'planning' : 'notPlanning'
+              }`,
+            )
+              ? ''
+              : 'none',
           }}
           key={`${item.identifier}-${item.purpose}-${
             item.planning ? 'planning' : 'notPlanning'
@@ -127,7 +153,17 @@ export const DataList = ({
             {planningItem.length > 0 && (
               <p>
                 <span>
-                  Ursprünglich geplant: {yearSum(planningItem[0].data)} €
+                  Ursprünglich geplant: {yearSum(planningItem[0].data)} €<br />
+                  Abweichung:{' '}
+                  {(
+                    Math.round(
+                      (100 -
+                        (yearSum(item.data) / yearSum(planningItem[0].data)) *
+                          100) *
+                        100,
+                    ) / 100
+                  ).toLocaleString('de-DE')}{' '}
+                  %
                 </span>
               </p>
             )}
