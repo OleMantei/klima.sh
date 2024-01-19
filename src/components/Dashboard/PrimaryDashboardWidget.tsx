@@ -38,18 +38,19 @@ export const PrimaryDashboardWidget = ({
           </TextComponent>
         </div>
         <TextComponent
-          style="text-center text-default-800 dark:text-default-600"
+          style="text-center my-1 text-default-800 dark:text-default-600"
           fSize="text-3xl"
           fFamily="font-secondary"
           fWeight="font-bold"
         >
           {mainValue} {unitOfMainValue}
         </TextComponent>
-        <Divider className="my-3 w-9/12 self-center bg-default-500"></Divider>
+        <Divider className="my-3 w-9/12 self-center bg-default-400 dark:bg-default-500"></Divider>
         <div className="text-center">
           {children}
           <TextComponent
-            title
+            fFamily="font-secondary"
+            fWeight="font-medium"
             style={`text-${colorSwitcherPrimary(mainValueDelta)}`}
           >
             {mainValueDelta < 0

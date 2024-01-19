@@ -10,6 +10,8 @@ import {
   getPrimaryEnergySum,
   getPrimaryEnergyPercentage,
   primaryEnergyData,
+  getPrimaryEnergyRenewables,
+  primaryEnergyByEnergySourceType,
 } from '../data/primaryEnergyConsumptionByEnergySource';
 
 import {
@@ -83,7 +85,13 @@ export const getGlobalSumValues = (user: userState) => {
     user.yearRangeSelection,
   );
 
+  const primaryEnergyRenewables = getPrimaryEnergyRenewables(
+    primaryEnergyData,
+    user.yearRangeSelection,
+  );
+
   return {
+    primaryEnergyRenewables,
     household,
     householdDelta,
     householdGroups,
@@ -96,4 +104,23 @@ export const getGlobalSumValues = (user: userState) => {
     heating,
     heatingDelta,
   };
+};
+
+export const createDeltaArray = (
+  counter: number,
+  data: primaryEnergyByEnergySourceType,
+  yearRange: [number, number],
+) => {
+  const counterArray: number[] = [];
+  const deltaArray: primaryEnergyByEnergySourceType = [];
+  for (let i = 0; i <= counter; i++) {
+    counterArray.push(yearRange[0] + i);
+  }
+
+  for (let i = 0; i <= counterArray.length - 1; i++) {
+    const value = data.find((e) => e.year == counterArray[i]);
+    deltaArray.push(value!);
+  }
+
+  return deltaArray;
 };
