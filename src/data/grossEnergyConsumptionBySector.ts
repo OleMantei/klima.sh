@@ -16,6 +16,39 @@ type energyConsumptionBySectorType = {
   };
 }[];
 
+export const getHighestEnergySectors = (
+  data: energyConsumptionBySectorType,
+  yearRange: [number, number],
+): [string, number][] => {
+  const res: [string, number][] = [
+    ['Verkehr', 0],
+    ['Industrie', 0],
+    ['Privat Haushalt', 0],
+    ['Handel und Dienstleistungen', 0],
+    ['Eigenversorgung Kraftwerke', 0],
+    ['Umwandlungsverlust', 0],
+    ['Netzverlust', 0],
+    ['Wärmegenerierung', 0],
+    ['Wärmepumpen', 0],
+  ];
+
+  data.forEach((entry) => {
+    if (entry.year >= yearRange[0] && entry.year <= yearRange[1]) {
+      res[0][1] += entry.data.traffic;
+      res[1][1] += entry.data.industry;
+      res[2][1] += entry.data.privateHomes;
+      res[3][1] += entry.data.tradeCommerceAndServices;
+      res[4][1] += entry.data.ownConsumptionPowerPlants;
+      res[5][1] += entry.data.conversionUse;
+      res[6][1] += entry.data.gridLosses;
+      res[7][1] += entry.data.electricityForDirectHeatGeneration;
+      res[8][1] += entry.data.energyConsumptionHeatPumps;
+    }
+  });
+
+  return res.sort((a, b) => b[1] - a[1]);
+};
+
 export const getSum = (
   data: energyConsumptionBySectorType,
   yearRange: [number, number],

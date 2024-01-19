@@ -17,6 +17,37 @@ type greenHouseGasBySectorType = {
   };
 }[];
 
+export const getHighestTHGSectors = (
+  data: greenHouseGasBySectorType,
+  yearRange: [number, number],
+): [string, number][] => {
+  const res: [string, number][] = [
+    ['Energiewirtschfat', 0],
+    ['Industrie', 0],
+    ['Handel und Dienstleistungen', 0],
+    ['Haushalte', 0],
+    ['Alle Gebäude', 0],
+    ['Verkehr', 0],
+    ['Müllverbrennung', 0],
+    ['Landwirtschaft', 0],
+  ];
+
+  data.forEach((entry) => {
+    if (entry.year >= yearRange[0] && entry.year <= yearRange[1]) {
+      res[0][1] += entry.data.energyEconomy;
+      res[1][1] += entry.data.industry;
+      res[2][1] += entry.data.tradeAndServices;
+      res[3][1] += entry.data.households;
+      res[4][1] += entry.data.buildingsCombined;
+      res[5][1] += entry.data.traffic;
+      res[6][1] += entry.data.wasteBurning;
+      res[7][1] += entry.data.agriculture;
+    }
+  });
+
+  return res.sort((a, b) => b[1] - a[1]);
+};
+
 export const getGreenHouseGasSum = (
   data: greenHouseGasBySectorType,
   yearRange: [number, number],
