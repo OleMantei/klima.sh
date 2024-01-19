@@ -2,7 +2,11 @@ import { Card, CardBody } from '@nextui-org/card';
 import { ReactNode } from 'react';
 
 import { IconType } from 'react-icons';
-import { ImArrowUpRight2, ImArrowDownRight2 } from 'react-icons/im';
+import {
+  ImArrowUpRight2,
+  ImArrowDownRight2,
+  ImArrowRight2,
+} from 'react-icons/im';
 import { TextComponent } from '../TextComponent';
 import { colorSwitcherSecondary } from '../../design/designHelperFunctions';
 import { useTheme } from 'next-themes';
@@ -24,7 +28,6 @@ export const SecondaryDashboardWidget = ({
   children,
   mainValueDelta,
 }: StaticData) => {
-  const up: boolean = mainValueDelta >= 0;
   const { theme } = useTheme();
   return (
     <Card
@@ -48,13 +51,17 @@ export const SecondaryDashboardWidget = ({
             {mainValue} {unitOfMainValue}
           </TextComponent>
           <div>
-            {up && (
+            {mainValueDelta > 0 && (
               <ImArrowUpRight2
                 className="fill-danger"
                 size={10}
               ></ImArrowUpRight2>
             )}
-            {!up && (
+            {mainValueDelta == 0 && (
+              <ImArrowRight2 className="fill-default" size={12}></ImArrowRight2>
+            )}
+
+            {mainValueDelta < 0 && (
               <ImArrowDownRight2
                 className="fill-success"
                 size={10}
