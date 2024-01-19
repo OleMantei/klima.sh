@@ -78,6 +78,7 @@ export const DataList = ({
       );
       items.push(
         <ListboxItem
+          // className="bg-primary-50"
           showDivider={
             !isDetailsOpenItemKeys.includes(
               `${item.identifier}-${item.purpose}-${
@@ -99,20 +100,45 @@ export const DataList = ({
               ) : (
                 <BsEye
                   className="text-lg text-primary"
-                  onClick={() => handleToggleDataHiddenState(item.uuid)}
+                  onClick={() => {
+                    if (
+                      !hiddenItemsUuids.includes(item.uuid) &&
+                      isDetailsOpenItemKeys.includes(
+                        `${item.identifier}-${item.purpose}-${
+                          item.planning ? 'planning' : 'notPlanning'
+                        }`,
+                      )
+                    ) {
+                      console.log(item.uuid);
+                      handleToggleDataHiddenState(item.uuid);
+                      handleToggleDetailsOpenState(
+                        `${item.identifier}-${item.purpose}-${
+                          item.planning ? 'planning' : 'notPlanning'
+                        }`,
+                      );
+                    } else {
+                      handleToggleDataHiddenState(item.uuid);
+                    }
+                  }}
                 />
               )}
             </div>
           }
           endContent={
             <div
-              className="flex items-center gap-1 text-default-400"
+              className={`flex items-center gap-1 pl-2 ${
+                hiddenItemsUuids.includes(item.uuid)
+                  ? `text-default-400 font-light`
+                  : `text-default-500 font-bold`
+              }`}
               onClick={() =>
-                handleToggleDetailsOpenState(
-                  `${item.identifier}-${item.purpose}-${
-                    item.planning ? 'planning' : 'notPlanning'
-                  }`,
-                )
+                hiddenItemsUuids.includes(item.uuid)
+                  ? null
+                  : handleToggleDetailsOpenState(
+                      `${item.identifier}-${item.purpose}-${
+                        item.planning ? 'planning' : 'notPlanning'
+                      }`,
+                    )
               }
             >
               <span className="text-small">
@@ -130,7 +156,17 @@ export const DataList = ({
             </div>
           }
         >
-          {item.purpose}
+          <div
+            className={`
+              ${
+                hiddenItemsUuids.includes(item.uuid)
+                  ? 'text-default-400 font-light'
+                  : 'text-default-600 font-semibold'
+              }
+            `}
+          >
+            {item.purpose}
+          </div>
         </ListboxItem>,
         <ListboxItem
           style={{
@@ -149,10 +185,10 @@ export const DataList = ({
           showDivider
         >
           <div className="pl-9 pb-3 whitespace-break-spaces">
-            <p className="mb-1">{item.purpose}</p>
+            <p className="mb-1 text-sm font-normal">{item.purpose}</p>
             {planningItem.length > 0 && (
               <p>
-                <span>
+                <span className="text-sm font-thin">
                   Ursprünglich geplant: {yearSum(planningItem[0].data)} €<br />
                   Abweichung:{' '}
                   {(
@@ -193,7 +229,13 @@ export const DataList = ({
         </Popover> */}
       </div>
       <Card shadow="none">
-        <Listbox>{getListBoxItem()}</Listbox>
+        <Listbox
+          variant="light"
+          hideEmptyContent
+          className="bg-gradient-to-tl from-primary-100 to-purple-100 shadow-none dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200 "
+        >
+          {getListBoxItem()}
+        </Listbox>
       </Card>
     </div>
   );
