@@ -29,6 +29,8 @@ export type primaryEnergyByEnergySourceType = {
     districtHeatingExchangeBalance: number;
   };
 }[];
+
+// sum up primary energy consumption in the selected year range
 export const getPrimaryEnergySum = (
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],
@@ -43,6 +45,7 @@ export const getPrimaryEnergySum = (
   return parseFloat((sum / 1000).toFixed(1));
 };
 
+//calculate delta of primary energy consumption between the selected years
 export const getPrimaryEnergyPercentage = (
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],
@@ -69,6 +72,7 @@ export const getPrimaryEnergyPercentage = (
   return 0;
 };
 
+//calculate the part renewable energies take in the overall primary energy consumption in the selected year range
 export const getPrimaryEnergyRenewables = (
   data: primaryEnergyByEnergySourceType,
   yearRange: [number, number],

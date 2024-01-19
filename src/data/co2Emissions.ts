@@ -3,6 +3,7 @@ type emission = {
   emissionTotal: number;
 }[];
 
+// function to return percentage of how close SH is to reaching the climate goals compared to 1990
 export const getLatestYearDelta = (
   data: emission,
   year_range: [number, number],
@@ -15,6 +16,7 @@ export const getLatestYearDelta = (
     : 0;
 };
 
+//function to return the total CO2 emissions in the selected year range
 export const getDeltaAsPercentage = (
   data: emission,
   year_range: [number, number],

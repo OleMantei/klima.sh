@@ -13,6 +13,7 @@ type energyConsumptionByFormType = {
   };
 }[];
 
+// sum up the gross energy consumption for the selected year range
 export const getSum = (
   data: energyConsumptionByFormType,
   yearRange: [number, number],
@@ -26,6 +27,8 @@ export const getSum = (
   }
   return sum;
 };
+
+//calculate delta of gross energy consumption between the selected years
 export const getPercentage = (
   data: energyConsumptionByFormType,
   yearRange: [number, number],
