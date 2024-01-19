@@ -6,7 +6,7 @@ interface Props {
 }
 
 export const ColorSchemeProvider = ({ children }: Props) => {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
 
   useEffect(() => {
     window
@@ -21,11 +21,20 @@ export const ColorSchemeProvider = ({ children }: Props) => {
         : 'light',
     );
 
+    theme === 'light'
+      ? document
+          ?.querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', 'black-translucent')
+      : document
+          ?.querySelector('meta[name="theme-color"]')
+          ?.setAttribute('content', '#131826');
+
     return () => {
       window
         .matchMedia('(prefers-color-scheme: dark)')
         .removeEventListener('change', () => {});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [setTheme]);
 
   return <>{children}</>;

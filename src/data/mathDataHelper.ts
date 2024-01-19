@@ -1,4 +1,10 @@
 import {
+  getHouseholdSum,
+  getHouseholdPercentage,
+  householdDataTotal,
+} from '../data/householdData';
+
+import {
   getPrimaryEnergySum,
   getPrimaryEnergyPercentage,
   primaryEnergyData,
@@ -23,6 +29,14 @@ import {
 import { userState } from '../store';
 
 export const getGlobalSumValues = (user: userState) => {
+  const household = getHouseholdSum(
+    householdDataTotal,
+    user.yearRangeSelection,
+  );
+  const householdDelta = getHouseholdPercentage(
+    householdDataTotal,
+    user.yearRangeSelection,
+  );
   const grossEnergy = getSum(
     grossEnergyConsumptionData,
     user.yearRangeSelection,
@@ -63,6 +77,8 @@ export const getGlobalSumValues = (user: userState) => {
   );
 
   return {
+    household,
+    householdDelta,
     grossEnergy,
     grossEnergyDelta,
     primaryEnergy,
