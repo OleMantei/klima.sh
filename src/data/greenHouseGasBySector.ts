@@ -17,6 +17,7 @@ type greenHouseGasBySectorType = {
   };
 }[];
 
+//sort greenHouse data to display 3 biggest emitters on dashboard widget
 export const getHighestTHGSectors = (
   data: greenHouseGasBySectorType,
   yearRange: [number, number],
@@ -48,6 +49,7 @@ export const getHighestTHGSectors = (
   return res.sort((a, b) => b[1] - a[1]);
 };
 
+//sum up greenHouseGas emissions for selected year range
 export const getGreenHouseGasSum = (
   data: greenHouseGasBySectorType,
   yearRange: [number, number],
@@ -63,6 +65,7 @@ export const getGreenHouseGasSum = (
   return parseFloat((sum / 1000).toFixed(1));
 };
 
+//calculate delta of green house emissions between the selected years
 export const getGreenHouseGasPercentage = (
   data: greenHouseGasBySectorType,
   yearRange: [number, number],

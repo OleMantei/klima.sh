@@ -26,10 +26,11 @@ export const filterDataByYearAndMgtg = (
   data: HouseholdDataType,
   yearRange: [number, number],
   planning: boolean,
+  sort?: 'ascending' | 'descending',
 ): HouseholdDataType => {
   const [startYear, endYear] = yearRange;
 
-  return data
+  const baseData = data
     .filter(
       (item) => relevantMgtg.includes(item.mgtg) && item.planning === planning,
     )
@@ -47,6 +48,32 @@ export const filterDataByYearAndMgtg = (
       };
     })
     .filter((item) => Object.keys(item.data).length > 0);
+
+  const sumObjectValues = (obj: object) => {
+    return Object.values(obj).reduce((a, c) => Number(a) + Number(c), 0);
+  };
+
+  const sortHouseholdData = (
+    d: HouseholdDataType,
+    sortOrder: 'ascending' | 'descending',
+  ) => {
+    return d.sort((a, b) => {
+      const sumA = sumObjectValues(a.data);
+      const sumB = sumObjectValues(b.data);
+      if (sortOrder === 'ascending') {
+        return sumA - sumB;
+      } else {
+        // This handles both descending and any other case
+        return sumB - sumA;
+      }
+    });
+  };
+
+  if (sort) {
+    sortHouseholdData(baseData, sort);
+  }
+
+  return baseData;
 };
 
 type HouseholdDataTotalType = {

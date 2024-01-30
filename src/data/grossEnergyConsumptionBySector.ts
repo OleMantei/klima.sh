@@ -16,6 +16,7 @@ type energyConsumptionBySectorType = {
   };
 }[];
 
+//sort gross energy consumption data to display 3 biggest consumers on dashboard widget
 export const getHighestEnergySectors = (
   data: energyConsumptionBySectorType,
   yearRange: [number, number],
@@ -49,6 +50,7 @@ export const getHighestEnergySectors = (
   return res.sort((a, b) => b[1] - a[1]);
 };
 
+// sum up total gross energy consumption in the selected year range
 export const getSum = (
   data: energyConsumptionBySectorType,
   yearRange: [number, number],
@@ -63,6 +65,7 @@ export const getSum = (
   return parseFloat((sum / 1000).toFixed(1));
 };
 
+//calculate delta of total energy consumption between the selected years
 export const getPercentage = (
   data: energyConsumptionBySectorType,
   yearRange: [number, number],

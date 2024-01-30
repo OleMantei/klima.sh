@@ -31,12 +31,14 @@ export const BarChart = ({
 
   const options = {
     fill: {
+      colors: mode === 'light' ? ['#009bb3'] : ['#0c6c85'],
       type: 'gradient',
       gradient: {
         type: 'vertical',
-        shadeIntensity: 1,
-        gradientFromColors: ['#1A1A1A'],
-        gradientToColors: ['#B6B6B6'],
+        gradientToColors: mode === 'light' ? ['#d8b4fe'] : ['#c084fc'],
+        opacityFrom: 1,
+        opacityTo: mode === 'light' ? 0.7 : 0.9,
+        stops: [0, 90, 100],
       },
     },
     tooltip: {
@@ -95,11 +97,12 @@ export const BarChart = ({
       title: {
         text: title,
         floating: true,
-        offsetY: 0,
-        align: 'center',
+        offsetY: 5,
+        offsetX: -15,
         style: {
           fontSize: '16px',
           fontFamily: 'Nunito Sans, sans-serif',
+          fontWeight: 'semi-bold',
         },
       },
     },

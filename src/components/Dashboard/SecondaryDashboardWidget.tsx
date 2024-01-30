@@ -30,7 +30,7 @@ export const SecondaryDashboardWidget = ({
 }: StaticData) => {
   const { theme } = useTheme();
 
-  const [isHeight, setHeight] = useState(150);
+  const [isHeight, setHeight] = useState(160);
 
   return (
     <Card
@@ -41,7 +41,7 @@ export const SecondaryDashboardWidget = ({
         height: isHeight,
         overflow: 'hidden',
       }}
-      onClick={() => (isHeight === 150 ? setHeight(250) : setHeight(150))}
+      onClick={() => (isHeight === 160 ? setHeight(250) : setHeight(160))}
       isPressable={
         title === 'Energieverbrauch' || title === 'Treibhausgase' ? true : false
       }

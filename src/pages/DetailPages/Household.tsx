@@ -1,4 +1,3 @@
-import { Button, ButtonGroup } from '@nextui-org/react';
 import { ChartCard } from '../../components/DetailPages/ChartCard';
 import { ChartSlider } from '../../components/DetailPages/ChartSlider';
 import { NavBar } from '../../components/NavBar';
@@ -14,20 +13,25 @@ import {
 } from '../../data/householdData';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../../store';
+import { ImArrowDownRight2, ImArrowUpRight2 } from 'react-icons/im';
 
 export const Household = () => {
   const user = useRecoilValue(userState);
-  const [isDataTotal, setIsDataTotal] = useState(true);
+  const [sorting, setSorting] = useState<'ascending' | 'descending'>(
+    'descending',
+  );
   const data = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     false,
+    sorting,
   );
   const [hiddenItemsUuids, setHiddenItemsUuids] = useState<string[]>([]);
   const dataPlanning = filterDataByYearAndMgtg(
     householdData,
     user.yearRangeSelection,
     true,
+    sorting,
   );
 
   const filteredHiddenItems = (
@@ -79,6 +83,30 @@ export const Household = () => {
   };
   const maxChartScaling = getMaxChartScaling();
 
+  const getTotalSum = () => {
+    const dataSums = getYdata();
+    return (
+      dataSums.reduce((a, c) => {
+        return a + c;
+      }, 0) * 1000
+    ).toLocaleString('de-DE');
+  };
+
+  const getPercentageDifference = () => {
+    const dataArray = getYdata();
+
+    if (dataArray.length < 2) {
+      return 0;
+    }
+
+    const firstValue = dataArray[0];
+    const lastValue = dataArray[dataArray.length - 1];
+    const percentageDifference = ((lastValue - firstValue) / firstValue) * 100;
+
+    return Math.round(percentageDifference);
+  };
+  const percentageDifference = getPercentageDifference();
+
   return (
     <>
       <NavBar
@@ -86,11 +114,34 @@ export const Household = () => {
         navigateBackTitle="Startseite"
         pageTitle="Haushaltsdaten"
       />
-      <div className="p-4">
-        <TextComponent fSize="text-3xl">2€</TextComponent>
-        <TextComponent fSize="text-base" style="text-success-600">
-          Moin
-        </TextComponent>
+      <div className="p-4 flex">
+        <div className="mr-3">
+          <TextComponent fSize="text-3xl">{getTotalSum()} €</TextComponent>
+        </div>
+        <div className="self-end">
+          <TextComponent fSize="text-base" style="text-success-600">
+            {percentageDifference > 0 && (
+              <div className="flex">
+                <ImArrowUpRight2
+                  className="fill-success mr-1 self-center"
+                  size={12}
+                ></ImArrowUpRight2>
+                <p className="text-success">
+                  {Math.abs(percentageDifference)}%
+                </p>
+              </div>
+            )}
+            {percentageDifference < 0 && (
+              <div className="flex">
+                <ImArrowDownRight2
+                  className="fill-danger mr-1 self-center"
+                  size={12}
+                ></ImArrowDownRight2>
+                <p className="text-danger">{Math.abs(percentageDifference)}%</p>
+              </div>
+            )}
+          </TextComponent>
+        </div>
       </div>
       <ChartSlider>
         <ChartCard>
@@ -99,7 +150,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata()}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -110,7 +161,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('01')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -121,7 +172,7 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('03')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
@@ -132,37 +183,46 @@ export const Household = () => {
             xData={getXdata()}
             yData={getYdata('04')}
             scale={1000}
-            unit="Mio €"
+            unit=" Mio. €"
             usage="Ausgaben"
             maxScale={maxChartScaling}
           />
         </ChartCard>
       </ChartSlider>
       <div className="p-4">
-        <div className="text-center pb-8">
+        {/* <div className="text-center pb-8">
           <ButtonGroup size="sm">
             <Button
+              variant="ghost"
               color={isDataTotal ? 'primary' : 'default'}
               onPress={() => setIsDataTotal(true)}
+              className="border-0 shadow-none bg-primary-100 "
             >
               Gesamt
             </Button>
             <Button
+              variant="ghost"
               color={!isDataTotal ? 'primary' : 'default'}
               onPress={() => setIsDataTotal(false)}
+              className="border-0 shadow-none bg-primary-100 "
             >
               Verlauf
             </Button>
           </ButtonGroup>
+        </div> */}
+        <div className="mt-5">
+          <DataList
+            title="Haushaltsposten"
+            hiddenItemsUuids={hiddenItemsUuids}
+            setHiddenItemsUuids={setHiddenItemsUuids}
+            data={data}
+            dataPlanning={dataPlanning}
+            sorting={sorting}
+            setSorting={setSorting}
+          />
         </div>
-        <DataList
-          title="Haushaltsposten"
-          hiddenItemsUuids={hiddenItemsUuids}
-          setHiddenItemsUuids={setHiddenItemsUuids}
-          data={data}
-          dataPlanning={dataPlanning}
-        />
       </div>
+      <div className="flex flex-row gap-2  h-32"></div>
       <YearRangeSelector />
     </>
   );

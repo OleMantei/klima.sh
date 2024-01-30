@@ -1,11 +1,12 @@
 import {
-  //   Button,
+  Button,
+  ButtonGroup,
   Card,
   Listbox,
   ListboxItem,
-  //   Popover,
-  //   PopoverContent,
-  //   PopoverTrigger,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
 } from '@nextui-org/react';
 import { TextComponent } from '../TextComponent';
 import { BsEye, BsChevronRight, BsEyeSlash } from 'react-icons/bs';
@@ -18,6 +19,8 @@ type Props = {
   setHiddenItemsUuids: React.Dispatch<React.SetStateAction<string[]>>;
   data: HouseholdDataType;
   dataPlanning: HouseholdDataType;
+  sorting: string;
+  setSorting: React.Dispatch<React.SetStateAction<'ascending' | 'descending'>>;
 };
 
 export const DataList = ({
@@ -26,6 +29,8 @@ export const DataList = ({
   setHiddenItemsUuids,
   data,
   dataPlanning,
+  sorting,
+  setSorting,
 }: Props) => {
   const [isDetailsOpenItemKeys, setIsDetailsOpenItemKeys] = useState<string[]>(
     [],
@@ -49,17 +54,6 @@ export const DataList = ({
     }
   };
 
-  //   const content = (
-  //     <PopoverContent className="w-[240px]">
-  //       <div className="px-1 py-2 w-full">
-  //         <p className="text-small font-bold text-foreground">Dimensions</p>
-  //         <div className="mt-2 flex flex-col gap-2 w-full">Moin</div>
-  //       </div>
-  //     </PopoverContent>
-  //   );
-
-  //   console.log(data);
-
   const yearSum = (data: { [key: string]: number }) => {
     return Math.floor(
       Object.values(data).reduce((acc, currentValue) => acc + currentValue, 0) *
@@ -78,6 +72,7 @@ export const DataList = ({
       );
       items.push(
         <ListboxItem
+          // className="bg-primary-50"
           showDivider={
             !isDetailsOpenItemKeys.includes(
               `${item.identifier}-${item.purpose}-${
@@ -99,20 +94,45 @@ export const DataList = ({
               ) : (
                 <BsEye
                   className="text-lg text-primary"
-                  onClick={() => handleToggleDataHiddenState(item.uuid)}
+                  onClick={() => {
+                    if (
+                      !hiddenItemsUuids.includes(item.uuid) &&
+                      isDetailsOpenItemKeys.includes(
+                        `${item.identifier}-${item.purpose}-${
+                          item.planning ? 'planning' : 'notPlanning'
+                        }`,
+                      )
+                    ) {
+                      console.log(item.uuid);
+                      handleToggleDataHiddenState(item.uuid);
+                      handleToggleDetailsOpenState(
+                        `${item.identifier}-${item.purpose}-${
+                          item.planning ? 'planning' : 'notPlanning'
+                        }`,
+                      );
+                    } else {
+                      handleToggleDataHiddenState(item.uuid);
+                    }
+                  }}
                 />
               )}
             </div>
           }
           endContent={
             <div
-              className="flex items-center gap-1 text-default-400"
+              className={`flex items-center gap-1 pl-2 ${
+                hiddenItemsUuids.includes(item.uuid)
+                  ? `text-default-400 font-light`
+                  : `text-default-500 font-bold`
+              }`}
               onClick={() =>
-                handleToggleDetailsOpenState(
-                  `${item.identifier}-${item.purpose}-${
-                    item.planning ? 'planning' : 'notPlanning'
-                  }`,
-                )
+                hiddenItemsUuids.includes(item.uuid)
+                  ? null
+                  : handleToggleDetailsOpenState(
+                      `${item.identifier}-${item.purpose}-${
+                        item.planning ? 'planning' : 'notPlanning'
+                      }`,
+                    )
               }
             >
               <span className="text-small">
@@ -130,7 +150,17 @@ export const DataList = ({
             </div>
           }
         >
-          {item.purpose}
+          <div
+            className={`
+              ${
+                hiddenItemsUuids.includes(item.uuid)
+                  ? 'text-default-400 font-light'
+                  : 'text-default-600 font-semibold'
+              }
+            `}
+          >
+            {item.purpose}
+          </div>
         </ListboxItem>,
         <ListboxItem
           style={{
@@ -149,10 +179,10 @@ export const DataList = ({
           showDivider
         >
           <div className="pl-9 pb-3 whitespace-break-spaces">
-            <p className="mb-1">{item.purpose}</p>
+            <p className="mb-1 text-sm font-normal">{item.purpose}</p>
             {planningItem.length > 0 && (
               <p>
-                <span>
+                <span className="text-sm font-thin">
                   Ursprünglich geplant: {yearSum(planningItem[0].data)} €<br />
                   Abweichung:{' '}
                   {(
@@ -177,8 +207,8 @@ export const DataList = ({
   return (
     <div>
       <div className="flex justify-between mb-2">
-        <TextComponent style="uppercase">{title}</TextComponent>
-        {/* <Popover key="popover" offset={10} placement="bottom" backdrop="blur">
+        <TextComponent style="uppercase self-end">{title}</TextComponent>
+        <Popover key="popover" offset={10} placement="bottom" backdrop="blur">
           <PopoverTrigger>
             <Button
               size="sm"
@@ -189,11 +219,37 @@ export const DataList = ({
               Sortierung
             </Button>
           </PopoverTrigger>
-          {content}
-        </Popover> */}
+          <PopoverContent className="w-[240px]">
+            <div className="px-1 py-2 w-full">
+              <p className="text-small font-bold text-foreground mb-1">
+                Sortierung
+              </p>
+              <ButtonGroup fullWidth>
+                <Button
+                  color={`${sorting === 'descending' ? 'primary' : 'default'}`}
+                  onPress={() => setSorting('descending')}
+                >
+                  Absteigend
+                </Button>
+                <Button
+                  color={`${sorting === 'ascending' ? 'primary' : 'default'}`}
+                  onPress={() => setSorting('ascending')}
+                >
+                  Aufsteigend
+                </Button>
+              </ButtonGroup>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
       <Card shadow="none">
-        <Listbox>{getListBoxItem()}</Listbox>
+        <Listbox
+          variant="light"
+          hideEmptyContent
+          className="bg-gradient-to-tr from-primary-100 to-purple-50 shadow-none dark:border-default-200 dark:bg-gradient-to-tr dark:from-primary-50 dark:to-primary-200 "
+        >
+          {getListBoxItem()}
+        </Listbox>
       </Card>
     </div>
   );
