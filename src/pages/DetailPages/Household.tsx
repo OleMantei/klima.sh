@@ -157,7 +157,7 @@ export const Household = () => {
         </ChartCard>
         <ChartCard>
           <BarChart
-            title="Gruppe 01"
+            title="Bildungszentrum für Natur, Umwelt und ländliche Räume"
             xData={getXdata()}
             yData={getYdata('01')}
             scale={1000}
@@ -168,7 +168,7 @@ export const Household = () => {
         </ChartCard>
         <ChartCard>
           <BarChart
-            title="Gruppe 03"
+            title="Energiewirtschaftliche Maßnahmen, Energiewende und Klimaschutz"
             xData={getXdata()}
             yData={getYdata('03')}
             scale={1000}
@@ -179,7 +179,7 @@ export const Household = () => {
         </ChartCard>
         <ChartCard>
           <BarChart
-            title="Gruppe 04"
+            title="Nachhaltige Entwicklung"
             xData={getXdata()}
             yData={getYdata('04')}
             scale={1000}

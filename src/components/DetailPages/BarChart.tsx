@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes';
 import Chart from 'react-apexcharts';
+import { TextComponent } from '../TextComponent';
 
 type Props = {
   yData: number[];
@@ -94,17 +95,6 @@ export const BarChart = ({
           fontFamily: 'Nunito Sans, sans-serif',
         },
       },
-      title: {
-        text: title,
-        floating: true,
-        offsetY: 5,
-        offsetX: -15,
-        style: {
-          fontSize: '16px',
-          fontFamily: 'Nunito Sans, sans-serif',
-          fontWeight: 'semi-bold',
-        },
-      },
     },
     yaxis: {
       min: 0,
@@ -142,5 +132,12 @@ export const BarChart = ({
     },
   };
 
-  return <Chart options={options} type="bar" series={series} />;
+  return (
+    <div>
+      <Chart options={options} type="bar" series={series} />
+      <TextComponent style="text-center px-5 mb-5 h-10" fSize="text-1xl">
+        {title}
+      </TextComponent>
+    </div>
+  );
 };
